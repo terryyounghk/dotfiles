@@ -1,0 +1,12 @@
+[submodule "rime/plum"]
+	path = rime/plum
+	url = https://github.com/rime/plum.git
+[submodule "nvm/nvm.symlink"]
+	path = nvm/nvm.symlink
+	url = https://github.com/creationix/nvm.git
+[submodule "vim/vimrc"]
+	path = vim/vimrc
+	url = https://github.com/amix/vimrc.git
+[submodule "zpm/zpm.symlink"]
+	path = zpm/zpm.symlink
+	url = https://github.com/zpm-zsh/zpm

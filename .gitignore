@@ -1,0 +1,16 @@
+**/*.symlink*/**/*
+
+.bundle/
+.vscode/
+.idea/
+
+gitconfig.symlink
+gitconfig.local.symlink
+
+*.lock.json
+get-pip.py
+
+# .gnupg files
+gnupg*/**
+!gnupg*/*.conf
+!gnupg*/*.sh
