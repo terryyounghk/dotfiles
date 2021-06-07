@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# routine
+[ ! -f script/helper ] && echo "Please run this from $HOME/.dotfiles" && exit 1
+. script/helper
+
+set -e
+
+# find the installers and run them iteratively
+find $DOTFILES -name install.sh | while read installer ; do echo "${installer}" && sh -c "${installer}" ; done

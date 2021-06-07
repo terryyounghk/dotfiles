@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# routine
+[ ! -f script/helper ] && echo "Please run this from $HOME/.dotfiles" && exit 1
+. script/helper
+
+# Run all dotfiles installers.
+set -e
+echo ''
+$DOTFILES/script/install-dotfiles
+$DOTFILES/script/install-homebrew
+$DOTFILES/script/install-submodules
+$DOTFILES/script/install-installers

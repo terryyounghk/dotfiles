@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# routine
+[ ! -f script/helper ] && echo "Please run this from $HOME/.dotfiles" && exit 1
+. script/helper
+
+set -e
+
+echo ''
+echo 'Installing submodules'
+if git submodule init && git submodule update
+then
+  success "Submodules installed"
+else
+  fail "Error installing submodules"
+fi
