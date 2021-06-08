@@ -1,0 +1,138 @@
+# TODO: Catalina or above: https://github.com/mas-cli/mas
+
+# ---------------------------------------------------------
+# essentials
+
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "buo/cask-upgrade"                                     # "brew cu": https://github.com/buo/homebrew-cask-upgrade
+tap "homebrew/cask-fonts"
+tap "homebrew/command-not-found"
+tap "homebrew/services"
+
+# set arguments for all 'brew install --cask' commands
+cask_args appdir: "/Applications", require_sha: true
+
+# ---------------------------------------------------------
+# formulae
+
+brew "ack"
+brew "aha"                                                 # https://github.com/theZiz/aha
+brew "asdf"
+brew "awscli"
+brew "azure-cli"
+brew "bcrypt"
+brew "chrome-cli"                                          # https://github.com/prasmussen/chrome-cli
+brew "cocoapods"
+brew "cointop"                                             # https://cointop.sh/cli/
+brew "cowsay"
+brew "ctags"
+brew "elixir"
+brew "fasd"
+brew "ffmpeg"
+brew "figlet"
+brew "fortune"
+brew "ghostscript"
+brew "gimme-aws-creds"                                     # https://github.com/Nike-Inc/gimme-aws-creds
+brew "git"
+brew "git-lfs"
+brew "git-quick-stats"                                     # https://github.com/arzzen/git-quick-stats
+brew "gnupg"
+brew "go"
+brew "graphviz"                                            # https://gitlab.com/graphviz/graphviz/issues/1445, https://stackoverflow.com/questions/43372723/how-to-open-dot-on-mac
+brew "grc"
+brew "htop"
+brew "hub"
+brew "jq"
+brew "k9s"                                                 # https://github.com/derailed/k9s
+brew "kubernetes-cli"
+brew "lolcat"
+brew "moreutils"
+brew "navi"
+brew "neofetch"
+brew "neovim"
+brew "node"
+brew "pinentry-mac"
+brew "postgresql"
+brew "qpdf"
+brew "rbenv"
+brew "ruby"
+brew "serverless"
+brew "tldr"
+brew "tree"
+brew "typescript"
+brew "unrar"
+brew "util-linux"
+brew "w3m"                                                 # http://w3m.sourceforge.net/
+brew "wget"
+brew "zsh-completions"
+
+# ---------------------------------------------------------
+# others
+
+tap "snyk/tap"
+brew "snyk/tap/snyk"
+
+tap "ethereum/ethereum"
+brew "solidity"
+
+tap "coteditor/coteditor"
+brew "coteditor/coteditor/cot"
+
+# ---------------------------------------------------------
+# fonts
+
+cask "font-hack"
+cask "font-hack-nerd-font"
+cask "font-inconsolata"
+cask "font-profont-nerd-font"
+cask "font-roboto-mono"
+cask "font-roboto-mono-for-powerline"
+cask "font-source-code-pro"
+cask "font-source-code-pro-for-powerline"
+cask "font-terminus"
+
+# ---------------------------------------------------------
+# quicklooks
+
+cask "qlcolorcode"
+cask "qlmarkdown"
+cask "qlprettypatch"
+cask "qlstephen"
+cask "quicklook-csv"
+cask "quicklook-json"
+cask "scriptql"
+
+# ---------------------------------------------------------
+# applications
+
+cask "coteditor"
+cask "docker"
+cask "dropbox"
+cask "electron"
+cask "evernote"
+cask "gimp"
+cask "google-backup-and-sync"
+cask "keka"
+cask "krita"
+cask "lens"                                                # https://k8slens.dev/
+cask "meld"
+cask "mysqlworkbench"
+cask "ndm"
+cask "nwjs"
+cask "pencil"
+cask "pgadmin4"
+cask "postman"
+cask "setapp"
+cask "skitch"
+cask "slack"
+cask "sourcetree"
+cask "spotify"
+cask "squirrel"                                            # RIME: https://rime.im/download/
+cask "telegram"
+cask "the-unarchiver"
+cask "transmission"
+cask "visual-studio-code"
+cask "vlc"
+cask "whatsapp"
