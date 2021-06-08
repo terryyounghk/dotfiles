@@ -15,6 +15,26 @@ tap "homebrew/services"
 cask_args appdir: "/Applications", require_sha: true
 
 # ---------------------------------------------------------
+# special cases
+
+# ----------------------------------------------------------------------------
+# On a Mac, there is a problem using Yubikey with gpg version 2.3+.
+# If you see the following error message, please downgrade to gpg@2.2
+#
+# gpg --card-status
+# gpg: selecting card failed: Operation not supported by device
+# gpg: OpenPGP card not available: Operation not supported by device
+#
+# manual downgrade:
+# brew install gnupg@2.2
+# brew link gnupg@2.2 --force
+# ----------------------------------------------------------------------------
+
+brew "gnupg"
+brew "gnupg@2.2", link: true
+
+
+# ---------------------------------------------------------
 # formulae
 
 brew "ack"
@@ -38,7 +58,6 @@ brew "gimme-aws-creds"                                     # https://github.com/
 brew "git"
 brew "git-lfs"
 brew "git-quick-stats"                                     # https://github.com/arzzen/git-quick-stats
-brew "gnupg"
 brew "go"
 brew "graphviz"                                            # https://gitlab.com/graphviz/graphviz/issues/1445, https://stackoverflow.com/questions/43372723/how-to-open-dot-on-mac
 brew "grc"
