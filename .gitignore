@@ -14,3 +14,4 @@ get-pip.py
 gnupg*/**
 !gnupg*/*.conf
 !gnupg*/*.sh
+!gnupg*/*.md
