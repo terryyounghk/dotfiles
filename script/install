@@ -4,10 +4,68 @@
 [ ! -f script/helper ] && echo "Please run this from $HOME/.dotfiles" && exit 1
 . script/helper
 
-# Run all dotfiles installers.
-set -e
-echo ''
-$DOTFILES/script/install-dotfiles
-$DOTFILES/script/install-homebrew
-$DOTFILES/script/install-submodules
-$DOTFILES/script/install-installers
+set -euo pipefail
+
+install () {
+  install_xcode_command_line_tools
+  install_homebrew
+  install_submodules
+  install_dotfiles
+  install_packages
+}
+
+install_dotfiles () {
+  echo ''
+  echo 'Installing dotfiles'
+
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find -H "$DOTFILES" -maxdepth 2 -name '*.symlink' -not -path '*.git*')
+  do
+    dst="$HOME/.$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+}
+
+install_homebrew () {
+  # If we're on a Mac, let's install and setup homebrew.
+  if test "$(uname)" = "Darwin"
+  then
+    echo ''
+    info "Checking Homebrew..."
+    if source "$DOTFILES/homebrew/brew.sh" # | while read -r data; do info "$data"; done
+    then
+      success "Homebrew installed"
+    else
+      fail "Error installing/updating Homebrew"
+    fi
+  fi
+}
+
+install_submodules () {
+  echo ''
+  echo 'Installing submodules'
+  if git submodule init && git submodule update
+  then
+    success "Submodules installed"
+  else
+    fail "Error installing submodules"
+  fi
+}
+
+install_packages () {
+  # find the installers and run them iteratively
+  find $DOTFILES -name install.sh | while read installer ; do echo "${installer}" && sh -c "${installer}" ; done
+}
+
+install_xcode_command_line_tools () {
+  xcode-select --print-path >/dev/null 2>&1 || {
+    echo ''
+    echo "Installing Command Line Tools"
+    xcode-select --install
+  }
+}
+
+if [[ "${#BASH_SOURCE[@]}" -eq 1 ]]; then
+    install "$@"
+fi
