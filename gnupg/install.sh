@@ -16,4 +16,4 @@ chmod 700 "$HOME/.gnupg"
 
 # If you are on MacOS and installed brew install gnupg, you can create a symlink to point gpg2 to gpg
 # Change the paths accordingly in case your gpg was installed differently
-ln -snf /usr/local/bin/gpg /usr/local/bin/gpg2
+sudo ln -snf $(brew --prefix)/bin/gpg $(brew --prefix)/bin/gpg2
