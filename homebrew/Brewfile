@@ -12,7 +12,7 @@ tap "homebrew/command-not-found"
 tap "homebrew/services"
 
 # set arguments for all 'brew install --cask' commands
-cask_args appdir: "/Applications", require_sha: true
+cask_args appdir: "/Applications" #, require_sha: true
 
 # ---------------------------------------------------------
 # special cases
@@ -39,20 +39,23 @@ brew "gnupg@2.2", link: true
 
 brew "ack"
 brew "aha"                                                 # https://github.com/theZiz/aha
-brew "asdf"
+brew "asdf"                                                # Manage multiple runtime versions: https://github.com/asdf-vm/asdf
 brew "awscli"
 brew "azure-cli"
 brew "bcrypt"
 brew "chrome-cli"                                          # https://github.com/prasmussen/chrome-cli
+brew "cmake"                                               # needed this for some build processes like zeromq
 brew "cocoapods"
 brew "cointop"                                             # https://cointop.sh/cli/
 brew "cowsay"
 brew "ctags"
 brew "elixir"
 brew "fasd"
+brew "fd"                                                  # find alternative that respects .gitignore: https://github.com/sharkdp/fd
 brew "ffmpeg"
 brew "figlet"
 brew "fortune"
+brew "fzf"                                                 # fuzzy finder: https://github.com/junegunn/fzf
 brew "ghostscript"
 brew "gimme-aws-creds"                                     # https://github.com/Nike-Inc/gimme-aws-creds
 brew "git"
@@ -63,11 +66,13 @@ brew "graphviz"                                            # https://gitlab.com/
 brew "grc"
 brew "htop"
 brew "hub"
+brew "iterm2"
 brew "jq"
 brew "k9s"                                                 # https://github.com/derailed/k9s
 brew "kubernetes-cli"
 brew "lens"
 brew "lolcat"
+brew "mc"                                                  # https://midnight-commander.org/
 brew "moreutils"
 brew "navi"
 brew "neofetch"
@@ -80,6 +85,8 @@ brew "qpdf"
 brew "rbenv"
 brew "ruby"
 brew "serverless"
+brew "svn"
+brew "the_silver_searcher"                                 # https://github.com/ggreer/the_silver_searcher
 brew "tldr"
 brew "tree"
 brew "typescript"
@@ -92,14 +99,14 @@ brew "zsh-completions"
 # ---------------------------------------------------------
 # others
 
-tap "snyk/tap"
-brew "snyk/tap/snyk"
+# tap "snyk/tap"
+# brew "snyk/tap/snyk"
 
 tap "ethereum/ethereum"
 brew "solidity"
 
-tap "coteditor/coteditor"
-brew "coteditor/coteditor/cot"
+#tap "coteditor/coteditor"
+#brew "coteditor/coteditor/cot"
 
 # ---------------------------------------------------------
 # fonts
@@ -115,12 +122,13 @@ cask "font-source-code-pro-for-powerline"
 cask "font-terminus"
 
 # ---------------------------------------------------------
-# quicklooks
+# quicklooks: https://github.com/sindresorhus/quick-look-plugins
 
+cask "apparancy"
 cask "qlcolorcode"
 cask "qlmarkdown"
 cask "qlprettypatch"
-cask "qlstephen"
+#cask "qlstephen"                                           # Workaround for Catalina or above: https://github.com/whomwah/qlstephen/issues/81
 cask "quicklook-csv"
 cask "quicklook-json"
 cask "scriptql"
@@ -128,32 +136,34 @@ cask "scriptql"
 # ---------------------------------------------------------
 # applications
 
-cask "coteditor"
+cask "cheatsheet"                                          # https://www.mediaatelier.com/CheatSheet/
+#cask "coteditor"
+cask "customshortcuts"                                     # https://www.houdah.com/customShortcuts/
 cask "docker"
 cask "dropbox"
-cask "electron"
+# cask "electron"
 cask "evernote"
 cask "gimp"
-cask "google-backup-and-sync"
 cask "keka"
-cask "krita"
+# cask "krita"
 cask "lens"                                                # https://k8slens.dev/
 cask "meld"
 cask "mysqlworkbench"
 cask "ndm"
-cask "nwjs"
+# cask "nwjs"
 cask "pencil"
 cask "pgadmin4"
 cask "postman"
+cask "rectangle"                                           # https://github.com/rxhanson/Rectangle
 cask "setapp"
 cask "skitch"
-cask "slack"
+# cask "slack"
 cask "sourcetree"
 cask "spotify"
 cask "squirrel"                                            # RIME: https://rime.im/download/
 cask "telegram"
 cask "the-unarchiver"
-cask "transmission"
+# cask "transmission"
 cask "visual-studio-code"
 cask "vlc"
 cask "whatsapp"
