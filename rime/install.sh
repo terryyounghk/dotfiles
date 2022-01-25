@@ -7,4 +7,4 @@
 # https://rime.im/
 # https://github.com/rime/plum
 
-rime/plum/rime-install prelude essay cantonese quick scj emoji
+rime/plum/rime-install prelude essay jyutping quick scj emoji
