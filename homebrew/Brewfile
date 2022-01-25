@@ -66,6 +66,7 @@ brew "hub"
 brew "jq"
 brew "k9s"                                                 # https://github.com/derailed/k9s
 brew "kubernetes-cli"
+brew "lens"
 brew "lolcat"
 brew "moreutils"
 brew "navi"
