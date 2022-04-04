@@ -1,0 +1,150 @@
+# TODO: Catalina or above: https://github.com/mas-cli/mas
+
+# ---------------------------------------------------------
+# essentials
+
+tap "homebrew/core"
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "buo/cask-upgrade"                                     # "brew cu": https://github.com/buo/homebrew-cask-upgrade
+tap "homebrew/cask-fonts"
+tap "homebrew/command-not-found"
+tap "homebrew/services"
+tap "ethereum/ethereum"
+# tap "thecasualcoder/stable"                              # https://github.com/thecasualcoder/kube-fzf
+tap "jesseduffield/lazygit"                                # https://github.com/jesseduffield/lazygit
+# set arguments for all 'brew install --cask' commands
+cask_args appdir: "/Applications" #, require_sha: true
+
+# ---------------------------------------------------------
+# special cases
+
+# ----------------------------------------------------------------------------
+# On a Mac, there is a problem using Yubikey with gpg version 2.3+.
+# If you see the following error message, please downgrade to gpg@2.2
+#
+# gpg --card-status
+# gpg: selecting card failed: Operation not supported by device
+# gpg: OpenPGP card not available: Operation not supported by device
+#
+# manual downgrade:
+# brew install gnupg@2.2
+# brew link gnupg@2.2 --force
+# ----------------------------------------------------------------------------
+
+# brew "gnupg"
+# brew "gnupg@2.2", link: true
+
+
+# ---------------------------------------------------------
+# formulae
+
+brew "ack"
+brew "aha"                                                 # https://github.com/theZiz/aha
+brew "asdf"                                                # Manage multiple runtime versions: https://github.com/asdf-vm/asdf
+brew "awscli"
+brew "azure-cli"
+brew "bat"                                                 # https://github.com/sharkdp/bat
+brew "bcrypt"
+brew "chrome-cli"                                          # https://github.com/prasmussen/chrome-cli
+brew "cmake"                                               # needed this for some build processes like zeromq
+brew "cocoapods"
+brew "cointop"                                             # https://cointop.sh/cli/
+brew "cowsay"
+brew "ctags"
+brew "exa"                                                 # https://github.com/ogham/exa
+brew "fasd"
+brew "fd"                                                  # find alternative that respects .gitignore: https://github.com/sharkdp/fd
+brew "figlet"
+brew "fortune"
+brew "fzf"                                                 # fuzzy finder: https://github.com/junegunn/fzf
+brew "ghostscript"
+brew "gimme-aws-creds"                                     # https://github.com/Nike-Inc/gimme-aws-creds
+brew "git"
+brew "git-lfs"
+brew "git-quick-stats"                                     # https://github.com/arzzen/git-quick-stats
+brew "go"
+brew "graphviz"                                            # https://gitlab.com/graphviz/graphviz/issues/1445, https://stackoverflow.com/questions/43372723/how-to-open-dot-on-mac
+brew "grc"
+brew "htop"
+brew "hub"
+brew "jid"                                                 # https://github.com/simeji/jid
+brew "jq"
+brew "k9s"                                                 # https://github.com/derailed/k9s
+# brew "kube-fzf"                                            # https://github.com/thecasualcoder/kube-fzf
+brew "kubernetes-cli"
+brew "lazygit"
+brew "lolcat"
+brew "luajit"
+brew "mc"                                                  # https://midnight-commander.org/
+brew "moreutils"
+brew "navi"
+brew "neofetch"
+brew "neovim"
+brew "node"
+brew "pinentry-mac"
+brew "postgresql"
+brew "python"
+brew "qpdf"
+brew "rbenv"
+brew "ripgrep"                                             # https://github.com/BurntSushi/ripgrep
+brew "ruby"
+brew "serverless"
+brew "solidity"
+brew "svn"
+brew "the_silver_searcher"                                 # https://github.com/ggreer/the_silver_searcher
+brew "tldr"
+brew "tree"
+brew "tree-sitter"
+brew "typescript"
+brew "util-linux"
+brew "w3m"                                                 # http://w3m.sourceforge.net/
+brew "wget"
+brew "zsh-completions"
+
+# ---------------------------------------------------------
+# fonts
+
+cask "font-hack"
+cask "font-hack-nerd-font"
+cask "font-inconsolata"
+cask "font-profont-nerd-font"
+cask "font-roboto-mono"
+cask "font-roboto-mono-for-powerline"
+cask "font-source-code-pro"
+cask "font-source-code-pro-for-powerline"
+cask "font-terminus"
+
+# ---------------------------------------------------------
+# quicklooks: https://github.com/sindresorhus/quick-look-plugins
+
+cask "qlcolorcode"
+cask "qlmarkdown"
+cask "qlprettypatch"
+cask "quicklook-csv"
+cask "quicklook-json"
+cask "scriptql"
+
+# ---------------------------------------------------------
+# applications
+
+cask "cheatsheet"                                          # https://www.mediaatelier.com/CheatSheet/
+cask "customshortcuts"                                     # https://www.houdah.com/customShortcuts/
+cask "evernote"
+cask "gimp"
+cask "keka"
+cask "lens"                                                # https://k8slens.dev/
+cask "meld"
+cask "mysqlworkbench"
+cask "pgadmin4"
+cask "postman"
+cask "rectangle"                                           # https://github.com/rxhanson/Rectangle
+cask "setapp"
+cask "skitch"
+cask "signal"
+cask "sourcetree"
+cask "spotify"
+cask "squirrel"                                            # RIME: https://rime.im/download/
+cask "telegram"
+cask "visual-studio-code"
+cask "whatsapp"

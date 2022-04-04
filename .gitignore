@@ -1,0 +1,27 @@
+**/*.symlink*/**/*
+
+.bundle/
+.vscode/
+.idea/
+
+gitconfig.symlink
+gitconfig.local.symlink
+
+*.lock.json
+get-pip.py
+
+# .gnupg files
+gnupg*/**
+!gnupg*/*.conf
+!gnupg*/*.sh
+!gnupg*/*.md
+
+#zim
+!zim/zim.symlink/zimfw.zsh
+!zim/zim.symlink/README.md
+
+#rime
+plum/
+
+# don't commit work related stuff
+**/_work/**/*

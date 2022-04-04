@@ -1,0 +1,34 @@
+patch:
+  schema_list:
+    - schema: yale
+    - schema: hkcantonese
+    - schema: jyutping
+
+  switcher:
+    caption: ""
+    hotkeys:
+      - F4
+    save_options:
+      - full_shape
+      - ascii_punct
+      - simplification
+      - extended_charset
+      # - zh_hant
+      # - zh_hans
+      # - zh_hant_tw
+    fold_options: false
+    abbreviate_options: false
+    option_list_separator: '／'
+
+  menu:
+    page_size: 9
+
+  key_binder:
+    bindings:
+      # - key_bindings:/move_by_word_with_tab
+      - { when: has_menu, accept: bracketleft, send: Page_Up }
+      - { when: has_menu, accept: bracketright, send: Page_Down }
+      - { when: composing, accept: Shift+Tab, send: Shift+Left }
+      - { when: composing, accept: Tab, send: Shift+Right }
+      - { when: always, accept: F3, toggle: simplification }
+      - { when: composing, accept: Grave, send: Escape}
