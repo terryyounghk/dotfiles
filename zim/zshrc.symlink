@@ -112,6 +112,12 @@ source $DOTFILES/zim/custom/nvm/init.zsh
 source $DOTFILES/zim/custom/yarn/init.zsh
 
 
+# Load the kubectl completion code for zsh[1] into the current shell
+
+# https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
+source <(kubectl completion zsh)
+compdef __start_kubectl k
+
 # ------------------------------
 # Post-init module configuration
 # ------------------------------
@@ -155,11 +161,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 fpath=($fpath "/Users/terry/.zfunctions")
 
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-fpath=($fpath "/Users/terry/.zfunctions")
-fpath=($fpath "/Users/terry/.zfunctions")
-fpath=($fpath "/Users/terry/.zfunctions")
-fpath=($fpath "/Users/terry/.zfunctions")
-fpath=($fpath "/Users/terry/.zfunctions")
+source /Users/terryyoung/.multi/multi-wrapper.bash
+source /Users/terryyoung/.multi/autocomplete.bash
+
+# krew
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
