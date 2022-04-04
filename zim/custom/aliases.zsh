@@ -1,165 +1,104 @@
 alias reload!='. ~/.zshrc'
+alias rl='reload!'
 
-################################################################################
-# supporting functions
-################################################################################
+# -----------------------------------------------------------------------------------
+# general
 
-# list recent apps and open new instance
-function fasd-app () {
-  echo 'open -n ...'
-  s -i $1 .app$ -e 'open -n'
+# list alias starting with ...
+function lal () {
+  alias | grep "^$1"
 }
 
-# list recent items and open in code
-function fasd-vscode () {
-  echo 'code ...'
-  if [ "$1" = "." ] ; then
-    code .
-  else
-    s -i $1 -e code
-  fi
+print-head () {
+  printf "%b\r\033[00;36m$1\033[0m\n"
 }
 
-# list recent items and open in IntelliJ Idea
-function fasd-idea () {
-  echo 'code ...'
-  if [ "$1" = "." ] ; then
-    idea .
-  else
-    s -i $1 -e idea
-  fi
+print-line () {
+  printf "%b\r  \033[0m$1\033[0m\n"
 }
 
-# list recent items and open in CotEditor
-function fasd-cot () {
-  echo 'code ...'
-  if [ "$1" = "." ] ; then
-    cot .
-  else
-    s -i $1 -e cot
-  fi
+print-temp () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1"
 }
 
-# list recent directories and open in finder
-function fasd-finder () {
-  echo 'open in finder ...'
-  d -i $1 -e 'open'
+print-info () {
+  printf "\r  [ \033[00;34m..\033[0m ] $1\n"
 }
 
-function fasd-cd () {
-  echo 'cd to directory ...'
-  fasd_cd -d -i $1
+print-user () {
+  printf "\r  [ \033[0;33m??\033[0m ] $1\n"
 }
 
-################################################################################
-# These are my lazy aliases from a to z
-# My muscle-memory dictates this list, and these are subject to change.
-################################################################################
+print-pass () {
+  printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+}
 
-# [a] reserved for fasd
-    #alias a='fasd -a' # files and directories
+print-fail () {
+  printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
+  echo ''
+  exit
+}
 
-# [b]ack to previous wd
-    alias b='cd -'
+# -----------------------------------------------------------------------------------
+# replacements
+# https://ivergara.github.io/Supercharging-shell.html
 
-# [c]leanup - recursively delete .DS_Store files
-    alias c="find . -type f -name '*.DS_Store' -ls -delete"
-    alias cs='cht.sh'
-    alias csh='cht.sh --shell'
+alias cat='bat'
+alias cal='cal -y'
+#alias ls='exa'
 
-# [d] reserved for fasd
-    #alias d='fasd -d'
+# -----------------------------------------------------------------------------------
+# zim
 
-# [e]dit file (uses fasd, i'm not using $DOTS/bin/e that much)
-    #alias e=''
+# edit zim files
+alias ze='vi $DOTFILES/zim/custom/_work/'
 
-# [f] reserved for fasd
-    #alias f='fasd -f'
+# -----------------------------------------------------------------------------------
+# file system
 
-# [g]oogle whatever is on the clipboard
-    alias g='google'
-    alias gclip='google "\"`pbpaste`\""'
+# back
+alias b='cd -'
 
-# [h] reserved for /function h()
-    #alias h='h'
+# clean files
+alias c="find . -type f -name '*.DS_Store' -ls -delete"
 
-# [i]p address
-    alias i='myip'
-
-# [j]ump to directory in finder using fasd
-    #alias j=''
-
-# [k] Quic[k]-loo[k] a file (requires oh-my-zsh-osx plugin)
-    alias k='quick-look'
-
-# [l]s : the one I most frequently use
-    alias l='ls -al'
-
-# [m]ou
-    alias m='open -n /Applications/mou.app'
-
-# [n]avi
-    alias n='navi'
-    alias nq='navi -q'
-    alias nc='navi --cheatsh'
-
-# [o]pen current directory in finder
-    alias o='open .'
-
-# [p]review man (requires oh-my-zsh osx plugin)
-    alias p='man-preview'
-
-# [q]uit terminal
-    alias q='exit'
-
-# [r]epo directory (bare)
-    alias r='cd ~/repo'
-
-# [s] reserved for fasd
-    #alias s='fasd -si'
-
-# [t]re -L . Requires $DOTS/bin/tre. Usage: t 1, t 2, t 3...
-    alias t='tre -L'
-
-# [u]ltimateVideoConverter
-    alias u='open -n /Applications/videoconverterultimate.app'
-
-# [v]lc
-    alias v='open -n /Applications/vlc.app'
-
-# [w]orking directory
-    alias w='cd ~/wd'
-
-# [x] killall
-    alias x='killall'
-
-# [y]
-    alias y='google'
-
-# [z] reserved for fasd
-    #alias z='fasd_cd -d'
-
-################################################################################
-# My other aliases
-################################################################################
-
+# home
 alias home='cd ~'
 
-alias fid='fasd -i -d' # just to find and list directories
-alias fap='fasd-app'
-alias fd='fasd-cd'
-alias fcode='fasd-vscode'
-alias fcot='fasd-cot'
-alias fidea='fasd-idea'
-alias finder='fasd-finder'
+# fuzzy fasd_cd
+alias f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
 
-# Open FileZilla from command line to work with Yubikey
-# Reference: https://superuser.com/questions/1383380/filezilla-on-mac-yubikey-authentication
-alias fz='/Applications/FileZilla.app/Contents/MacOS/filezilla'
-alias filezilla='fz'
+# my preferred ls
+#alias l='ls -al'
+alias exa='exa -lgh --icons --time-style=iso --git --group-directories-first'
+alias l='exa --icons --git-ignore'
+alias ll='exa --all'
+alias lk='l --tree --level=1'
+alias lj='l --tree --level=2'
+alias lh='l --tree --level=3'
+alias ln='l --tree'
 
-# ssh related aliases
-alias saa='ssh-add -A'
-alias sal='ssh-add -l'
-alias saL='ssh-add -L'
-alias sak='ssh-add -K'
+# mkdir create [p]arent directories and [v]erbose
+alias mkdir='mkdir -pv'
+
+alias df='df -H'
+alias du='du -ch'
+
+
+# -----------------------------------------------------------------------------------
+# yarn
+
+alias y='yarn'
+alias yi='yarn install'
+alias yb='yarn build'
+alias yt='yarn test'
+alias ye='yarn e2e'
+alias yl='yarn lint'
+alias ys='yarn start'
+
+# -----------------------------------------------------------------------------------
+# git
+
+#alias log1="log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"
+#alias log2="log --all --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
+#alias hist="log --graph --full-history --all --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"

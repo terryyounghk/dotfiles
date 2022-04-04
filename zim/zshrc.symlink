@@ -111,6 +111,10 @@ source $DOTFILES/zim/custom/nnn/init.zsh
 source $DOTFILES/zim/custom/nvm/init.zsh
 source $DOTFILES/zim/custom/yarn/init.zsh
 
+source $DOTFILES/zim/custom/aliases.zsh
+
+# work-related custom inits (not included, optional for anyone)
+source $DOTFILES/zim/custom/_work/init.zsh 2> /dev/null
 
 # Load the kubectl completion code for zsh[1] into the current shell
 

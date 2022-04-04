@@ -22,3 +22,6 @@ gnupg*/**
 
 #rime
 plum/
+
+# don't commit work related stuff
+**/_work/**/*
