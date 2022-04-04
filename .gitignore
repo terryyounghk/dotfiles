@@ -19,3 +19,6 @@ gnupg*/**
 #zim
 !zim/zim.symlink/zimfw.zsh
 !zim/zim.symlink/README.md
+
+#rime
+plum/
