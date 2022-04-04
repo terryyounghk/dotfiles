@@ -165,8 +165,5 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 fpath=($fpath "/Users/terry/.zfunctions")
 
-source /Users/terryyoung/.multi/multi-wrapper.bash
-source /Users/terryyoung/.multi/autocomplete.bash
-
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
