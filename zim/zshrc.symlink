@@ -107,7 +107,7 @@ source $DOTFILES/zim/custom/fasd/init.zsh
 source $DOTFILES/zim/custom/fzf/init.zsh
 source $DOTFILES/zim/custom/gpg-agent/init.zsh
 source $DOTFILES/zim/custom/nnn/init.zsh
-source $DOTFILES/zim/custom/nvim/init.zsh
+#source $DOTFILES/zim/custom/nvim/init.zsh
 source $DOTFILES/zim/custom/nvm/init.zsh
 source $DOTFILES/zim/custom/yarn/init.zsh
 
