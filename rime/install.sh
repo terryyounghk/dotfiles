@@ -24,6 +24,6 @@ rm -rf ./plum
 
 # copy custom configurations
 
-cp ./default.custom.yaml ~/Library/Rime/
+cp $DOTFILES/rime/default.custom.yaml ~/Library/Rime/
 
 # first time usage: activate the input method and choose "deploy" from the menu
