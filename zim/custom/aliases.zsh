@@ -76,7 +76,6 @@ alias ll='exa --all'
 alias lk='l --tree --level=1'
 alias lj='l --tree --level=2'
 alias lh='l --tree --level=3'
-alias ln='l --tree'
 
 # mkdir create [p]arent directories and [v]erbose
 alias mkdir='mkdir -pv'
