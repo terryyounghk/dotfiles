@@ -108,7 +108,6 @@ source $DOTFILES/zim/custom/fzf/init.zsh
 source $DOTFILES/zim/custom/gpg-agent/init.zsh
 source $DOTFILES/zim/custom/nnn/init.zsh
 #source $DOTFILES/zim/custom/nvim/init.zsh
-source $DOTFILES/zim/custom/nvm/init.zsh
 source $DOTFILES/zim/custom/yarn/init.zsh
 
 source $DOTFILES/zim/custom/aliases.zsh
@@ -167,3 +166,8 @@ fpath=($fpath "/Users/terry/.zfunctions")
 
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# asdf
+# https://asdf-vm.com/guide/getting-started.html#_3-install-asdf
+. /opt/homebrew/opt/asdf/libexec/asdf.sh
+
