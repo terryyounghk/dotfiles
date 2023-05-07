@@ -172,3 +172,7 @@ export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 # https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
 export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4 --mouse'
 
+# direnv
+# https://github.com/direnv/direnv/blob/master/docs/hook.md
+eval "$(direnv hook zsh)"
+

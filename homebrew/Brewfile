@@ -52,6 +52,7 @@ brew "cocoapods"
 brew "cointop"                                             # https://cointop.sh/cli/
 brew "cowsay"
 brew "ctags"
+brew "direnv"                                              # https://github.com/direnv/direnv
 brew "exa"                                                 # https://github.com/ogham/exa
 brew "fasd"
 brew "fd"                                                  # find alternative that respects .gitignore: https://github.com/sharkdp/fd
