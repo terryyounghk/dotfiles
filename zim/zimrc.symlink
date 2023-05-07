@@ -40,5 +40,13 @@ zmodule zsh-users/zsh-history-substring-search
 # }}} End configuration added by Zim install
 
 # ====================================================================================================
+
+zmodule archive
+zmodule asdf
+zmodule exa
+zmodule k
+zmodule fzf
+# zmodule ssh
+# zmodule joke/zim-github-cli
+
 zmodule romkatv/powerlevel10k
-# zmodule denysdovhan/spaceship-prompt --name spaceship
