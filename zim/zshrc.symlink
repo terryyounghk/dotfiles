@@ -110,6 +110,9 @@ source $DOTFILES/zim/custom/nnn/init.zsh
 #source $DOTFILES/zim/custom/nvim/init.zsh
 source $DOTFILES/zim/custom/yarn/init.zsh
 
+# https://github.com/marlonrichert/zsh-hist
+source $DOTFILES/zim/custom/zsh-hist/zsh-hist.plugin.zsh
+
 source $DOTFILES/zim/custom/aliases.zsh
 
 # work-related custom inits (not included, optional for anyone)
