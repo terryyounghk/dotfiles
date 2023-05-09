@@ -51,6 +51,14 @@ function fasd-cd () {
   fasd_cd -d -i $1
 }
 
+# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
+unalias z
+function z () {
+    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+    local dir
+    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+}
+
 alias fid='fasd -i -d' # just to find and list directories
 alias fap='fasd-app'
 alias fa='fasd-cd'
@@ -58,3 +66,6 @@ alias fcode='fasd-vscode'
 alias fcot='fasd-cot'
 alias fidea='fasd-idea'
 alias finder='fasd-finder'
+
+alias j=z
+alias jj=zz
