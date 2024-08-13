@@ -25,5 +25,6 @@ rm -rf ./plum
 # copy custom configurations
 
 cp $DOTFILES/rime/default.custom.yaml ~/Library/Rime/
+cp $DOTFILES/rime/squirrel.custom.yaml ~/Library/Rime/
 
 # first time usage: activate the input method and choose "deploy" from the menu

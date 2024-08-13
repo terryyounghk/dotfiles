@@ -1,0 +1,28 @@
+patch:
+  # us_keyboard_layout: true
+  # show_notifications_when: growl_is_running
+  # style/candidate_list_layout: linear
+  # style/text_orientation: horizontal
+  # style/horizontal: true
+  # style/candidate_format: "%c %@ "
+  # style/inline_candidate: true
+  style/inline_preedit: false
+  style/font_face: "儷黑 Pro"
+  style/font_point: 20
+  style/corner_radius: 10
+  style/border_height: 10
+  style/border_width: 10
+  style/color_scheme: dark_temple
+  style/translucency: true
+  style/alpha: 0.8
+
+  # editor:
+  #   bindings:
+  #     Return: commit_raw_input
+
+  # app_options/com.apple.Spotlight:
+  #   ascii_mode: false
+  # app_options/com.microsoft.VSCode:
+  #   ascii_mode: false
+  # app_options/com.google.Chrome:
+  #   ascii_mode: false
