@@ -82,10 +82,10 @@ brew "lazygit"                                             # https://github.com/
 brew "libmagic"                                            # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "lolcat"
 brew "luajit"
+brew "macchina"                                            # https://github.com/Macchina-CLI/macchina
 brew "mc"                                                  # https://midnight-commander.org/
 brew "moreutils"
 brew "navi"
-brew "neofetch"
 brew "neovim"
 brew "ninja"                                               # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "node"
@@ -112,6 +112,7 @@ brew "typescript"
 brew "util-linux"
 brew "w3m"                                                 # http://w3m.sourceforge.net/
 brew "wget"
+brew "yq"                                                  # https://github.com/mikefarah/yq
 brew "zsh-completions"
 
 # ---------------------------------------------------------
