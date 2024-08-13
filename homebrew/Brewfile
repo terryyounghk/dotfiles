@@ -46,13 +46,15 @@ brew "awscli"
 brew "azure-cli"
 brew "bat"                                                 # https://github.com/sharkdp/bat
 brew "bcrypt"
+brew "ccache"                                              # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "chrome-cli"                                          # https://github.com/prasmussen/chrome-cli
-brew "cmake"                                               # needed this for some build processes like zeromq
+brew "cmake"
 brew "cocoapods"
 brew "cointop"                                             # https://cointop.sh/cli/
 brew "cowsay"
 brew "ctags"
 brew "direnv"                                              # https://github.com/direnv/direnv
+brew "dtc"                                                 # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "exa"                                                 # https://github.com/ogham/exa
 brew "fasd"
 brew "fd"                                                  # find alternative that respects .gitignore: https://github.com/sharkdp/fd
@@ -67,6 +69,7 @@ brew "git-delta"                                           # https://dandavison.
 brew "git-lfs"
 brew "git-quick-stats"                                     # https://github.com/arzzen/git-quick-stats
 brew "go"
+brew "gperf"                                               # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "graphviz"                                            # https://gitlab.com/graphviz/graphviz/issues/1445, https://stackoverflow.com/questions/43372723/how-to-open-dot-on-mac
 brew "grc"
 brew "htop"
@@ -76,6 +79,7 @@ brew "jq"
 brew "k9s"                                                 # https://github.com/derailed/k9s
 brew "kubernetes-cli"
 brew "lazygit"                                             # https://github.com/jesseduffield/lazygit
+brew "libmagic"                                            # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "lolcat"
 brew "luajit"
 brew "mc"                                                  # https://midnight-commander.org/
@@ -83,11 +87,13 @@ brew "moreutils"
 brew "navi"
 brew "neofetch"
 brew "neovim"
+brew "ninja"                                               # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "node"
 brew "pinentry-mac"
 brew "plover"                                              # http://www.openstenoproject.org/plover/
 brew "postgresql"
 brew "python"
+brew "qemu"                                                # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "qpdf"
 brew "qmk/qmk/qmk"                                         # https://docs.qmk.fm/
 brew "rbenv"
@@ -142,6 +148,7 @@ cask "gimp"
 cask "hammerspoon"                                         # https://github.com/Hammerspoon/hammerspoon
 cask "keka"
 cask "keycastr"
+cask "kicad"                                               # https://www.kicad.org/
 cask "meld"
 cask "mysqlworkbench"
 cask "pgadmin4"
@@ -152,5 +159,6 @@ cask "sourcetree"
 cask "spotify"
 cask "squirrel"                                            # RIME: https://rime.im/download/
 cask "telegram"
+cask "thonny"                                              # https://thonny.org/
 cask "visual-studio-code"
 cask "whatsapp"
