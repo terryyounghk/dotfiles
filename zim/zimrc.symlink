@@ -48,5 +48,7 @@ zmodule k
 zmodule fzf
 # zmodule ssh
 # zmodule joke/zim-github-cli
+zmodule joke/zim-yq
+zmodule olets/zsh-abbr
 
 zmodule romkatv/powerlevel10k

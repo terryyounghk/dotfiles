@@ -42,6 +42,7 @@ print-fail () {
 # -----------------------------------------------------------------------------------
 # stuff
 alias m='macchina'
+alias v='abbr'
 
 # -----------------------------------------------------------------------------------
 # replacements
@@ -236,6 +237,11 @@ git_current_branch () {
         echo ${ref#refs/heads/}
 }
 
-#alias log1="log --graph --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"
-#alias log2="log --all --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'"
-#alias hist="log --graph --full-history --all --pretty=format:'%Cred%h%Creset %ad %s %C(yellow)%d%Creset %C(bold blue)<%an>%Creset' --date=short"
+alias Gcb="git_current_branch"
+alias Gfl="git config --local --list"
+alias Gfg="git config --global --list"
+alias Gcsm="git commit -S -m"
+alias Gfv="git fetch --all --verbose --prune"
+alias Gu="git status"
+alias GL="git log --all --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(bold)signed:%Creset%C(auto)%G?%Creset %C(bold blue)<%an>%Creset %s %C(auto)%d%Creset' --date=short"
+

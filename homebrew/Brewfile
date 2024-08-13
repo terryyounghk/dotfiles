@@ -56,6 +56,7 @@ brew "ctags"
 brew "direnv"                                              # https://github.com/direnv/direnv
 brew "dtc"                                                 # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "exa"                                                 # https://github.com/ogham/exa
+brew "expect"                                              # https://core.tcl-lang.org/expect/index
 brew "fasd"
 brew "fd"                                                  # find alternative that respects .gitignore: https://github.com/sharkdp/fd
 brew "figlet"
@@ -89,6 +90,7 @@ brew "navi"
 brew "neovim"
 brew "ninja"                                               # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
 brew "node"
+brew "olets/tap/zsh-abbr"                                  # https://zsh-abbr.olets.dev/installation.html
 brew "pinentry-mac"
 brew "plover"                                              # http://www.openstenoproject.org/plover/
 brew "postgresql"

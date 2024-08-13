@@ -179,3 +179,9 @@ export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHAR
 # https://github.com/direnv/direnv/blob/master/docs/hook.md
 eval "$(direnv hook zsh)"
 
+# zim-abbr
+# https://zsh-abbr.olets.dev/commands.html#import-aliases
+abbr import-aliases --quieter
+# the above does not seem to work with the -g global flag, manually add it to the generated abbr file
+sed -i '' 's/abbr "/abbr -g "/g' $(echo $ABBR_USER_ABBREVIATIONS_FILE)
+
