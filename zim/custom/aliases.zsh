@@ -74,10 +74,9 @@ alias home='cd ~'
 alias f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
 
 # my preferred ls
-#alias l='ls -al'
-alias exa='exa -lgh --icons --time-style=iso --git --group-directories-first'
-alias l='exa --icons --git-ignore'
-alias ll='exa --all'
+alias eza='eza -lgh --icons --time-style=long-iso --git --group-directories-first'
+alias l='eza --icons --git-ignore'
+alias ll='eza --all --all'
 alias lk='l --tree --level=1'
 alias lj='l --tree --level=2'
 alias lh='l --tree --level=3'

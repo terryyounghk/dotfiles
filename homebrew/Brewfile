@@ -55,8 +55,8 @@ brew "cowsay"
 brew "ctags"
 brew "direnv"                                              # https://github.com/direnv/direnv
 brew "dtc"                                                 # Zephyr/zmk development dependency: https://docs.zephyrproject.org/3.2.0/develop/getting_started/index.html#install-dependencies
-brew "exa"                                                 # https://github.com/ogham/exa
 brew "expect"                                              # https://core.tcl-lang.org/expect/index
+brew "eza"                                                 # https://github.com/eza-community/eza
 brew "fasd"
 brew "fd"                                                  # find alternative that respects .gitignore: https://github.com/sharkdp/fd
 brew "figlet"
