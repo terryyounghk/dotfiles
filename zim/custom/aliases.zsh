@@ -1,5 +1,5 @@
-alias reload!='. ~/.zshrc'
-alias rl='reload!'
+# reload
+alias rl='. ~/.zshrc'
 
 # -----------------------------------------------------------------------------------
 # general
@@ -43,6 +43,8 @@ print-fail () {
 # stuff
 alias m='macchina'
 alias v='abbr'
+alias vv="abbr import-aliases --quieter"
+alias vvv="vi $(echo $ABBR_USER_ABBREVIATIONS_FILE)"
 
 # -----------------------------------------------------------------------------------
 # replacements
