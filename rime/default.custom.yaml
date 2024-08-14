@@ -13,11 +13,12 @@ patch:
       - ascii_punct
       - simplification
       - extended_charset
+
       # - zh_hant
       # - zh_hans
       # - zh_hant_tw
-    fold_options: false
-    abbreviate_options: false
+    fold_options: true
+    abbreviate_options: true
     option_list_separator: '／'
 
   menu:
@@ -26,9 +27,19 @@ patch:
   key_binder:
     bindings:
       # - key_bindings:/move_by_word_with_tab
-      - { when: has_menu, accept: bracketleft, send: Page_Up }
-      - { when: has_menu, accept: bracketright, send: Page_Down }
-      - { when: composing, accept: Shift+Tab, send: Shift+Left }
-      - { when: composing, accept: Tab, send: Shift+Right }
-      - { when: always, accept: F3, toggle: simplification }
-      - { when: composing, accept: Grave, send: Escape}
+      # - { when: has_menu, accept: bracketleft, send: Page_Up }
+      # - { when: has_menu, accept: bracketright, send: Page_Down }
+      # - { when: composing, accept: Shift+Tab, send: Shift+Left }
+      # - { when: composing, accept: Tab, send: Shift+Right }
+
+      - { when: composing, accept: F2, toggle: full_shape }
+      - { when: composing, accept: F3, toggle: simplification }
+      - { when: has_menu, accept: F6, toggle: Page_Up }
+      - { when: has_menu, accept: F7, toggle: Page_Down }
+
+      - { when: has_menu, accept: Return, send: space }
+      - { when: has_menu, accept: KP_Enter, send: space }
+      - { when: has_menu, accept: Linefeed, send: space }
+      - { when: has_menu, accept: KP_Tab, send: space }
+      - { when: has_menu, accept: Tab, send: space }
+

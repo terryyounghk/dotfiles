@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Start configuration added by Zim install {{{
 #
 # User configuration sourced by interactive shells
@@ -108,8 +115,10 @@ source $DOTFILES/zim/custom/fzf/init.zsh
 source $DOTFILES/zim/custom/gpg-agent/init.zsh
 source $DOTFILES/zim/custom/nnn/init.zsh
 #source $DOTFILES/zim/custom/nvim/init.zsh
-source $DOTFILES/zim/custom/nvm/init.zsh
 source $DOTFILES/zim/custom/yarn/init.zsh
+
+# https://github.com/marlonrichert/zsh-hist
+source $DOTFILES/zim/custom/zsh-hist/zsh-hist.plugin.zsh
 
 source $DOTFILES/zim/custom/aliases.zsh
 
@@ -167,3 +176,13 @@ fpath=($fpath "/Users/terry/.zfunctions")
 
 # krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
+# less
+# https://dandavison.github.io/delta/tips-and-tricks/mouse-scrolling.html
+# https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
+export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4 --mouse'
+
+# direnv
+# https://github.com/direnv/direnv/blob/master/docs/hook.md
+eval "$(direnv hook zsh)"
+
