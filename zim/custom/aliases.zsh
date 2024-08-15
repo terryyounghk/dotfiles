@@ -249,6 +249,7 @@ alias -g Gfl="git config --local --list"
 alias -g Gfg="git config --global --list"
 alias -g Gcsm="git commit -S -m"
 alias -g Gfv="git fetch --all --verbose --prune"
+alias -g Gsg="git log --show-signature -n 1"
 alias -g Gu="git status"
 alias -g GL="git log --all --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(bold)signed:%Creset%C(auto)%G?%Creset %C(bold blue)<%an>%Creset %s %C(auto)%d%Creset' --date=short"
 
