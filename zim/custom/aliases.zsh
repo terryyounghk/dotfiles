@@ -89,6 +89,12 @@ alias mkdir='mkdir -pv'
 alias df='df -H'
 alias du='du -ch'
 
+# quick jumps
+alias zd='cd $DOTFILES'
+alias zk='z kbds'
+alias zr='cd ~/Library/Rime'
+alias zw='cd ~/wd'
+alias zp='cd ~/Library/Preferences'
 
 # -----------------------------------------------------------------------------------
 # yarn
