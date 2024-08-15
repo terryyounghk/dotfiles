@@ -86,7 +86,7 @@ alias -g lj='l --tree --level=2'
 alias -g lh='l --tree --level=3'
 
 # mkdir create [p]arent directories and [v]erbose
-alias -g mkdir='mkdir -pv'
+alias -g mpv='mkdir -pv'
 
 alias -g df='df -H'
 alias -g du='du -ch'
