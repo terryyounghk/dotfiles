@@ -188,3 +188,10 @@ export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHAR
 # https://github.com/direnv/direnv/blob/master/docs/hook.md
 eval "$(direnv hook zsh)"
 
+# use tmux by default: keep this at the end
+# https://unix.stackexchange.com/a/113768
+
+
+#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
+#  exec tmux
+#fi

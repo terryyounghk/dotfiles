@@ -60,6 +60,8 @@ alias -g cal='cal -y'
 # edit zim files
 alias -g ze='vi $DOTFILES/zim/custom/_work/'
 
+alias tmux="TERM=screen-256color tmux"
+
 # -----------------------------------------------------------------------------------
 # file system
 
