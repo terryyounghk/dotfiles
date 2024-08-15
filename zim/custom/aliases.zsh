@@ -1,12 +1,12 @@
 # reload
-alias rl='. ~/.zshrc'
+alias -g rl='. ~/.zshrc'
 
 # -----------------------------------------------------------------------------------
 # general
 
-# list alias starting with ...
+# list alias -g starting with ...
 function lal () {
-  alias | grep "^$1"
+  alias -g | grep "^$1"
 }
 
 print-head () {
@@ -41,78 +41,78 @@ print-fail () {
 
 # -----------------------------------------------------------------------------------
 # stuff
-alias m='macchina'
-alias v='abbr'
-alias vv="abbr import-aliases --quieter"
-alias vvv="vi $(echo $ABBR_USER_ABBREVIATIONS_FILE)"
+alias -g m='macchina'
+alias -g v='abbr'
+alias -g vv="abbr import-aliases --quieter --global"
+alias -g vvv="vi $(echo $ABBR_USER_ABBREVIATIONS_FILE)"
 
 # -----------------------------------------------------------------------------------
 # replacements
 # https://ivergara.github.io/Supercharging-shell.html
 
-alias cat='bat'
-alias cal='cal -y'
-#alias ls='exa'
+alias -g cat='bat'
+alias -g cal='cal -y'
+#alias -g ls='exa'
 
 # -----------------------------------------------------------------------------------
 # zim
 
 # edit zim files
-alias ze='vi $DOTFILES/zim/custom/_work/'
+alias -g ze='vi $DOTFILES/zim/custom/_work/'
 
 # -----------------------------------------------------------------------------------
 # file system
 
 # back
-alias b='cd -'
+alias -g b='cd -'
 
 # clean files
-alias c="find . -type f -name '*.DS_Store' -ls -delete"
+alias -g c="find . -type f -name '*.DS_Store' -ls -delete"
 
 # home
-alias home='cd ~'
+alias -g home='cd ~'
 
 # fuzzy fasd_cd
-alias f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
+alias -g f='cd $(fd --type d --hidden --exclude .git --exclude node_module --exclude .cache --exclude .npm --exclude .mozilla --exclude .meteor --exclude .nv | fzf)'
 
 # my preferred ls
-alias eza='eza -lgh --icons --time-style=long-iso --git --group-directories-first'
-alias l='eza --icons --git-ignore'
-alias ll='eza --all --all'
-alias lk='l --tree --level=1'
-alias lj='l --tree --level=2'
-alias lh='l --tree --level=3'
+alias -g eza='eza -lgh --icons --time-style=long-iso --git --group-directories-first'
+alias -g l='eza --icons --git-ignore'
+alias -g ll='eza --all --all'
+alias -g lk='l --tree --level=1'
+alias -g lj='l --tree --level=2'
+alias -g lh='l --tree --level=3'
 
 # mkdir create [p]arent directories and [v]erbose
-alias mkdir='mkdir -pv'
+alias -g mkdir='mkdir -pv'
 
-alias df='df -H'
-alias du='du -ch'
+alias -g df='df -H'
+alias -g du='du -ch'
 
 # quick jumps
-alias zd='cd $DOTFILES'
-alias zk='z kbds'
-alias zr='cd ~/Library/Rime'
-alias zw='cd ~/wd'
-alias zp='cd ~/Library/Preferences'
+alias -g zd='cd $DOTFILES'
+alias -g zk='z kbds'
+alias -g zr='cd ~/Library/Rime'
+alias -g zw='cd ~/wd'
+alias -g zp='cd ~/Library/Preferences'
 
 # -----------------------------------------------------------------------------------
 # yarn
 
-alias y='yarn'
-alias yi='yarn install'
-alias yb='yarn build'
-alias yt='yarn test'
-alias ye='yarn e2e'
-alias yl='yarn lint'
-alias ys='yarn start'
-alias yo='yarn outdated'
-alias yu='yarn upgrade'
-alias yup='yarn upgrade-interactive --latest'
+alias -g y='yarn'
+alias -g yi='yarn install'
+alias -g yb='yarn build'
+alias -g yt='yarn test'
+alias -g ye='yarn e2e'
+alias -g yl='yarn lint'
+alias -g ys='yarn start'
+alias -g yo='yarn outdated'
+alias -g yu='yarn upgrade'
+alias -g yup='yarn upgrade-interactive --latest'
 
 # -----------------------------------------------------------------------------------
 # depcheck
-alias dp='npx depcheck'
+alias -g dp='npx depcheck'
 
 depcheck-missing () {
   echo "Checking unused dependencies..."
@@ -126,16 +126,16 @@ depcheck-missing () {
   fi
 }
 
-alias dpm='depcheck-missing'
+alias -g dpm='depcheck-missing'
 
 # -----------------------------------------------------------------------------------
 # node
 
 # for ts-node 9.x
-alias nsa='node --require source-map-support/register'
+alias -g nsa='node --require source-map-support/register'
 
 # for ts-node 10.x
-alias nsb='node --require @cspotcode/source-map-support/register'
+alias -g nsb='node --require @cspotcode/source-map-support/register'
 
 # -----------------------------------------------------------------------------------
 # history
@@ -147,24 +147,24 @@ history-grep () {
 # -----------------------------------------------------------------------------------
 # hist, see https://github.com/marlonrichert/zsh-hist
 
-alias h=hi
+alias -g h=hi
 
 # [h]ist [a]ll
-alias ha="hist l $'*'"
+alias -g ha="hist l $'*'"
 
 # [h]ist [t]en entries
-alias ht='hist l {-1..-10}'
+alias -g ht='hist l {-1..-10}'
 
-alias hh='hist help'
-alias hf='hist f'
-alias hfl='hist f -1'
-alias hl='hist l'
-alias hll='hist l -1'
-alias hr='hist reload'
-alias hg='hist g'
-alias hgl='hist g -1'
-alias hd='hist d'
-alias hdl='hist d -1'
+alias -g hh='hist help'
+alias -g hf='hist f'
+alias -g hfl='hist f -1'
+alias -g hl='hist l'
+alias -g hll='hist l -1'
+alias -g hr='hist reload'
+alias -g hg='hist g'
+alias -g hgl='hist g -1'
+alias -g hd='hist d'
+alias -g hdl='hist d -1'
 
 # interactive with fzf
 
@@ -244,11 +244,11 @@ git_current_branch () {
         echo ${ref#refs/heads/}
 }
 
-alias Gcb="git_current_branch"
-alias Gfl="git config --local --list"
-alias Gfg="git config --global --list"
-alias Gcsm="git commit -S -m"
-alias Gfv="git fetch --all --verbose --prune"
-alias Gu="git status"
-alias GL="git log --all --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(bold)signed:%Creset%C(auto)%G?%Creset %C(bold blue)<%an>%Creset %s %C(auto)%d%Creset' --date=short"
+alias -g Gcb="git_current_branch"
+alias -g Gfl="git config --local --list"
+alias -g Gfg="git config --global --list"
+alias -g Gcsm="git commit -S -m"
+alias -g Gfv="git fetch --all --verbose --prune"
+alias -g Gu="git status"
+alias -g GL="git log --all --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(bold)signed:%Creset%C(auto)%G?%Creset %C(bold blue)<%an>%Creset %s %C(auto)%d%Creset' --date=short"
 

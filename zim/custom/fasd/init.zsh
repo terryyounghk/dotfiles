@@ -59,13 +59,13 @@ function z () {
     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 }
 
-alias fid='fasd -i -d' # just to find and list directories
-alias fap='fasd-app'
-alias fa='fasd-cd'
-alias fcode='fasd-vscode'
-alias fcot='fasd-cot'
-alias fidea='fasd-idea'
-alias finder='fasd-finder'
+alias -g fid='fasd -i -d' # just to find and list directories
+alias -g fap='fasd-app'
+alias -g fa='fasd-cd'
+alias -g fcode='fasd-vscode'
+alias -g fcot='fasd-cot'
+alias -g fidea='fasd-idea'
+alias -g finder='fasd-finder'
 
-alias j=z
-alias jj=zz
+alias -g j=z
+alias -g jj=zz
