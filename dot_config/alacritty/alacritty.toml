@@ -1,0 +1,16 @@
+[cursor.style]
+blinking = "On"
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "Hack Nerd Font Mono"
+
+[window]
+decorations = "buttonless"
+opacity = 0.9
+
+[window.padding]
+x = 5
+y = 5
