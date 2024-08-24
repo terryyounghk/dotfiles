@@ -1,0 +1,11 @@
+# Default settings reference
+# see: https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md
+#
+# About workaround putting this file in ~/.config/lazygit/config.yml:
+# see: https://github.com/jesseduffield/lazygit/issues/1669
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never --side-by-side
+

@@ -39,18 +39,16 @@ bindkey -e
 # Remove path separator from WORDCHARS.
 WORDCHARS=${WORDCHARS//[\/]}
 
+# -----------------
+# Zim configuration
+# -----------------
+
+# Use degit instead of git as the default tool to install and update modules.
+#zstyle ':zim:zmodule' use 'degit'
 
 # --------------------
 # Module configuration
 # --------------------
-
-#
-# completion
-#
-
-# Set a custom path for the completion dump file.
-# If none is provided, the default ${ZDOTDIR:-${HOME}}/.zcompdump is used.
-#zstyle ':zim:completion' dumpfile "${ZDOTDIR:-${HOME}}/.zcompdump-${ZSH_VERSION}"
 
 #
 # git
@@ -79,6 +77,10 @@ WORDCHARS=${WORDCHARS//[\/]}
 # zsh-autosuggestions
 #
 
+# Disable automatic widget re-binding on each precmd. This can be set when
+# zsh-users/zsh-autosuggestions is the last module in your ~/.zimrc.
+ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+
 # Customize the style that the suggestions are shown with.
 # See https://github.com/zsh-users/zsh-autosuggestions/blob/master/README.md#suggestion-highlight-style
 #ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=242'
@@ -100,38 +102,38 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 # Initialize modules
 # ------------------
 
+ZIM_HOME=${ZDOTDIR:-${HOME}}/.zim
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  if (( ${+commands[curl]} )); then
+    curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  else
+    mkdir -p ${ZIM_HOME} && wget -nv -O ${ZIM_HOME}/zimfw.zsh \
+        https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+  fi
+fi
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
 if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZDOTDIR:-${HOME}}/.zimrc ]]; then
-  # Update static initialization script if it does not exist or it's outdated, before sourcing it
   source ${ZIM_HOME}/zimfw.zsh init -q
 fi
+# Initialize modules.
 source ${ZIM_HOME}/init.zsh
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # -------------------------
 # My custom initializations
 # -------------------------
 
-export DOTFILES=$HOME/.dotfiles
-
-source $DOTFILES/zim/custom/fasd/init.zsh
-source $DOTFILES/zim/custom/fzf/init.zsh
-source $DOTFILES/zim/custom/gpg-agent/init.zsh
-source $DOTFILES/zim/custom/nnn/init.zsh
-#source $DOTFILES/zim/custom/nvim/init.zsh
-source $DOTFILES/zim/custom/yarn/init.zsh
-
-# https://github.com/marlonrichert/zsh-hist
-source $DOTFILES/zim/custom/zsh-hist/zsh-hist.plugin.zsh
-
-source $DOTFILES/zim/custom/aliases.zsh
-
-# work-related custom inits (not included, optional for anyone)
-source $DOTFILES/zim/custom/_work/init.zsh 2> /dev/null
-
-# Load the kubectl completion code for zsh[1] into the current shell
-
-# https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-zsh/
-source <(kubectl completion zsh)
-compdef __start_kubectl k
+if [[ -r "${HOME}/.zim/custom/init.zsh" ]]; then
+  source "${HOME}/.zim/custom/init.zsh"
+fi
 
 # ------------------------------
 # Post-init module configuration
@@ -141,84 +143,24 @@ compdef __start_kubectl k
 # zsh-history-substring-search
 #
 
-# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-# Bind up and down keys
 zmodload -F zsh/terminfo +p:terminfo
-if [[ -n ${terminfo[kcuu1]} && -n ${terminfo[kcud1]} ]]; then
-  bindkey ${terminfo[kcuu1]} history-substring-search-up
-  bindkey ${terminfo[kcud1]} history-substring-search-down
-fi
-
-bindkey '^P' history-substring-search-up
-bindkey '^N' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
+# Bind ^[[A/^[[B manually so up/down works both before and after zle-line-init
+for key ('^[[A' '^P' ${terminfo[kcuu1]}) bindkey ${key} history-substring-search-up
+for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search-down
+for key ('k') bindkey -M vicmd ${key} history-substring-search-up
+for key ('j') bindkey -M vicmd ${key} history-substring-search-down
+unset key
 # }}} End configuration added by Zim install
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# To install useful key bindings and fuzzy completion:
-# $(brew --prefix)/opt/fzf/install
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# https://github.com/ajeetdsouza/zoxide
+# Must be added after compinit is called.
+# You may have to rebuild your completions cache by running rm ~/.zcompdump*; compinit.
+eval "$(zoxide init zsh --hook prompt)"
 
-# Added by serverless binary installer
-export PATH="$HOME/.serverless/bin:$PATH"
+# https://github.com/marlonrichert/zsh-hist?tab=readme-ov-file#notes-on-code-formatting
+# For zsh-hist to preserve formatting completely when the command is saved history
+unsetopt HIST_REDUCE_BLANKS
 
-# Set Spaceship ZSH as a prompt
-# autoload -U promptinit; promptinit
-# prompt spaceship
-
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-fpath=($fpath "/Users/terry/.zfunctions")
-
-# krew
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-# less
-# https://dandavison.github.io/delta/tips-and-tricks/mouse-scrolling.html
-# https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
-export LESS='--quit-if-one-screen --ignore-case --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4 --mouse'
-
-
-# direnv
-# https://github.com/direnv/direnv/blob/master/docs/hook.md
-eval "$(direnv hook zsh)"
-
-# bat
-export BAT_CONFIG_PATH="$HOME/.config/bat/bat.conf";
-
-# Set Spaceship ZSH as a prompt
-autoload -U promptinit; promptinit
-prompt spaceship
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/terry/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/terry/opt/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/terry/opt/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/terry/opt/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# >>> lunarvim
-export PATH=/Users/terry/.local/bin:$PATH
-# <<< lunarvim
-
-# use tmux by default: keep this at the end
-# https://unix.stackexchange.com/a/113768
-
-
-#if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX" ]; then
-#  exec tmux
-#fi
