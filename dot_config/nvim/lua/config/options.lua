@@ -7,6 +7,11 @@ local g = vim.g
 
 g.autoformat = false
 
+-- seems neovim keeps switching Root Dir for some reason.
+-- This seems to resolve it.
+-- Ref: https://github.com/LazyVim/LazyVim/discussions/2150
+g.root_spec = { "cwd" }
+
 ----------------------------------------------------------------------
 local o = vim.o
 
