@@ -1,10 +1,11 @@
 # -----------------------------------------------------------------------------------
-# system
+# terminal
 
-# reload
-alias -g rl='clear; . ~/.zshrc; start'
-alias -g start='macchina'
 alias -g cls='clear; start'
+alias -g ra='reload_aliases'
+alias -g rall='reload_all'
+alias -g rt='reload_terminal'
+alias -g start='macchina'
 
 # -----------------------------------------------------------------------------------
 # brew: https://docs.brew.sh/Manpage
@@ -46,6 +47,7 @@ function abbr_truncate_user_abbreviations_file () {
   truncate -s 0 "$f" || touch "$"
 }
 
+
 alias -g Ab='abbr'
 alias -g Ag='abbr --global'
 alias -g AG='Ag'
@@ -64,6 +66,8 @@ alias -g Als='abbr list'
 alias -g Ala='abbr list-abbreviations'
 alias -g Alc='abbr list-commands'
 alias -g Ar='abbr_truncate_user_abbreviations_file && Ai'
+alias -g Ara='reload_aliases'
+alias -g Arq='abbr_truncate_user_abbreviations_file && Ai --quieter'
 
 # -----------------------------------------------------------------------------------
 # tmux
@@ -77,7 +81,7 @@ alias -g tl='tmux list-sessions'
 
 alias -g cm='chezmoi'
 alias -g cmc='chezmoi cd'
-alias -g cme='chezmoi edit --apply'
+alias -g cme='z ~/.local/share/chezmoi/; chezmoi edit --apply'
 alias -g cma='chezmoi apply'
 alias -g cmr='chezmoi-add-or-re-add'
 alias -g cmi='chezmoi-fzf-add'
