@@ -158,6 +158,8 @@ unset key
 # https://github.com/ajeetdsouza/zoxide
 # Must be added after compinit is called.
 # You may have to rebuild your completions cache by running rm ~/.zcompdump*; compinit.
+# Import from:
+# fasd: zoxide import --from=z $HOME/.fasd
 eval "$(zoxide init zsh --hook prompt)"
 
 # https://github.com/marlonrichert/zsh-hist?tab=readme-ov-file#notes-on-code-formatting

@@ -2,6 +2,7 @@
 
 source "${HOME}/.zim/custom/aliases.zsh"
 
+source "${HOME}/.zim/custom/fzf/init.zsh"
 source "${HOME}/.zim/custom/chezmoi/init.zsh"
 source "${HOME}/.zim/custom/gpg-agent/init.zsh"
 source "${HOME}/.zim/custom/yarn/init.zsh"
