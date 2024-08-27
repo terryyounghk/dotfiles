@@ -1,41 +1,7 @@
-{{/* boolean feature tags */}}
-{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
-{{- $email := "terryyounghk@gmail.com" -}}
-{{- "" -}}
-
-{{/* work around unreliable hostname on darwin */}}
-{{- $hostname := .chezmoi.hostname -}}
-{{- if eq .chezmoi.os "darwin" -}}
-{{-   $computerName := output "scutil" "--get" "ComputerName" | trim -}}
-{{-   if eq $computerName "Terry’s MacBook Pro" -}}
-{{-     $hostname = "t-mbp" -}}
-{{-     $hostname = $computerName -}}
-{{-   end -}}
-{{- end -}}
-
-{{- if eq $hostname "t-mbp" -}}
-{{-   $personal = true -}}
-{{- end -}}
-
-{{- if not $personal -}}
-{{-   if eq $hostname "HKMAC0960" -}}
-{{-     $email = "terry@crypto.com" -}}
-{{-   end -}}
-{{- end -}}
-
-
 encryption="gpg"
-
-[data]
-    email={{ $email | quote }}
-    hostname={{ $hostname | quote }}
-    personal={{ $personal }}
-    # onepasswordAccount=""
-
 
 # [github]
 #     refreshPeriod = "12h"
-
 
 [gpg]
 symmetric=true
@@ -46,6 +12,4 @@ hardlink=false
 
 [pinentry]
 command="pinentry-mac"
-
-
 

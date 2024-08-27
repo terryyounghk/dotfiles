@@ -1,6 +1,26 @@
 #!/bin/bash
 
-{{ $brews := list
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- /* Snippet to determine if current machine is personal or for work */ -}}
+{{- "" -}}
+{{- $personalHostnames := splitList "," (onepasswordRead "op://dotfiles/personal/general/hostnames") -}}
+{{- $personal := and (has .chezmoi.hostname $personalHostnames) "personal" -}}
+{{- $workHostnames := splitList "," (onepasswordRead "op://dotfiles/work/general/hostnames") -}}
+{{- $work := and (has .chezmoi.hostname $workHostnames) "work" -}}
+{{- $type := or $personal $work -}}
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{ if and (not $personal) (not $work) }}
+# This file is generated using a dotfiles manager called chezmoi,
+# and uses 1Password to store and retrieve sensitive information to populate this file.
+# Since "{{- .chezmoi.hostname -}}" is not among the listed hostnames stored in 1Password,
+# chezmoi will not output any other configs to this file.
+echo "{{- .chezmoi.hostname -}} is not among the listed hostnames."
+echo "This script will do nothing."
+exit 1984
+{{ else }}
+
+
+{{- $brews := list
   "ack"
   "aha"
   "asdf"
@@ -84,7 +104,7 @@
   "font-source-code-pro-for-powerline"
   "font-terminus" -}}
 
-{{ if .personal -}}
+{{ if $personal -}}
 # TODO: "qmk-toolbox" install failed
 {{   $brews = concat $brews (list
         "ccache"
@@ -126,11 +146,12 @@
         "whatsapp") -}}
 {{ end -}}
 
-
-set -eufo pipefail
+# TODO: somehow this fails with the -e flag on some machines, not sure why yet
+# set -eufo pipefail
+set -ufo pipefail
 
 echo "############################################################################"
-echo "{{ if .personal -}}Personal{{ else }}Work{{ end }} Setup"
+echo "{{- printf "%s setup" $type -}}"
 echo "############################################################################"
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -142,3 +163,4 @@ cask "{{ . }}"
 {{ end -}}
 EOF
 
+{{ end }}

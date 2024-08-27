@@ -1,43 +1,96 @@
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- /* Snippet to determine if current machine is personal or for work */ -}}
+{{- "" -}}
+{{- $personalHostnames := splitList "," (onepasswordRead "op://dotfiles/personal/general/hostnames") -}}
+{{- $personal := and (has .chezmoi.hostname $personalHostnames) "personal" -}}
+{{- $workHostnames := splitList "," (onepasswordRead "op://dotfiles/work/general/hostnames") -}}
+{{- $work := and (has .chezmoi.hostname $workHostnames) "work" -}}
+{{- $type := or $personal $work -}}
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- if not $type -}}
+; This file is generated using a dotfiles manager called chezmoi,
+; and uses 1Password to store and retrieve sensitive information to populate this file.
+; Since "{{- .chezmoi.hostname -}}" is not among the listed hostnames stored in 1Password,
+; chezmoi will not output any other configs to this file.
+{{ else }}
+
+
 [user]
-  name = "Terry Young"
-  email = "terryyounghk@gmail.com"
-  signingKey = 19B8481D0ED43A17
+  userConfigOnly = true
+  name = "{{- onepasswordRead (printf "op://dotfiles/%s/general/name" $type) -}}"
+  email = "{{- onepasswordRead (printf "op://dotfiles/%s/general/email" $type) -}}"
+  signingKey = "{{- onepasswordRead (printf "op://dotfiles/%s/git/signingKey" $type) -}}"
+
 [gpg]
   program = /opt/homebrew/bin/gpg
   gpgsign = true
+;	format = ssh
+
+; TODO: 1Password SSH signing along sidde GPG
+; [gpg "ssh"]
+;   program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
+[commit]
+  gpgsign = true
+
 [core]
+  {{- if $work }}
+  hooksPath = "{{- onepasswordRead (printf "op://dotfiles/%s/git/hooksPath" $type) -}}"
+  {{ end }}
   pager = delta
   editor = nvim
+  symlinks = false
+
+{{ onepasswordRead (printf "op://dotfiles/%s/git/urls" $type) }}
+
 [init]
   defaultBranch = main
+
+[status]
+  showStash = true
+
+[log]
+  showSignature = true
+
 [color]
   ui = true
   pager = true
+
 [fetch]
   prune = true
+
 [pager]
   status = true
+
 [interactive]
-	diffFilter = delta --color-only --features=interactive
+  diffFilter = delta --color-only --features=interactive
+
 [delta]
-	navigate = true
-	light = false
-	features = decorations
-	side-by-side = true
+  navigate = true
+  light = false
+  features = decorations
+  side-by-side = true
+
 [delta "interactive"]
-	keep-plus-minus-markers = true
+  keep-plus-minus-markers = true
+
 [delta "decorations"]
-	commit-decoration-style = blue ol
-	hunk-header-decoration-style = blue box
-	hunk-header-file-style = red
-	hunk-header-line-number-style = "#067a00"
-	hunk-header-style = file line-number syntax
+  commit-decoration-style = blue ol
+  hunk-header-decoration-style = blue box
+  hunk-header-file-style = red
+  hunk-header-line-number-style = "#067a00"
+  hunk-header-style = file line-number syntax
+
 [merge]
-	conflictstyle = diff3
+  conflictstyle = diff3
+
 [diff]
-	colorMoved = default
+  colorMoved = default
+
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+
+{{ end }}
