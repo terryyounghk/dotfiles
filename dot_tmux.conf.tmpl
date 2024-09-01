@@ -1,0 +1,202 @@
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- /* Snippet to determine if current machine is personal or for work */ -}}
+{{- "" -}}
+{{- $personalHostnames := splitList "," (onepasswordRead "op://dotfiles/personal/general/hostnames") -}}
+{{- $personal := and (has .chezmoi.hostname $personalHostnames) "personal" -}}
+{{- $workHostnames := splitList "," (onepasswordRead "op://dotfiles/work/general/hostnames") -}}
+{{- $work := and (has .chezmoi.hostname $workHostnames) "work" -}}
+{{- $type := or $personal $work -}}
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- if not $type -}}
+# This file is generated using a dotfiles manager called chezmoi,
+# and uses 1Password to store and retrieve sensitive information to populate this file.
+# Since "{{- .chezmoi.hostname -}}" is not among the listed hostnames stored in 1Password,
+# chezmoi will not output any other configs to this file.
+{{ else }}
+
+# Prerequisites: install tpm
+# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# prefix-I to install plugins
+# prefix-U to update
+
+# # ----------------------------------------------
+# # tmux-plugins/tmux-sensible
+# # ----------------------------------------------
+#
+# # Address vim mode switching delay (http://superuser.com/a/252717/65504)
+# set -s escape-time 0
+#
+# # Increase scrollback buffer size from 2000 to 50000 lines
+# set -g history-limit 50000
+#
+# # Increase tmux messages display duration from 750ms to 4s
+# set -g display-time 4000
+#
+# # Refresh 'status-left' and 'status-right' more often, from every 15s to 5s
+# set -g status-interval 5
+#
+# # (OS X) Fix pbcopy/pbpaste for old tmux versions (pre 2.6)
+# set -g default-command "reattach-to-user-namespace -l $SHELL"
+#
+# # Upgrade $TERM
+# set -g default-terminal "screen-256color"
+#
+# # Emacs key bindings in tmux command prompt (prefix + :) are better than
+# # vi keys, even for vim users
+# set -g status-keys emacs
+#
+# # Focus events enabled for terminals that support them
+# set -g focus-events on
+#
+# # Super useful when using "grouped sessions" and multi-monitor setup
+# setw -g aggressive-resize on
+#
+# # Easier and faster switching between next/prev window
+# bind C-p previous-window
+# bind C-n next-window
+#
+# # Source .tmux.conf as suggested in `man tmux`
+# bind R source-file '~/.tmux.conf'
+#
+##################################################################
+# TODO: this part is messy and disorganized
+##################################################################
+
+# ----------------------------------------------
+# Plugin settings
+# ----------------------------------------------
+# remap default clean key binding
+# see https://github.com/tmux-plugins/tpm/issues/70
+set -g @tpm-clean 'u'
+set -g @continuum-restore 'on'
+
+# ----------------------------------------------
+# Other settings
+# ----------------------------------------------
+
+# set -g prefix C-s
+
+set -g base-index 1
+
+# Automatically set window title
+set-window-option -g automatic-rename on
+set-option -g set-titles on
+# set -g status-position top
+
+#set -g default-terminal screen-256color
+# set -g default-terminal "xterm"
+set -g default-terminal "screen-256color"
+#set -g terminal-overrides "xterm*:colors=256"
+
+set -g status-keys vi
+set -g history-limit 10000
+
+setw -g mode-keys vi
+# setw -g mode-mouse on
+setw -g monitor-activity on
+
+set -g mouse on
+
+# No delay for escape key press
+set -sg escape-time 0
+
+# presents interactive list of all current windows to move the current pane
+# into the chosen window.
+# m: as vertical split
+# M: as horizontal split
+bind-key m choose-window -F "#{window_index}: #{window_name}" "join-pane -h -t %%"
+bind-key M choose-window -F "#{window_index}: #{window_name}" "join-pane -v -t %%"
+
+# move around panes with hjkl, as one would in vim after pressing ctrl-w
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+##################################################################
+
+# ----------------------------------------------
+# List of plugins
+# ----------------------------------------------
+set -g @plugin 'tmux-plugins/tpm'
+
+# theme: dracula: https://draculatheme.com/tmux
+set -g @plugin 'dracula/tmux'
+{{ if $work }}
+set -g @dracula-plugins "battery git kubernetes-context time"
+{{ else if $personal }}
+set -g @dracula-plugins "battery git time"
+{{ end }}
+
+# configure powerline, separators as fonts don't look good with transparencies
+set -g @dracula-show-powerline true
+set -g @dracula-show-left-sep " "
+set -g @dracula-show-right-sep " "
+
+set -g @dracula-show-left-icon session
+set -g @dracula-left-icon-padding 0
+
+set -g @dracula-time-format "%a, %Y-%m-%d %H:%M"
+
+# enable window flags
+set -g @dracula-show-flags true
+
+# refresh rate: default 5
+set -g @dracula-refres-rate 5
+
+# enable high contrast pane border
+set -g @dracula-border-contrast true
+
+# hide these
+set -g @dracula-show-empty-plugins false
+set -g @dracula-cpu-display-load false
+set -g @dracula-show-timezone false
+set -g @dracula-hg-disable-status false
+set -g @dracula-show-location false
+set -g @dracula-network-bandwidth-show-interface false
+
+
+set -g @dracula-git-disable-status false
+set -g @dracula-git-show-remote-status false
+set -g @dracula-kubernetes-hide-user false
+
+# ----------------------------------------------
+# Tmux sensible
+# https://github.com/tmux-plugins/tmux-sensible
+# set -g @plugin 'tmux-plugins/tmux-sensible'
+
+# ----------------------------------------------
+# restore tmux environment after system restart
+# https://github.com/tmux-plugins/tmux-resurrect?tab=readme-ov-file
+#
+# and doing it automatically...
+# https://github.com/tmux-plugins/tmux-continuum
+#
+# prefix + Ctrl-s - save
+# prefix + Ctrl-r - restore
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
+
+# ----------------------------------------------
+# controlling panes
+# https://github.com/tmux-plugins/tmux-pain-control
+set -g @plugin 'tmux-plugins/tmux-pain-control'
+
+# ----------------------------------------------
+# copy to system clipboard
+# https://github.com/tmux-plugins/tmux-yank
+# Normal mode: 
+#     prefix-y: copies text from command line to clipboard
+# Copy mode:
+#     y: copy selection to system clipboard
+#     Y: put selection - copy selection and paste to command line
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+# ----------------------------------------------
+# open highlighted selection directly from tmux copy mode
+set -g @plugin 'tmux-plugins/tmux-open'
+
+# ----------------------------------------------
+# Initialize tmux plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
+
+{{ end }}

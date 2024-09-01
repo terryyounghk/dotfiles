@@ -13,11 +13,14 @@ g.autoformat = false
 g.root_spec = { "cwd" }
 
 ----------------------------------------------------------------------
+-- Reference: https://neovim.io/doc/user/options.html
+
 local o = vim.o
 
 -- cursor settings
 o.cursorline = true
-o.cursorlineopt = 'number'
+o.cursorlineopt = "both"
+o.cursorcolumn = true
 
 -- tab settings
 o.expandtab = true
