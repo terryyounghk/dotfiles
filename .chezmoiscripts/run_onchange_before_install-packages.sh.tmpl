@@ -94,18 +94,14 @@ exit 1984
 
 {{ $casks := list
   "1password-cli"
-  "font-hack"
   "font-hack-nerd-font"
-  "font-inconsolata"
-  "font-profont-nerd-font"
-  "font-roboto-mono"
-  "font-roboto-mono-for-powerline"
-  "font-source-code-pro"
-  "font-source-code-pro-for-powerline"
-  "font-terminus" -}}
+  "font-roboto-mono-nerd-font"
+  "font-inconsolata-nerd-font"
+  "font-mononoki-nerd-font"
+  "font-jetbrains-mono-nerd-font"
+  "font-fira-mono-nerd-font" -}}
 
 {{ if $personal -}}
-# TODO: "qmk-toolbox" install failed
 {{   $brews = concat $brews (list
         "ccache"
         "dtc"
@@ -136,6 +132,7 @@ exit 1984
         "openscad"
         "pgadmin4"
         "postman"
+        "qmk-toolbox"
         "setapp"
         "shortcat"
         "spotify"
