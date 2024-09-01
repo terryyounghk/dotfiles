@@ -38,6 +38,7 @@ alias -g cat='bat'
 alias -g cal='cal -y'
 alias -g df='df -H'
 alias -g du='du -ch'
+alias -g plist='/usr/libexec/PlistBuddy' # e.g. plist -c "print" ~/Library/Preferences/.GlobalPreferences.plist
 
 # -----------------------------------------------------------------------------------
 # zsh-abbr
@@ -81,7 +82,8 @@ alias -g tl='tmux list-sessions'
 
 alias -g cm='chezmoi'
 alias -g cmc='chezmoi cd'
-alias -g cme='z ~/.local/share/chezmoi/; chezmoi edit --apply'
+alias -g cme='chezmoi edit'
+alias -g cmea='z ~/.local/share/chezmoi/; chezmoi edit --apply'
 alias -g cma='chezmoi apply'
 alias -g cmr='chezmoi-add-or-re-add'
 alias -g cmi='chezmoi-fzf-add'
