@@ -1,8 +1,8 @@
 chezmoi-add-or-re-add () {
-  chezmoi add --follow $1 || chezmoi re-add $1
+  chezmoi add --follow "$@" || chezmoi re-add "$@"
 }
 
 chezmoi-fzf-add () {
-  chezmoi-add-or-re-add $(fdf -m "$1")
+  chezmoi-add-or-re-add $(fzf --multi | tr '\n' ' ')
 }
 

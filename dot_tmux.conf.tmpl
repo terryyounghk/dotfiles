@@ -14,113 +14,40 @@
 # chezmoi will not output any other configs to this file.
 {{ else }}
 
+############################################################
+# Tmux Plugin Manager
 # Prerequisites: install tpm
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# prefix-I to install plugins
-# prefix-U to update
+# prefix I:    Install plugins
+# prefix U:    Update
+# prefix a-u:  Unintall plugins not on the plugin list
+set -g @plugin 'tmux-plugins/tpm'
 
-# # ----------------------------------------------
-# # tmux-plugins/tmux-sensible
-# # ----------------------------------------------
-#
-# # Address vim mode switching delay (http://superuser.com/a/252717/65504)
-# set -s escape-time 0
-#
-# # Increase scrollback buffer size from 2000 to 50000 lines
-# set -g history-limit 50000
-#
-# # Increase tmux messages display duration from 750ms to 4s
-# set -g display-time 4000
-#
-# # Refresh 'status-left' and 'status-right' more often, from every 15s to 5s
-# set -g status-interval 5
-#
-# # (OS X) Fix pbcopy/pbpaste for old tmux versions (pre 2.6)
-# set -g default-command "reattach-to-user-namespace -l $SHELL"
-#
-# # Upgrade $TERM
-# set -g default-terminal "screen-256color"
-#
-# # Emacs key bindings in tmux command prompt (prefix + :) are better than
-# # vi keys, even for vim users
-# set -g status-keys emacs
-#
-# # Focus events enabled for terminals that support them
-# set -g focus-events on
-#
-# # Super useful when using "grouped sessions" and multi-monitor setup
-# setw -g aggressive-resize on
-#
-# # Easier and faster switching between next/prev window
-# bind C-p previous-window
-# bind C-n next-window
-#
-# # Source .tmux.conf as suggested in `man tmux`
-# bind R source-file '~/.tmux.conf'
-#
-##################################################################
-# TODO: this part is messy and disorganized
-##################################################################
-
-# ----------------------------------------------
-# Plugin settings
-# ----------------------------------------------
 # remap default clean key binding
 # see https://github.com/tmux-plugins/tpm/issues/70
 set -g @tpm-clean 'u'
-set -g @continuum-restore 'on'
 
-# ----------------------------------------------
-# Other settings
-# ----------------------------------------------
+############################################################
+# tmux-plugins/tmux-sensible
+# https://github.com/tmux-plugins/tmux-sensible
+set -g @plugin 'tmux-plugins/tmux-sensible'
 
-# set -g prefix C-s
+############################################################
+# Which key
+# https://github.com/alexwforsythe/tmux-which-key
+# prefix-space
+set -g @plugin 'alexwforsythe/tmux-which-key'
 
-set -g base-index 1
+############################################################
+# controlling panes
+# https://github.com/tmux-plugins/tmux-pain-control
+set -g @plugin 'tmux-plugins/tmux-pain-control'
 
-# Automatically set window title
-set-window-option -g automatic-rename on
-set-option -g set-titles on
-# set -g status-position top
-
-#set -g default-terminal screen-256color
-# set -g default-terminal "xterm"
-set -g default-terminal "screen-256color"
-#set -g terminal-overrides "xterm*:colors=256"
-
-set -g status-keys vi
-set -g history-limit 10000
-
-setw -g mode-keys vi
-# setw -g mode-mouse on
-setw -g monitor-activity on
-
-set -g mouse on
-
-# No delay for escape key press
-set -sg escape-time 0
-
-# presents interactive list of all current windows to move the current pane
-# into the chosen window.
-# m: as vertical split
-# M: as horizontal split
-bind-key m choose-window -F "#{window_index}: #{window_name}" "join-pane -h -t %%"
-bind-key M choose-window -F "#{window_index}: #{window_name}" "join-pane -v -t %%"
-
-# move around panes with hjkl, as one would in vim after pressing ctrl-w
-bind h select-pane -L
-bind j select-pane -D
-bind k select-pane -U
-bind l select-pane -R
-##################################################################
-
-# ----------------------------------------------
-# List of plugins
-# ----------------------------------------------
-set -g @plugin 'tmux-plugins/tpm'
-
-# theme: dracula: https://draculatheme.com/tmux
+############################################################
+# Dracula Theme
+# https://draculatheme.com/tmux
 set -g @plugin 'dracula/tmux'
+
 {{ if $work }}
 set -g @dracula-plugins "battery git kubernetes-context time"
 {{ else if $personal }}
@@ -141,7 +68,7 @@ set -g @dracula-time-format "%a, %Y-%m-%d %H:%M"
 set -g @dracula-show-flags true
 
 # refresh rate: default 5
-set -g @dracula-refres-rate 5
+set -g @dracula-refresh-rate 5
 
 # enable high contrast pane border
 set -g @dracula-border-contrast true
@@ -157,31 +84,53 @@ set -g @dracula-network-bandwidth-show-interface false
 
 set -g @dracula-git-disable-status false
 set -g @dracula-git-show-remote-status false
-set -g @dracula-kubernetes-hide-user false
+set -g @dracula-kubernetes-hide-user true
 
-# ----------------------------------------------
-# Tmux sensible
-# https://github.com/tmux-plugins/tmux-sensible
-# set -g @plugin 'tmux-plugins/tmux-sensible'
-
-# ----------------------------------------------
+############################################################
 # restore tmux environment after system restart
-# https://github.com/tmux-plugins/tmux-resurrect?tab=readme-ov-file
+# https://github.com/tmux-plugins/tmux-resurrect
 #
 # and doing it automatically...
 # https://github.com/tmux-plugins/tmux-continuum
 #
-# prefix + Ctrl-s - save
-# prefix + Ctrl-r - restore
+# prefix + c-s - save
+# prefix + c-r - restore
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
 
-# ----------------------------------------------
-# controlling panes
-# https://github.com/tmux-plugins/tmux-pain-control
-set -g @plugin 'tmux-plugins/tmux-pain-control'
+# for vim
+set -g @resurrect-strategy-vim 'session'
+# for neovim
+set -g @resurrect-strategy-nvim 'session'
 
-# ----------------------------------------------
+# automatic restore last saved environment
+# !!! if tmux somehow unexpectedly exits on start,
+# !!! try commenting out the following line
+set -g @continuum-restore 'on'
+
+# show Continuum status in tmux status line
+# TODO: not sure if this works or not yet
+set -g status-right 'Continuum status: #{continuum_status}'
+
+# TODO: currently trying: https://github.com/rmagatti/auto-session
+# TODO: next to try out: https://github.com/jedrzejboczar/possession.nvim
+# TODO: https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_vim_and_neovim_sessions.md
+# TODO: https://github.com/tpope/vim-obsession
+
+############################################################
+# https://github.com/sainnhe/tmux-fzf
+# tmux-fzf
+# prefix + F     (default)
+# prefix + c-f   (custom)
+#   - Manage sessions, windows, panes...
+#   - Search commands and append to prompt
+#   - Search clipboard history and paste to window
+#   - Process management
+#   - ...
+set -g @plugin 'sainnhe/tmux-fzf'
+TMUX_FZF_LAUNCH_KEY="C-f"
+
+############################################################
 # copy to system clipboard
 # https://github.com/tmux-plugins/tmux-yank
 # Normal mode: 
@@ -191,12 +140,29 @@ set -g @plugin 'tmux-plugins/tmux-pain-control'
 #     Y: put selection - copy selection and paste to command line
 set -g @plugin 'tmux-plugins/tmux-yank'
 
-# ----------------------------------------------
+############################################################
 # open highlighted selection directly from tmux copy mode
 set -g @plugin 'tmux-plugins/tmux-open'
 
-# ----------------------------------------------
-# Initialize tmux plugin manager (keep this line at the very bottom of tmux.conf)
+############################################################
+# https://github.com/wfxr/tmux-fzf-url
+# prefix-u
+set -g @plugin 'wfxr/tmux-fzf-url'
+# set -g @fzf-url-bind 'x'
+set -g @fzf-url-history-limit '2000'
+# open tmux-fzf-url in a tmux v3.2+ popup
+set -g @fzf-url-fzf-options '-w 90% -h 50% --multi -0 --no-preview --no-border'
+
+############################################################
+# address issue of error 127 when installing tpm
+# https://github.com/tmux-plugins/tpm/issues/67#issuecomment-319561401
+# set-environment -g PATH "/usr/local/bin:/bin:/usr/bin"
+#
+# https://github.com/tmux-plugins/tpm/issues/67#issuecomment-775411964
+set-environment -g PATH "/opt/homebrew/bin:/usr/local/bin:/bin:/usr/bin"
+
+############################################################
+# Keep these at the very bottom
 run -b '~/.tmux/plugins/tpm/tpm'
 
 {{ end }}
