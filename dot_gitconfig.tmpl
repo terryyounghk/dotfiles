@@ -24,7 +24,7 @@
 [gpg]
   program = /opt/homebrew/bin/gpg
   gpgsign = true
-;	format = ssh
+; format = ssh
 
 ; TODO: 1Password SSH signing along sidde GPG
 ; [gpg "ssh"]
@@ -35,7 +35,11 @@
 
 [core]
   {{- if $work }}
-  hooksPath = "{{- onepasswordRead (printf "op://dotfiles/%s/git/hooksPath" $type) -}}"
+  hooksPath = "/Users/{{-
+    onepasswordRead (printf "op://dotfiles/%s/general/whoami" $type)
+    -}}/{{-
+    onepasswordRead (printf "op://dotfiles/%s/git/hooksPath" $type)
+    -}}"
   {{ end }}
   pager = delta
   editor = nvim
@@ -50,7 +54,7 @@
   showStash = true
 
 [log]
-  showSignature = true
+;  showSignature = true
 
 [color]
   ui = true
