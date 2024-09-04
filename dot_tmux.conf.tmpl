@@ -36,6 +36,12 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 # Which key
 # https://github.com/alexwforsythe/tmux-which-key
 # prefix-space
+#
+# Installations Notes: If this has not been installed yet,
+#                      first remove the config.yaml:
+#                      rm -rf ~/.tmux/plugins/tmux-which-key/config.yaml
+#                      Then run `chezmoi apply` again to
+#                      restore the customized config.yaml
 set -g @plugin 'alexwforsythe/tmux-which-key'
 
 ############################################################
@@ -120,8 +126,8 @@ set -g status-right 'Continuum status: #{continuum_status}'
 ############################################################
 # https://github.com/sainnhe/tmux-fzf
 # tmux-fzf
-# prefix + F     (default)
-# prefix + c-f   (custom)
+# prefix + F     (default) - clashes with tmux-fingers
+# prefix + c-f   (custom)  - so I changed to this
 #   - Manage sessions, windows, panes...
 #   - Search commands and append to prompt
 #   - Search clipboard history and paste to window
@@ -131,14 +137,28 @@ set -g @plugin 'sainnhe/tmux-fzf'
 TMUX_FZF_LAUNCH_KEY="C-f"
 
 ############################################################
-# copy to system clipboard
+# https://github.com/Morantron/tmux-fingers
+# Quickly copy stuff
+# prefix-F:      @fingers-key           Enter fingers mode
+# prefis-J:      @fingers-jump-key      Enter fingers jump mode
+#                @fingers-main-action   Copy tmux and clipboard
+#                @fingers-ctrl-action   :open:
+#                @fingers-alt-action    N/A
+#                @fingers-shift-action  :paste:
+#                @fingers-show-copied-notification
+set -g @plugin 'Morantron/tmux-fingers'
+set -g @fingers-show-copied-notification '1'
+
+############################################################
+# Copy to system clipboard
 # https://github.com/tmux-plugins/tmux-yank
+# Note: Reserved. Don't seem to need this right now.
 # Normal mode: 
 #     prefix-y: copies text from command line to clipboard
 # Copy mode:
 #     y: copy selection to system clipboard
 #     Y: put selection - copy selection and paste to command line
-set -g @plugin 'tmux-plugins/tmux-yank'
+# set -g @plugin 'tmux-plugins/tmux-yank'
 
 ############################################################
 # open highlighted selection directly from tmux copy mode
@@ -152,6 +172,11 @@ set -g @plugin 'wfxr/tmux-fzf-url'
 set -g @fzf-url-history-limit '2000'
 # open tmux-fzf-url in a tmux v3.2+ popup
 set -g @fzf-url-fzf-options '-w 90% -h 50% --multi -0 --no-preview --no-border'
+
+############################################################
+# auto git fetch
+# https://github.com/thepante/tmux-git-autofetch/
+set -g @plugin 'thepante/tmux-git-autofetch'
 
 ############################################################
 # address issue of error 127 when installing tpm
