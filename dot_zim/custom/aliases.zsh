@@ -85,9 +85,11 @@ alias -g cmc='chezmoi cd'
 alias -g cme='chezmoi edit'
 alias -g cmea='z ~/.local/share/chezmoi/; chezmoi edit --apply'
 alias -g cma='chezmoi apply'
+alias -g cmai='chezmoi-fzf-apply'
 alias -g cmr='chezmoi-add-or-re-add'
 alias -g cmi='chezmoi-fzf-add'
-alias -g cmm='chezmoi managed | fzf'
+alias -g cmm='chezmoi managed'
+alias -g cmmi='chezmoi-fzf-managed'
 
 # -----------------------------------------------------------------------------------
 # file cleaning
