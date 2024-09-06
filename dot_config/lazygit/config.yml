@@ -4,8 +4,17 @@
 # About workaround putting this file in ~/.config/lazygit/config.yml:
 # see: https://github.com/jesseduffield/lazygit/issues/1669
 
+gui:
+  sidePanelWidth: 0.2
+  enlargedSideViewLocation: top
+  nerdFontsVersion: '3'
+  timeFormat: "2006-01-02 15:04:05"
+  shortTimeFormat: "2006-01-02 15:04:05"
+  windowSize: 'half'
+  filterMode: 'fuzzy'
 git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never --side-by-side
+  parseEmoji: true
 
