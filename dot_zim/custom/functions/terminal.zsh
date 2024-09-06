@@ -18,8 +18,8 @@ function reload_aliases () {
 
   abbr_truncate_user_abbreviations_file
 
-  abbr --global import-aliases --quieter
-  abbr import-git-aliases -g --prefix G
+  abbr import-aliases --quieter
+  abbr import-git-aliases --prefix G
 
   echo "After updating: $(_get_abbr_user_abbreviations_file_line_count) aliases"
   eza --all --all --time-style="+%F %H:%M:%S" $ABBR_USER_ABBREVIATIONS_FILE
