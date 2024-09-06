@@ -1,7 +1,10 @@
 function reload_terminal () {
   clear
-  source ~/.zshrc
   macchina
+
+  # Don't do `source ~/.zshrc` here.
+  # https://github.com/zimfw/zimfw/wiki/Troubleshooting#completion-is-not-working
+  exec zsh
 }
 
 function _get_abbr_user_abbreviations_file_line_count () {
