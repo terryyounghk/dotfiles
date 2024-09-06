@@ -33,6 +33,14 @@ set -g @tpm-clean 'u'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
 ############################################################
+# Manual: additional settings set manually
+
+# also, two tips:
+#   1) `prefix-[ is scrolling in tmux`
+#   2) `prefix : show-options -g mouse`
+set-option -g mouse on
+
+############################################################
 # Which key
 # https://github.com/alexwforsythe/tmux-which-key
 # prefix-space
@@ -171,6 +179,7 @@ set -g @plugin 'wfxr/tmux-fzf-url'
 # set -g @fzf-url-bind 'x'
 set -g @fzf-url-history-limit '2000'
 # open tmux-fzf-url in a tmux v3.2+ popup
+# TODO: some tips on the title, maybe?
 set -g @fzf-url-fzf-options '-w 90% -h 50% --multi -0 --no-preview --no-border'
 
 ############################################################

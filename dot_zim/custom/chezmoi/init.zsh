@@ -7,7 +7,7 @@ chezmoi-fzf-add () {
 }
 
 chezmoi-fzf-apply () {
-chezmoi apply $(realpath $(fzf --multi | tr '\n' ' '))
+  chezmoi apply $(realpath $(fzf --multi | tr '\n' ' '))
 }
 
 chezmoi-fzf-managed () {

@@ -28,3 +28,7 @@ o.smartindent = true
 o.tabstop = 2
 o.shiftwidth = 2
 
+-- never show the tabline
+o.showtabline = 0
+o.laststatus = 0
+
