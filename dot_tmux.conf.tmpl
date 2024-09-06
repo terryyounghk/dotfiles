@@ -179,11 +179,8 @@ set -g @plugin 'tmux-plugins/tmux-open'
 # https://github.com/wfxr/tmux-fzf-url
 # prefix-u
 set -g @plugin 'wfxr/tmux-fzf-url'
-# set -g @fzf-url-bind 'x'
 set -g @fzf-url-history-limit '2000'
-# open tmux-fzf-url in a tmux v3.2+ popup
-# TODO: some tips on the title, maybe?
-set -g @fzf-url-fzf-options '-w 90% -h 50% --multi -0 --no-preview --no-border'
+set -g @fzf-url-fzf-options '-w 90% -h 50% --multi -0 --no-preview --border-label="tmux-fzf-url: open in browser (Tab to select multiple)"'
 
 ############################################################
 # auto git fetch
