@@ -1,5 +1,4 @@
 hist-interactive () {
-  set -x
   local cmd=$1
   local sel
   local items
