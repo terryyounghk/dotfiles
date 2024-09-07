@@ -50,6 +50,10 @@ return {
         -- },
       },
     },
+    init = function (
+      -- do nothing, keep NeoTree hidden
+    )
+    end
   },
 }
 
