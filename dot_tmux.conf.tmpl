@@ -1,13 +1,4 @@
-{{- /* ----------------------------------------------------------------------------- */ -}}
-{{- /* Snippet to determine if current machine is personal or for work */ -}}
-{{- "" -}}
-{{- $personalHostnames := splitList "," (onepasswordRead "op://dotfiles/personal/general/hostnames") -}}
-{{- $personal := and (has .chezmoi.hostname $personalHostnames) "personal" -}}
-{{- $workHostnames := splitList "," (onepasswordRead "op://dotfiles/work/general/hostnames") -}}
-{{- $work := and (has .chezmoi.hostname $workHostnames) "work" -}}
-{{- $type := or $personal $work -}}
-{{- /* ----------------------------------------------------------------------------- */ -}}
-{{- if not $type -}}
+{{- if not .type -}}
 # This file is generated using a dotfiles manager called chezmoi,
 # and uses 1Password to store and retrieve sensitive information to populate this file.
 # Since "{{- .chezmoi.hostname -}}" is not among the listed hostnames stored in 1Password,
@@ -62,9 +53,9 @@ set -g @plugin 'tmux-plugins/tmux-pain-control'
 # https://draculatheme.com/tmux
 set -g @plugin 'dracula/tmux'
 
-{{ if $work }}
+{{ if .work }}
 set -g @dracula-plugins "battery git kubernetes-context time"
-{{ else if $personal }}
+{{ else if .personal }}
 set -g @dracula-plugins "battery git time"
 {{ end }}
 

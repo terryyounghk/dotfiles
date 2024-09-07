@@ -1,15 +1,50 @@
-encryption="gpg"
-
-# [github]
-#     refreshPeriod = "12h"
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- /* Snippet to determine if current machine is personal or for work.              */ -}}
+{{- /* About: printf "%#v" $value                                                    */ -}}
+{{- /*      - prints `false` as a valid TOML boolean without quotes                  */ -}}
+{{- /*      - prints strings with quotes                                             */ -}}
+{{- /*      - maintains valid TOML syntax while avoiding any conditional logic       */ -}}
+{{- "" -}}
+{{- $opAccount := onepasswordRead "op://dotfiles/personal/general/onepasswordAccount" -}}
+{{- $personalHostnames := splitList "," (onepasswordRead "op://dotfiles/personal/general/hostnames" $opAccount) -}}
+{{- $personal := and (has .chezmoi.hostname $personalHostnames) "personal" -}}
+{{- $workHostnames := splitList "," (onepasswordRead "op://dotfiles/work/general/hostnames" $opAccount) -}}
+{{- $work := and (has .chezmoi.hostname $workHostnames) "work" -}}
+{{- $type := or $personal $work -}}
+{{- $name := false -}}
+{{- $email := false -}}
+{{- $whoami := false -}}
+{{- $signingKey := false -}}
+{{- $hooksPath := false -}}
+{{- /* ----------------------------------------------------------------------------- */ -}}
+{{- if $type -}}
+{{-   $name = onepasswordRead (printf "op://dotfiles/%s/general/name" $type) $opAccount -}}
+{{-   $email = onepasswordRead (printf "op://dotfiles/%s/general/email" $type) $opAccount -}}
+{{-   $whoami = onepasswordRead (printf "op://dotfiles/%s/general/whoami" $type) $opAccount -}}
+{{-   $signingKey = onepasswordRead (printf "op://dotfiles/%s/git/signingKey" $type) $opAccount -}}
+{{-   $relativeHooksPath := onepasswordRead (printf "op://dotfiles/%s/git/hooksPath" $type) $opAccount -}}
+{{-   if $work -}}
+{{-     $hooksPath = printf "/Users/%s/%s" $whoami $relativeHooksPath -}}
+{{-   end -}}
+[data]
+  opAccount={{ printf "%#v" $opAccount }}
+  type={{ printf "%#v" $type }}
+  work={{ printf "%#v" $work }}
+  personal={{ printf "%#v" $personal }}
+  name={{ printf "%#v" $name }}
+  email={{ printf "%#v" $email }}
+  whoami={{ printf "%#v" $whoami }}
+  signingKey={{ printf "%#v" $signingKey }}
+  hooksPath={{ printf "%#v" $hooksPath }}
+{{ end }}
 
 [gpg]
-symmetric=true
+  symmetric=true
 
 [edit]
-command="nvim"
-hardlink=false
+  command="nvim"
+  hardlink=false
 
 [pinentry]
-command="pinentry-mac"
+  command="pinentry-mac"
 

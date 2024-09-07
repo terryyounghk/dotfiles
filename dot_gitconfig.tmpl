@@ -1,13 +1,4 @@
-{{- /* ----------------------------------------------------------------------------- */ -}}
-{{- /* Snippet to determine if current machine is personal or for work */ -}}
-{{- "" -}}
-{{- $personalHostnames := splitList "," (onepasswordRead "op://dotfiles/personal/general/hostnames") -}}
-{{- $personal := and (has .chezmoi.hostname $personalHostnames) "personal" -}}
-{{- $workHostnames := splitList "," (onepasswordRead "op://dotfiles/work/general/hostnames") -}}
-{{- $work := and (has .chezmoi.hostname $workHostnames) "work" -}}
-{{- $type := or $personal $work -}}
-{{- /* ----------------------------------------------------------------------------- */ -}}
-{{- if not $type -}}
+{{- if not .type -}}
 ; This file is generated using a dotfiles manager called chezmoi,
 ; and uses 1Password to store and retrieve sensitive information to populate this file.
 ; Since "{{- .chezmoi.hostname -}}" is not among the listed hostnames stored in 1Password,
@@ -17,9 +8,9 @@
 
 [user]
   userConfigOnly = true
-  name = "{{- onepasswordRead (printf "op://dotfiles/%s/general/name" $type) -}}"
-  email = "{{- onepasswordRead (printf "op://dotfiles/%s/general/email" $type) -}}"
-  signingKey = "{{- onepasswordRead (printf "op://dotfiles/%s/git/signingKey" $type) -}}"
+  name = "{{- .name -}}"
+  email = "{{- .email -}}"
+  signingKey = "{{- .signingKey -}}"
 
 [gpg]
   program = /opt/homebrew/bin/gpg
@@ -34,18 +25,14 @@
   gpgsign = true
 
 [core]
-  {{- if $work }}
-  hooksPath = "/Users/{{-
-    onepasswordRead (printf "op://dotfiles/%s/general/whoami" $type)
-    -}}/{{-
-    onepasswordRead (printf "op://dotfiles/%s/git/hooksPath" $type)
-    -}}"
+  {{- if .work }}
+  hooksPath = "{{- .hooksPath -}}"
   {{ end }}
   pager = delta
   editor = nvim
   symlinks = false
 
-{{ onepasswordRead (printf "op://dotfiles/%s/git/urls" $type) }}
+{{ onepasswordRead (printf "op://dotfiles/%s/git/urls" .type) .opAccount }}
 
 [init]
   defaultBranch = main
