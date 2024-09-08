@@ -6,6 +6,12 @@
 {{ else }}
 
 ############################################################
+# Explicitly map leader key
+unbind C-b
+set-option -g prefix C-b
+bind-key 'C-b' send-prefix
+
+############################################################
 # Tmux Plugin Manager
 # Prerequisites: install tpm
 # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
