@@ -7,6 +7,11 @@ return {
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
+      close_if_last_window = true,
+      popup_border_style = "rounded",
+      window = {
+        position = "float",
+      },
       filesystem = {
         filtered_items = {
           visible = true,
@@ -34,26 +39,15 @@ return {
             ".DS_Store",
             "thumbs.db",
           },
-          never_show_by_pattern = {
-
-          },
-          -- follow_current_file = {
-            -- enabled = true,
-          -- },
-          -- leave_dirs_open = true,
+          never_show_by_pattern = {},
         },
-        -- buffers = {
-          -- follow_current_file = {
-            -- enabled = true,
-          -- },
-          -- leave_dirs_open = true,
-        -- },
+      },
+      mappings = {
+        ["P"] = { "toggle_preview", config = { use_float = true, use_image_nvim = true } },
       },
     },
-    init = function (
-      -- do nothing, keep NeoTree hidden
-    )
-    end
+    init = function()
+      -- override to keep NeoTree hidden
+    end,
   },
 }
-

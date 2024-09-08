@@ -22,9 +22,9 @@ return {
         force = false,
       },
       notification = {
-        on_open = true,
+        on_open = false,
         on_apply = true,
-        on_watch = true,
+        on_watch = false,
       },
       telescope = {
         select = { "<CR>" },

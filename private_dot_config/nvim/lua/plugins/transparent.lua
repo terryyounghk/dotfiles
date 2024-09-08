@@ -28,23 +28,25 @@ return {
           "LineNr",
           "NonText",
           "SignColumn",
-          "CursorLine",
-          "CursorLineNr",
+          -- "CursorLine",
+          -- "CursorLineNr",
           "StatusLine",
           "StatusLineNC",
           "EndOfBuffer",
         },
         -- table: additional groups that should be cleared
         extra_groups = {
-          "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
-          "NvimTreeNormal", -- NvimTree
-          "NvimTreeNormalNC",
-          "NvimTreeNormalFloat",
-          "NvimTreeEndOfBuffer",
-          "NeoTreeExpander",
+          -- "NvimTreeNormal", -- NvimTree
+          -- "NvimTreeNormalNC",
+          -- "NvimTreeNormalFloat",
+          -- "NvimTreeEndOfBuffer",
         },
         -- table: groups you don't want to clear
-        exclude_groups = {},
+        exclude_groups = {
+          -- "NeoTree",
+          "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+        },
+
         -- function: code to be executed after highlight groups are cleared
         -- Also the user event "TransparentClear" will be triggered
         on_clear = function() end,
@@ -54,8 +56,10 @@ return {
       })
 
       require("transparent").clear_prefix("BufferLine")
-      require("transparent").clear_prefix("NeoTree")
-      require("transparent").clear_prefix("lualine")
+      -- require("transparent").clear_prefix("NeoTree")
+      require("transparent").clear_prefix("Telescope")
+      require("transparent").clear_prefix("Normal") -- TODO: might be a bit aggressive here
+      -- require("transparent").clear_prefix("lualine")
     end,
   },
 }
