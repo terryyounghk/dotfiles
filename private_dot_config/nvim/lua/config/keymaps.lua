@@ -26,3 +26,9 @@ for i = 1, #keys do
 end
 
 map("n", "<leader>kt", ":TransparentToggle<CR>", { desc = "Toggle Transparency" })
+
+keys = { "<leader>kc", "<leader>se" }
+for i = 1, #keys do
+  map("n", keys[i], ":Cheatsheet<CR>", { desc = "Cheatsheet" })
+end
+
