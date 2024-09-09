@@ -1,0 +1,4 @@
+.DS_Store
+
+# removed nvim plugins
+.config/nvim/lua/plugins/mini-diff.lua

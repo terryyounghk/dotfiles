@@ -24,6 +24,21 @@ return {
         topdelete = { text = "" },
         changedelete = { text = "▎" },
       },
+      signs_staged_enable = true,
+      attach_to_untracked = true,
+      signcolumn = true,
+      linehl = true,
+      numhl = true,
+      word_diff = true,
+      current_line_blame = true,
+      current_line_blame_opts = {
+        virt_text = true,
+        virt_text_pos = "eol", -- 'eol' | 'overlay' | 'right_align'
+        delay = 100,
+        ignore_whitespace = false,
+        virt_text_priority = 100,
+        use_focus = true,
+      },
       on_attach = function(buffer)
         local gs = package.loaded.gitsigns
 
@@ -58,8 +73,11 @@ return {
         map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
         map("n", "<leader>ghd", gs.diffthis, "Diff This")
         map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
+        map("n", "<leader>ghh", "<cmd>Gitsigns toggle_numhl<CR><cmd>Gitsigns toggle_linehl<CR>", "Toggle Gitsigns Highlight")
+        map("n", "<leader>ghc", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Toggle Current Line Blame")
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
       end,
     },
-  }
+  },
 }
+
