@@ -9,6 +9,7 @@ source "${HOME}/.zim/custom/functions/init.zsh"
 source "${HOME}/.zim/custom/gpg-agent/init.zsh"
 source "${HOME}/.zim/custom/lazygit/init.zsh"
 source "${HOME}/.zim/custom/yarn/init.zsh"
+source "${HOME}/.zim/custom/zoxide/init.zsh"
 source "${HOME}/.zim/custom/zsh-hist/init.zsh"
 
 # put this at the last

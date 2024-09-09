@@ -18,18 +18,15 @@ alias bubu='brew updates; brew upgrade --require-sha' # then append whatever spe
 # sometimes I just want to look up some of these
 alias faf='alias | fzf --multi'
 alias fef='printenv | fzf --multi'
+alias fpf='fzf_process_list'
 
 # -----------------------------------------------------------------------------------
 # zoxide
 
 alias zb='z -'
-alias zc='z common'
-alias zk='z kbds'
-alias zl='z ~/Library/'
-alias zm='z monitors'
-alias zmk='z zmk-config'
-alias zt='z tooling'
-alias zv='z /Volumes/'
+alias zd='zoxide_fzf_directory'
+alias zf='zoxide_fzf_files'
+alias zy='zoxide_fzf_any'
 
 # -----------------------------------------------------------------------------------
 # misc utils
