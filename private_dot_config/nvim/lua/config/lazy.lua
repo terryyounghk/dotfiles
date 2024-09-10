@@ -14,7 +14,18 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+-- https://lazy.folke.io/configuration
 require("lazy").setup({
+  ui = {
+    border = "rounded",
+    -- backdrop opacity. 0 = fully opaque, 100 = fully transparent
+    backdrop = 100,
+    title_pos = "left",
+    size = {
+      width = 0.7,
+      height = 0.7,
+    },
+  },
   spec = {
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },

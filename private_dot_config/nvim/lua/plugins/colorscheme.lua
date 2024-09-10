@@ -24,8 +24,12 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      colors = {
-        comment = "#7ac1eb", -- works: light blueish. Default one is too light for transparent bg
+      transparent_bg = true,
+      overrides = {
+        Comment = { fg = "#7ac1eb" },
+        CursorColumn = { bg = "#48476b" },
+        CursorLine = { bg = "#48476b" },
+        Visual = { bg = "#20134f" },
       },
     },
   },
@@ -38,4 +42,3 @@ return {
     },
   },
 }
-

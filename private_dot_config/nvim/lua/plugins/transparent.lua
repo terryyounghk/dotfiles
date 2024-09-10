@@ -4,9 +4,7 @@ return {
     enabled = true,
     lazy = false,
     config = function()
-      -- Optional, you don't have to run setup.
       require("transparent").setup({
-        -- table: default groups
         groups = {
           "Normal",
           "NormalNC",
@@ -34,17 +32,15 @@ return {
           "StatusLineNC",
           "EndOfBuffer",
         },
-        -- table: additional groups that should be cleared
         extra_groups = {
-          -- "NvimTreeNormal", -- NvimTree
-          -- "NvimTreeNormalNC",
-          -- "NvimTreeNormalFloat",
-          -- "NvimTreeEndOfBuffer",
+          "TelescopeNormal",
+          "NormalFloat",
         },
-        -- table: groups you don't want to clear
         exclude_groups = {
-          -- "NeoTree",
-          "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+          "NeoTreeNormal",
+          "NeoTreeFloatNormal",
+          "NeoTreeFloatBorder",
+          "NeoTreeFloatTitle",
         },
 
         -- function: code to be executed after highlight groups are cleared
@@ -56,10 +52,6 @@ return {
       })
 
       require("transparent").clear_prefix("BufferLine")
-      -- require("transparent").clear_prefix("NeoTree")
-      require("transparent").clear_prefix("Telescope")
-      require("transparent").clear_prefix("Normal") -- TODO: might be a bit aggressive here
-      -- require("transparent").clear_prefix("lualine")
     end,
   },
 }
