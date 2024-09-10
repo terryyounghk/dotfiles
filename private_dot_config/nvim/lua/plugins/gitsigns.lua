@@ -61,23 +61,24 @@ return {
             gs.nav_hunk("prev")
           end
         end, "Prev Hunk")
-        map("n", "]H", function() gs.nav_hunk("last") end, "Last Hunk")
-        map("n", "[H", function() gs.nav_hunk("first") end, "First Hunk")
-        map({ "n", "v" }, "<leader>ghs", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
-        map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
-        map("n", "<leader>ghS", gs.stage_buffer, "Stage Buffer")
-        map("n", "<leader>ghu", gs.undo_stage_hunk, "Undo Stage Hunk")
-        map("n", "<leader>ghR", gs.reset_buffer, "Reset Buffer")
-        map("n", "<leader>ghp", gs.preview_hunk_inline, "Preview Hunk Inline")
-        map("n", "<leader>ghb", function() gs.blame_line({ full = true }) end, "Blame Line")
-        map("n", "<leader>ghB", function() gs.blame() end, "Blame Buffer")
-        map("n", "<leader>ghd", gs.diffthis, "Diff This")
-        map("n", "<leader>ghD", function() gs.diffthis("~") end, "Diff This ~")
-        map("n", "<leader>ghh", "<cmd>Gitsigns toggle_numhl<CR><cmd>Gitsigns toggle_linehl<CR>", "Toggle Gitsigns Highlight")
-        map("n", "<leader>ghc", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Toggle Current Line Blame")
-        map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
+
+        map("n", "<leader>gi", "", "Gitsigns")
+        map("n", "<leader>gil", function() gs.nav_hunk("last") end, "Last Hunk")
+        map("n", "<leader>gif", function() gs.nav_hunk("first") end, "First Hunk")
+        map({ "n", "v" }, "<leader>gis", ":Gitsigns stage_hunk<CR>", "Stage Hunk")
+        map({ "n", "v" }, "<leader>gir", ":Gitsigns reset_hunk<CR>", "Reset Hunk")
+        map("n", "<leader>giS", gs.stage_buffer, "Stage Buffer")
+        map("n", "<leader>giu", gs.undo_stage_hunk, "Undo Stage Hunk")
+        map("n", "<leader>giR", gs.reset_buffer, "Reset Buffer")
+        map("n", "<leader>gip", gs.preview_hunk_inline, "Preview Hunk Inline")
+        map("n", "<leader>gib", function() gs.blame_line({ full = true }) end, "Blame Line")
+        map("n", "<leader>giB", function() gs.blame() end, "Blame Buffer")
+        map("n", "<leader>gid", gs.diffthis, "Diff This")
+        map("n", "<leader>giD", function() gs.diffthis("~") end, "Diff This ~")
+        map("n", "<leader>gih", "<cmd>Gitsigns toggle_numhl<CR><cmd>Gitsigns toggle_linehl<CR>", "Toggle Highlight")
+        map("n", "<leader>gic", "<cmd>Gitsigns toggle_current_line_blame<CR>", "Toggle Line Blame")
+        map({ "o", "x" }, "gih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns Select Hunk")
       end,
     },
   },
 }
-
