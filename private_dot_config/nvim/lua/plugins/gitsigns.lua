@@ -27,7 +27,7 @@ return {
       signs_staged_enable = true,
       attach_to_untracked = true,
       signcolumn = true,
-      linehl = true,
+      linehl = false,
       numhl = true,
       word_diff = true,
       current_line_blame = true,

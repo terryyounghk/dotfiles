@@ -32,3 +32,5 @@ o.shiftwidth = 2
 o.showtabline = 0
 o.laststatus = 0
 
+-- don't hide stuff in code, e.g. hiding double-quotes in json files
+o.conceallevel = 0

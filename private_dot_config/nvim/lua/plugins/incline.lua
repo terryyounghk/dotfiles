@@ -120,6 +120,10 @@ return {
           }
         end,
       })
+
+      local map = vim.keymap.set
+
+      map('n', '<leader>uu', '<cmd>lua require("incline").toggle()<CR>', { noremap = true, silent = true, desc = "Toggle Incline" })
     end,
     -- Optional: Lazy load Incline
     event = 'VeryLazy',
