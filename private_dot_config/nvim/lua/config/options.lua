@@ -34,3 +34,6 @@ o.laststatus = 0
 
 -- don't hide stuff in code, e.g. hiding double-quotes in json files
 o.conceallevel = 0
+
+-- session
+o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
