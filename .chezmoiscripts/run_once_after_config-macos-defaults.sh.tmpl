@@ -282,7 +282,7 @@ defaults write com.apple.dock show-recents -bool false
 # 13: Lock Screen
 defaults write com.apple.dock wvous-tl-corner -int 0
 defaults write com.apple.dock wvous-tl-modifier -int 0
-defaults write com.apple.dock wvous-tr-corner -int 12
+defaults write com.apple.dock wvous-tr-corner -int 0
 defaults write com.apple.dock wvous-tr-modifier -int 0
 defaults write com.apple.dock wvous-bl-corner -int 5
 defaults write com.apple.dock wvous-bl-modifier -int 0
@@ -319,7 +319,7 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 #defaults write com.apple.mail NSUserKeyEquivalents -dict-add "Send" "@\U21a9"
 
 ## Mail: Disable automatic spell checking
-defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"jp
+defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -415,4 +415,3 @@ for app in "Activity Monitor" \
 done
 
 {{ end }}
-
