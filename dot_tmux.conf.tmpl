@@ -21,6 +21,16 @@ bind-key 'C-b' send-prefix
 # credit: https://notes.jerzygangi.com/the-only-way-that-actually-works-to-clear-the-screen-in-tmux/
 bind -n M-k send-keys -R \; send-keys C-l \; clear-history
 
+# spaces > tabs
+# Extra tip: the following replaces tabs to spaces
+#   :retab
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+# copy mode
+setw -g mode-keys vi
+
 ############################################################
 # Tmux Plugin Manager
 # Prerequisites: install tpm
@@ -158,7 +168,7 @@ TMUX_FZF_LAUNCH_KEY="C-f"
 # https://github.com/Morantron/tmux-fingers
 # Quickly copy stuff
 # prefix-F:      @fingers-key           Enter fingers mode
-# prefis-J:      @fingers-jump-key      Enter fingers jump mode
+# prefix-J:      @fingers-jump-key      Enter fingers jump mode
 #                @fingers-main-action   Copy tmux and clipboard
 #                @fingers-ctrl-action   :open:
 #                @fingers-alt-action    N/A
