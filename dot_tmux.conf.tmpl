@@ -14,19 +14,16 @@ bind-key 'C-b' send-prefix
 ############################################################
 # Other explicit mapping and options
 
-# This, with M-k, clears the screen AND clear the scrollback buffer
+# This, with C-k, clears the screen AND clear the scrollback buffer
 # C-l originally built-in to just clear screen
-# Command-k is my muscle memory for classic terminal
 #
 # credit: https://notes.jerzygangi.com/the-only-way-that-actually-works-to-clear-the-screen-in-tmux/
-bind -n M-k send-keys -R \; send-keys C-l \; clear-history
+bind -n C-k send-keys -R \; send-keys C-l \; clear-history
 
 # spaces > tabs
 # Extra tip: the following replaces tabs to spaces
 #   :retab
-set tabstop=2
-set shiftwidth=2
-set expandtab
+# set tabstop=2 shiftwidth=2 expandtab
 
 # copy mode
 setw -g mode-keys vi
