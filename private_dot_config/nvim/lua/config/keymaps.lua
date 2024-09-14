@@ -12,7 +12,7 @@ map("n", "<leader>ke", ":LazyExtras<CR>", { desc = "LazyVim Extras" })
 
 keys = { "<leader>kq", "<leader>wq" }
 for i = 1, #keys do
-  map("n", keys[i], ":wall<CR>:SessionSave<CR>:qall<CR>", { desc = "Save Files/Session and Quit" })
+  map("n", keys[i], ":wall<CR>:qall<CR>", { desc = "Save Files/Session and Quit" })
 end
 
 keys = { "<leader>ko", "<leader>so" }
@@ -31,4 +31,3 @@ keys = { "<leader>kc", "<leader>se" }
 for i = 1, #keys do
   map("n", keys[i], ":Cheatsheet<CR>", { desc = "Cheatsheet" })
 end
-

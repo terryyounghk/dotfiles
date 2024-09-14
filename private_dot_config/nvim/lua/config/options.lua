@@ -36,4 +36,4 @@ o.laststatus = 0
 o.conceallevel = 0
 
 -- session
-o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize"
+o.sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize,localoptions"

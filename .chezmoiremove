@@ -5,3 +5,5 @@
 .config/nvim/lua/plugins/keepcursor.lua
 .config/nvim/lua/plugins/no-neck-pain.lua
 .config/nvim/lua/plugins/neovim-project.lua
+.config/nvim/lua/plugins/persisted.lua
+.config/nvim/lua/plugins/auto-session.lua
