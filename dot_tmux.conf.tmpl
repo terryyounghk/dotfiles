@@ -5,75 +5,90 @@
 # chezmoi will not output any other configs to this file.
 {{ else }}
 
-############################################################
-# Explicitly map leader key
-unbind C-b
-set-option -g prefix C-b
-bind-key 'C-b' send-prefix
+### visuals -------------------------------------------------------------------
 
-############################################################
-# Other explicit mapping and options
+set -g visual-bell      off
+set -g visual-silence   off
+set -g bell-action      none
 
-# This, with C-k, clears the screen AND clear the scrollback buffer
-# C-l originally built-in to just clear screen
-#
-# credit: https://notes.jerzygangi.com/the-only-way-that-actually-works-to-clear-the-screen-in-tmux/
-bind -n C-k send-keys -R \; send-keys C-l \; clear-history
+### settings ------------------------------------------------------------------
 
-# spaces > tabs
-# Extra tip: the following replaces tabs to spaces
-#   :retab
-# set tabstop=2 shiftwidth=2 expandtab
+set -g display-time 100000                 # Messages and indicators timeout
+set -g base-index 1                        # Windows counts from 1
+set -g pane-base-index 1                   # Panes counts from 1
+set -g renumber-windows on                 # Automatically renumber windows on new/delete
+set -g history-limit 1000                  # Set the maximum number of lines held in window history
+set -g escape-time 0                       # Set the time in milliseconds for which tmux waits after an
+                                           # escape is input to determine if it is part of a function or
+                                           # meta key sequences.  The default is 500 milliseconds ???? WTF ????
+set -g repeat-time 600                     # Increase repeat timeout
+set -g display-panes-time 5000             # Visible indicator of each pane timeout
 
-# copy mode
-setw -g mode-keys vi
+### window --------------------------------------------------------------------
 
-############################################################
-# Tmux Plugin Manager
-# Prerequisites: install tpm
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# prefix I:    Install plugins
-# prefix U:    Update
-# prefix a-u:  Unintall plugins not on the plugin list
+set -g allow-rename     on                 # Allow programs in the pane to change the window name
+set -g automatic-rename on                 # When this setting is enabled, tmux will rename the window automatically
+set -g monitor-activity off                # Windows with activity are highlighted in the status line
+set -g visual-activity  off                # Display a message instead of sending a bell
+
+### mouse ---------------------------------------------------------------------
+
+set -g mouse on                            # Enable mouse support
+
+### key bindings --------------------------------------------------------------
+
+#unbind -a                                 # Remove all default bindings
+
+set -g prefix C-Space                      # Prefix key
+#bind C-Space send-prefix                  # Send prefix for nested sessions
+
+                                           # Reload tmux configuration
+bind R source-file $HOME/.tmux.conf \; display-message "Config reloaded"
+
+                                           # Clear screen in tmux:
+# bind -n C-k send-keys -R \; send-keys C-l \; clear-history
+bind a send-keys -R \; send-keys C-l \; clear-history
+
+### copy mode -----------------------------------------------------------------
+
+setw -g mode-keys vi                       # Use vi-style key bindings for copy mode
+#bind-key -t vi-copy 'v' begin-selection
+#bind-key -t vi-copy y copy-pipe 'xclip -selection clipboard >/dev/null'
+bind -T copy-mode-vi v send-keys -X begin-selection
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -selection clipboard > /dev/null"
+
+### plugin: Tmux Plugin Manager -----------------------------------------------
+                                           # Prerequisites: install tpm
+                                           # git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+                                           # I:    Install plugins
+                                           # U:    Update
+                                           # M-u:  Unintall plugins not on the plugin list
 set -g @plugin 'tmux-plugins/tpm'
 
-# remap default clean key binding
-# see https://github.com/tmux-plugins/tpm/issues/70
-set -g @tpm-clean 'u'
+                                           # see https://github.com/tmux-plugins/tpm/issues/70
+set -g @tpm-clean 'u'                      # remap default clean key binding to 'u'
 
-############################################################
-# tmux-plugins/tmux-sensible
-# https://github.com/tmux-plugins/tmux-sensible
+### plugin: tmux-plugins/tmux-sensible ----------------------------------------
+                                           # https://github.com/tmux-plugins/tmux-sensible
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
-############################################################
-# Manual: additional settings set manually
-
-# also, two tips:
-#   1) `prefix-[ is scrolling in tmux`
-#   2) `prefix : show-options -g mouse`
-set-option -g mouse on
-
-############################################################
-# Which key
-# https://github.com/alexwforsythe/tmux-which-key
-# prefix-space
-#
-# Installations Notes: If this has not been installed yet,
-#                      first remove the config.yaml:
-#                      rm -rf ~/.tmux/plugins/tmux-which-key/config.yaml
-#                      Then run `chezmoi apply` again to
-#                      restore the customized config.yaml
+### plugin: alexwforsythe/tmux-which-key --------------------------------------
+                                           # https://github.com/alexwforsythe/tmux-which-key
+                                           # prefix-space
+                                           #
+                                           # Installations Notes: If this has not been installed yet,
+                                           #                      first remove the config.yaml:
+                                           #                      rm -rf ~/.tmux/plugins/tmux-which-key/config.yaml
+                                           #                      Then run `chezmoi apply` again to
+                                           #                      restore the customized config.yaml
 set -g @plugin 'alexwforsythe/tmux-which-key'
 
-############################################################
-# controlling panes
-# https://github.com/tmux-plugins/tmux-pain-control
+### plugin: tmux-plugins/tmux-pain-control ------------------------------------
+                                           # https://github.com/tmux-plugins/tmux-pain-control
 set -g @plugin 'tmux-plugins/tmux-pain-control'
 
-############################################################
-# Dracula Theme
-# https://draculatheme.com/tmux
+### plugin: theme: dracula ----------------------------------------------------
+                                           # https://draculatheme.com/tmux
 set -g @plugin 'dracula/tmux'
 
 {{ if .work }}
@@ -82,33 +97,22 @@ set -g @dracula-plugins "battery git kubernetes-context time"
 set -g @dracula-plugins "battery git time"
 {{ end }}
 
-# configure powerline, separators as fonts don't look good with transparencies
-set -g @dracula-show-powerline true
-set -g @dracula-show-left-sep " "
-set -g @dracula-show-right-sep " "
-
+set -g @dracula-show-left-sep " "          # remove separators to look better with transparency
+set -g @dracula-show-right-sep " "         # remove separators to look better with transparency
 set -g @dracula-show-left-icon session
 set -g @dracula-left-icon-padding 0
-
 set -g @dracula-time-format "%a, %Y-%m-%d %H:%M"
+set -g @dracula-show-flags true            # enable window flags
+set -g @dracula-refresh-rate 5             # refresh rate: default 5
+set -g @dracula-border-contrast true       # enable high contrast pane border
 
-# enable window flags
-set -g @dracula-show-flags true
-
-# refresh rate: default 5
-set -g @dracula-refresh-rate 5
-
-# enable high contrast pane border
-set -g @dracula-border-contrast true
-
-# hide these
+                                           # hide these
 set -g @dracula-show-empty-plugins false
 set -g @dracula-cpu-display-load false
 set -g @dracula-show-timezone false
 set -g @dracula-hg-disable-status false
 set -g @dracula-show-location false
 set -g @dracula-network-bandwidth-show-interface false
-
 
 set -g @dracula-git-disable-status false
 set -g @dracula-git-show-remote-status false
@@ -117,30 +121,25 @@ set -g @dracula-kubernetes-hide-user true
 set -g @dracula-kubernetes-eks-extract-account false
 set -g @dracula-kubernetes-eks-hide-arn true
 
-############################################################
-# restore tmux environment after system restart
-# https://github.com/tmux-plugins/tmux-resurrect
-#
-# and doing it automatically...
-# https://github.com/tmux-plugins/tmux-continuum
-#
-# prefix + c-s - save
-# prefix + c-r - restore
+### plugin: persistence across reboots ----------------------------------------
+                                           # https://github.com/tmux-plugins/tmux-resurrect
+                                           # and doing it automatically...
+                                           # https://github.com/tmux-plugins/tmux-continuum
+                                           #
+                                           # c-s : save
+                                           # c-r : restore
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-continuum'
+set -g @resurrect-strategy-vim 'session'   # for vim
+set -g @resurrect-strategy-nvim 'session'  # for neovim
 
-# for vim
-set -g @resurrect-strategy-vim 'session'
-# for neovim
-set -g @resurrect-strategy-nvim 'session'
-
-# automatic restore last saved environment
-# !!! if tmux somehow unexpectedly exits on start,
-# !!! try commenting out the following line
+                                           # automatic restore last saved environment
+                                           # !!! if tmux somehow unexpectedly exits on start,
+                                           # !!! try commenting out the following line
 set -g @continuum-restore 'on'
 
-# show Continuum status in tmux status line
-# TODO: not sure if this works or not yet
+                                           # show Continuum status in tmux status line
+                                           # TODO: not sure if this works or not yet
 set -g status-right 'Continuum status: #{continuum_status}'
 
 # TODO: currently trying: https://github.com/rmagatti/auto-session
@@ -148,65 +147,51 @@ set -g status-right 'Continuum status: #{continuum_status}'
 # TODO: https://github.com/tmux-plugins/tmux-resurrect/blob/master/docs/restoring_vim_and_neovim_sessions.md
 # TODO: https://github.com/tpope/vim-obsession
 
-############################################################
-# https://github.com/sainnhe/tmux-fzf
-# tmux-fzf
-# prefix + F     (default) - clashes with tmux-fingers
-# prefix + c-f   (custom)  - so I changed to this
-#   - Manage sessions, windows, panes...
-#   - Search commands and append to prompt
-#   - Search clipboard history and paste to window
-#   - Process management
-#   - ...
-set -g @plugin 'sainnhe/tmux-fzf'
+### plugin: sainnhe/tmux-fzf --------------------------------------------------
+                                           # https://github.com/sainnhe/tmux-fzf
+                                           # c-f   (default: F) clashes with tmux-fingers
 TMUX_FZF_LAUNCH_KEY="C-f"
+TMUX_FZF_OPTIONS="-p -w 85% -h 85% -m"
+set -g @plugin 'sainnhe/tmux-fzf'
 
-############################################################
-# https://github.com/Morantron/tmux-fingers
-# Quickly copy stuff
-# prefix-F:      @fingers-key           Enter fingers mode
-# prefix-J:      @fingers-jump-key      Enter fingers jump mode
-#                @fingers-main-action   Copy tmux and clipboard
-#                @fingers-ctrl-action   :open:
-#                @fingers-alt-action    N/A
-#                @fingers-shift-action  :paste:
-#                @fingers-show-copied-notification
+### plugin: Morantron/tmux-fingers --------------------------------------------
+                                           # https://github.com/Morantron/tmux-fingers
+                                           # Quickly copy stuff
+                                           # F:      @fingers-key           Enter fingers mode
+                                           # J:      @fingers-jump-key      Enter fingers jump mode
+                                           #         @fingers-main-action   Copy tmux and clipboard
+                                           #         @fingers-ctrl-action   :open:
+                                           #         @fingers-alt-action    N/A
+                                           #         @fingers-shift-action  :paste:
+                                           #         @fingers-show-copied-notification
 set -g @plugin 'Morantron/tmux-fingers'
 set -g @fingers-show-copied-notification '1'
+set -g @fingers-backdrop-style "fg=black"
+set -g @fingers-highlight-style "bg=yellow, fg=blue"
+set -g @fingers-selected-hint-style "fg=red, bold"
+set -g @fingers-keyboard-layout "qwerty-homerow"
+set -g @fingers-show-copied-notification '1'
+### plugin: tmux-plugins/tmux-open --------------------------------------------
+                                           # https://github.com/tmux-plugins/tmux-open
+                                           # In Copy Mode:
+                                           # o    : open highlighted with default program
+                                           # c-o  : open highlighted with $EDITOR
+                                           # s-s  : search highlighted in search engine
+set -g @plugin 'mmux-plugins/tmux-open'
 
-############################################################
-# Copy to system clipboard
-# https://github.com/tmux-plugins/tmux-yank
-# Note: Reserved. Don't seem to need this right now.
-# Normal mode:
-#     prefix-y: copies text from command line to clipboard
-# Copy mode:
-#     y: copy selection to system clipboard
-#     Y: put selection - copy selection and paste to command line
-# set -g @plugin 'tmux-plugins/tmux-yank'
-
-############################################################
-# open highlighted selection directly from tmux copy mode
-set -g @plugin 'tmux-plugins/tmux-open'
-
-############################################################
-# https://github.com/wfxr/tmux-fzf-url
-# prefix-u
+### plugin: tmux-plugins/tmux-open --------------------------------------------
+                                           # https://github.com/wfxr/tmux-fzf-url
+                                           # prefix-u
 set -g @plugin 'wfxr/tmux-fzf-url'
 set -g @fzf-url-history-limit '2000'
-set -g @fzf-url-fzf-options '-w 90% -h 50% --multi -0 --no-preview --border-label="tmux-fzf-url: open in browser (Tab to select multiple)"'
+set -g @fzf-url-fzf-options '-w 85% -h 65% --multi -0 --no-preview --border-label="tmux-fzf-url: open in browser (Tab to select multiple)"'
 
-############################################################
-# auto git fetch
-# https://github.com/thepante/tmux-git-autofetch/
-set -g @plugin 'thepante/tmux-git-autofetch'
 
-############################################################
-# address issue of error 127 when installing tpm
-# https://github.com/tmux-plugins/tpm/issues/67#issuecomment-319561401
-# set-environment -g PATH "/usr/local/bin:/bin:/usr/bin"
-#
-# https://github.com/tmux-plugins/tpm/issues/67#issuecomment-775411964
+### keep these at the bottom --------------------------------------------------
+
+                                           # address issue of error 127 when installing tpm
+                                           # https://github.com/tmux-plugins/tpm/issues/67#issuecomment-319561401
+                                           # https://github.com/tmux-plugins/tpm/issues/67#issuecomment-775411964
 set-environment -g PATH "/opt/homebrew/bin:/usr/local/bin:/bin:/usr/bin"
 
 ############################################################
