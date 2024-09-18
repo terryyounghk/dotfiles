@@ -3,31 +3,21 @@
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
-local keys = {}
 local telescope = require("telescope")
 telescope.load_extension("chezmoi")
 
--- Telescope things frequently accessed
-map("n", "<leader>ke", ":LazyExtras<CR>", { desc = "LazyVim Extras" })
+map({"n", "v"}, "<leader>sA", ":%s/", { desc = "Regex Search in File" })
 
-keys = { "<leader>kq", "<leader>wq" }
-for i = 1, #keys do
-  map("n", keys[i], ":wall<CR>:qall<CR>", { desc = "Save Files/Session and Quit" })
-end
+map("n", "<leader>ll", ":Lazy<CR>", { desc = "Lazy" })
+map("n", "<leader>le", ":LazyExtras<CR>", { desc = "LazyVim Extras" })
+map("n", "<leader>lf", ":LazyFormat<CR>", { desc = "LazyVim Format" })
+map("n", "<leader>lh", ":LazyHealth<CR>", { desc = "LazyVim Healthchecks" })
+map("n", "<leader>li", ":LazyFormatInfo<CR>", { desc = "LazyVim Format Info" })
 
-keys = { "<leader>ko", "<leader>so" }
-for i = 1, #keys do
-  map("n", keys[i], ":Telescope oldfiles<CR>", { desc = "Telescope Old Files" })
-end
+map("n", "<leader>fo", ":Telescope oldfiles<CR>", { desc = "Telescope Old Files" })
+map("n", "<leader>fz", telescope.extensions.chezmoi.find_files, { desc = "Find Chezmoi File" })
 
-keys = { "<leader>z", "<leader>fz" }
-for i = 1, #keys do
-  map("n", keys[i], telescope.extensions.chezmoi.find_files, { desc = "Find Chezmoi File" })
-end
+map("n", "<leader>ux", ":TransparentToggle<CR>", { desc = "Toggle Transparency" })
 
-map("n", "<leader>kt", ":TransparentToggle<CR>", { desc = "Toggle Transparency" })
-
-keys = { "<leader>kc", "<leader>se" }
-for i = 1, #keys do
-  map("n", keys[i], ":Cheatsheet<CR>", { desc = "Cheatsheet" })
-end
+map("n", "<leader>t", "", { desc = "Tools" })
+map("n", "<leader>tc", ":Cheatsheet<CR>", { desc = "Cheatsheet" })

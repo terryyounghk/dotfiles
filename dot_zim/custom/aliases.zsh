@@ -69,10 +69,15 @@ alias Arq='abbr_truncate_user_abbreviations_file && Ai --quieter'
 
 # -----------------------------------------------------------------------------------
 # tmux
- 
+
 alias t='TERM=screen-256color tmux attach || tmux new-session'
 alias ta='TERM=screen-256color tmux attach -t'
 alias tl='tmux list-sessions'
+
+# -----------------------------------------------------------------------------------
+# nvim
+
+alias n='nvim'
 
 # -----------------------------------------------------------------------------------
 # chezmoi
@@ -80,11 +85,12 @@ alias tl='tmux list-sessions'
 alias cm='chezmoi'
 alias cmc='chezmoi cd'
 alias cme='chezmoi edit'
-alias cmea='z ~/.local/share/chezmoi/; chezmoi edit --apply'
 alias cma='chezmoi apply'
+alias cmg='chezmoi edit-config-template'
+alias cmi='chezmoi init'
 alias cmai='chezmoi-fzf-apply'
-alias cmr='chezmoi-add-or-re-add'
-alias cmi='chezmoi-fzf-add'
+alias cmadd='chezmoi-add-or-re-add'
+alias cmaf='chezmoi-fzf-add'
 alias cmm='chezmoi managed'
 alias cmmi='chezmoi-fzf-managed'
 
@@ -190,4 +196,3 @@ alias GL="git log --all --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%
 # python stuff
 
 alias jn='Jupyter Notebook'
-
