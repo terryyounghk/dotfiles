@@ -28,7 +28,7 @@ return {
       attach_to_untracked = true,
       signcolumn = true,
       linehl = false,
-      numhl = true,
+      numhl = false,
       word_diff = true,
       current_line_blame = true,
       current_line_blame_opts = {

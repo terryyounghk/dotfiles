@@ -12,9 +12,38 @@ gui:
   shortTimeFormat: "2006-01-02 15:04:05"
   windowSize: 'half'
   filterMode: 'fuzzy'
+  # Config relating to colors and styles.
+  # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
+  theme:
+    activeBorderColor:
+      - "#5fff01"
+      - "bold"
+    inactiveBorderColor:
+      - "#949494"
+    searchingActiveBorderColor:
+      - "#5fff01"
+      - "bold"
+    optionsTextColor:
+      - "#ffaf00"
+    selectedLineBgColor:
+      - "#4e4e4e"
+    cherryPickedCommitFgColor:
+      - "#62d8f1"
+    cherryPickedCommitBgColor:
+      - "#d75fff"
+    markedBaseCommitFgColor:
+      - "#5fff01"
+    markedBaseCommitBgColor:
+      - "#ffd700"
+    unstagedChangesColor:
+      - "${git.changed}"
+    defaultFgColor:
+      - "#ffffff"
 git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never --side-by-side
+    useConfig: false
   parseEmoji: true
-
+  log:
+    showWholeGraph: true
