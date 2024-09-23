@@ -5,6 +5,7 @@
 ----------------------------------------------------------------------
 local g = vim.g
 
+g.maplocalleader = ","
 g.autoformat = false
 
 -- seems neovim keeps switching Root Dir for some reason.
