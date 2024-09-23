@@ -98,7 +98,7 @@ return {
             table.insert(label, { vim.bo[props.buf].modified and " " or "", guifg = "#d19a66" })
             table.insert(
               label,
-              { relative_path , gui = vim.bo[props.buf].modified and "bold,italic" or "bold" }
+              { filename , gui = vim.bo[props.buf].modified and "bold,italic" or "bold" }
             )
             if not props.focused then
               label["group"] = "BufferInactive"
