@@ -17,7 +17,29 @@ map("n", "<leader>li", ":LazyFormatInfo<CR>", { desc = "LazyVim Format Info" })
 map("n", "<leader>fo", ":Telescope oldfiles<CR>", { desc = "Telescope Old Files" })
 map("n", "<leader>fz", telescope.extensions.chezmoi.find_files, { desc = "Find Chezmoi File" })
 
-map("n", "<leader>ux", ":TransparentToggle<CR>", { desc = "Toggle Transparency" })
-
 map("n", "<leader>t", "", { desc = "Tools" })
-map("n", "<leader>tc", ":Cheatsheet<CR>", { desc = "Cheatsheet" })
+map("n", "<leader>tc", ":CccPick<CR>", { desc = "Color Picker" })
+map("n", "<leader>tt", ":CccConvert<CR>", { desc = "Convert Color" })
+map("n", "<leader>tC", ":Cheatsheet<CR>", { desc = "Cheatsheet" })
+
+-- Copy the current buffer path to the clipboard
+-- https://stackoverflow.com/a/17096082/1336788
+map("n", "<leader>fy", "", { desc = "Copy" })
+map("n", "<leader>fyr", function()
+  vim.fn.setreg("+", vim.fn.expand("%"))
+end, { desc = "Copy relative path to clipboard" })
+
+-- full path
+map("n", "<leader>fyp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "Copy full path to clipboard" })
+
+-- just filename
+map("n", "<leader>fyf", function()
+  vim.fn.setreg("+", vim.fn.expand("%:t"))
+end, { desc = "Copy filename to clipboard" })
+
+-- directory of the current file
+map("n", "<leader>fyd", function()
+  vim.fn.setreg("+", vim.fn.expand("%:h"))
+end, { desc = "Copy directory to clipboard" })
