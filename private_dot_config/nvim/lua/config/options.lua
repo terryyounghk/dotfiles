@@ -18,6 +18,7 @@ g.root_spec = { "cwd" }
 -- https://github.com/LazyVim/LazyVim/commit/7d0dbc6dedc2d6cb4c3bc77fa296dc07ce5927c9
 -- g.lazygit_config = false
 
+
 ----------------------------------------------------------------------
 -- Reference: https://neovim.io/doc/user/options.html
 
@@ -29,6 +30,8 @@ o.showmode = true
 o.cursorline = true
 o.cursorlineopt = "both"
 o.cursorcolumn = true
+
+o.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175"
 
 -- tab settings
 o.expandtab = true
