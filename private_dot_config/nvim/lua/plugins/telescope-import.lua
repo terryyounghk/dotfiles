@@ -9,7 +9,7 @@ return {
 
       local map = vim.keymap.set
 
-      map('n', '<leader>ci', ':Telescope import', { desc = 'Import Modules'})
+      map('n', '<leader>ci', ':Telescope import<CR>', { desc = 'Import Modules'})
     end,
   },
 }

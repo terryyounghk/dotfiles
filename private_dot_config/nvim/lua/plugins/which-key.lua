@@ -15,8 +15,10 @@ return {
       })
 
       wk.add({
-        {"[", function () wk.show({ keys = "[", loop = true}) end },
-        {"]", function () wk.show({ keys = "]", loop = true}) end },
+        -- This puts the [ ] keys in Hydra Mode
+        -- This is useful for continuously jumping through hunks, for example.
+        {"<leader>[", function () wk.show({ keys = "[", loop = true}) end },
+        {"<leader>]", function () wk.show({ keys = "]", loop = true}) end },
       })
     end,
   }

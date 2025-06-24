@@ -6,6 +6,8 @@ local map = vim.keymap.set
 local telescope = require("telescope")
 telescope.load_extension("chezmoi")
 
+map("n", "<leader>uv", ":Telescope vim_options<CR>", { desc = "Vim Options" })
+
 map({"n", "v"}, "<leader>sA", ":%s/", { desc = "Regex Search in File" })
 
 map("n", "<leader>ll", ":Lazy<CR>", { desc = "Lazy" })
@@ -19,6 +21,7 @@ map("n", "<leader>fz", telescope.extensions.chezmoi.find_files, { desc = "Find C
 
 map("n", "<leader>t", "", { desc = "Tools" })
 map("n", "<leader>tc", ":CccPick<CR>", { desc = "Color Picker" })
+map("n", "<leader>te", ":Telescope<CR>", { desc = "Telescope" })
 map("n", "<leader>tt", ":CccConvert<CR>", { desc = "Convert Color" })
 map("n", "<leader>tC", ":Cheatsheet<CR>", { desc = "Cheatsheet" })
 
