@@ -3,6 +3,13 @@ return {
     "folke/flash.nvim",
     event = "VeryLazy",
     vscode = true,
+    opts = {
+      modes = {
+        search = {
+          enabled = true
+        }
+      }
+    },
     keys = {
       -- This prevents flash.nvim from overriding mini.surround functionality
       -- https://github.com/folke/flash.nvim/discussions/251
