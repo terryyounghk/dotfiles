@@ -1,0 +1,44 @@
+# channels.toml
+
+[[cable_channel]]
+name = "tmux list-sessions"
+source_command = 'tmux list-sessions'
+preview_command = 'tmux list-windows -t {0}'
+
+# Channel to list and preview kubectl contexts
+[[cable_channel]]
+name = "kubernetes-contexts"
+source_command = "kubectl config get-clusters | tail -n +2"
+preview_command = "kubectl config view --minify --context={}"
+
+# Channel to list deployments in the current namespace
+[[cable_channel]]
+name = "kubernetes-deployments"
+source_command = "kubectl get deployments --output=name"
+preview_command = "kubectl describe deployment {1}"
+preview_delimiter = '/'
+
+# Channel to list pods and preview their details/events
+[[cable_channel]]
+name = "kubernetes-pods"
+source_command = "kubectl get pods --output=name"
+preview_command = "kubectl describe pod {1} && kubectl get events --field-selector involvedObject.name={1} --output=wide"
+preview_delimiter = '/'
+
+# Channel to view logs for a selected pod
+[[cable_channel]]
+name = "pod-logs"
+source_command = "kubectl get pods --output=name"
+preview_command = "kubectl logs {1} --tail=100"
+preview_delimiter = '/'
+interactive = true
+
+[[cable_channel]]
+name = "abbr"
+source_command = 'zsh -i -c abbr'
+interactive = true
+
+[[cable_channel]]
+name = "brew-list"
+source_command = 'brew list --versions'
+preview_command = 'brew info {0}'
