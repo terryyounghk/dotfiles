@@ -70,8 +70,8 @@ alias Arq='abbr_truncate_user_abbreviations_file && Ai --quieter'
 # -----------------------------------------------------------------------------------
 # tmux
 
-alias t='TERM=screen-256color tmux attach || tmux new-session'
-alias ta='TERM=screen-256color tmux attach -t'
+alias t='TERM=tmux-256color tmux attach || tmux new-session'
+alias ta='TERM=tmux-256color tmux attach -t'
 alias tl='tmux list-sessions'
 
 # -----------------------------------------------------------------------------------
