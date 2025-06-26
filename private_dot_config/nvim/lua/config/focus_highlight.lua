@@ -58,7 +58,7 @@ function M.enable()
   -- Define custom highlight groups
   vim.cmd([[
     hi! ActivePane guibg=#1c1c1c guifg=NONE
-    hi! InactivePane guibg=#282935 guifg=NONE
+    hi! InactivePane guibg=#272822 guifg=NONE
   ]])
 
   -- Set autocommands to dynamically apply/remove highlighting when switching panes

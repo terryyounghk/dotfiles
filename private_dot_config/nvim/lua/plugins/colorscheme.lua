@@ -23,7 +23,7 @@ local colors = {
     white = "#ffffff",
 
     light = "#767676",
-    normal = "#4e4e4e",
+    normal = "#272822",
     dark = "#1c1c1c",
 
     red = "#5f0000",
