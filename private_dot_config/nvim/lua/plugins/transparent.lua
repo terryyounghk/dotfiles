@@ -33,6 +33,7 @@ return {
           "EndOfBuffer",
         },
         extra_groups = {
+          "SnackNormal",
           "TelescopeNormal",
           "NormalFloat",
         },

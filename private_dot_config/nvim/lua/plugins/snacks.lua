@@ -42,7 +42,7 @@ return
   ---@type snacks.Config
   keys = {
     -- Remap n, as it clashes with something else
-    { "<leader>n", false}, 
+    { "<leader>n", false},
     { "<leader>uN", function() Snacks.picker.notifications() end, desc = "Notification History" },
   },
   opts = {

@@ -158,8 +158,8 @@ return {
           return {
             { " ", guibg = colors.bg.dark },
             {
-              { get_diagnostic_label() },
-              -- { get_git_diff() },
+              -- { get_diagnostic_label() }, -- currently causes https://github.com/LazyVim/LazyVim/issues/4756
+              { get_git_diff() },
               { get_harpoon_items() },
               { get_file_name() },
               guibg = colors.bg.dark,
