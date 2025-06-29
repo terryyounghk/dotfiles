@@ -17,7 +17,7 @@ alias bubu='brew updates; brew upgrade --require-sha' # then append whatever spe
 
 # sometimes I just want to look up some of these
 alias faf='alias | fzf --multi'
-alias fef='printenv | fzf --multi'
+alias fenv='printenv | fzf --multi'
 alias fpf='fzf_process_list'
 
 # -----------------------------------------------------------------------------------
@@ -86,6 +86,7 @@ alias cm='chezmoi'
 alias cmc='chezmoi cd'
 alias cme='chezmoi edit'
 alias cma='chezmoi apply'
+alias cmf='chezmoi forget'
 alias cmg='chezmoi edit-config-template'
 alias cmi='chezmoi init'
 alias cmai='chezmoi-fzf-apply'
