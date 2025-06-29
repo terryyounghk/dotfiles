@@ -1,10 +1,6 @@
-return {
-  {
-    "nvimdev/dashboard-nvim",
-    enabled = false,
-    lazy = false, -- As https://github.com/nvimdev/dashboard-nvim/pull/450, dashboard-nvim shouldn't be lazy-loaded to properly handle stdin.
-    opts = function(_, opts)
-      local logo = [[
+-- https://github.com/folke/snacks.nvim
+
+local logo = [[
  ⠀⠀⠀⠀⠀⠀⠀⠀⢷⣿⡚⠻⠿⣷⣶⣤⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
  ⠀⠀⠀⠀⠀⠀⠀⠀⠈⠻⡿⣦⠀⠀⠈⠉⠳⢯⣳⣄⡀⠀⠀⠀⠀⠀⠀⠀⡀⣀⣀⠀⠀⢀⣤⣤⣴⣶⡿⣿⣶⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
  ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⣾⣧⠀⡀⠀⠀⠀⠙⠳⣿⣗⣦⣖⠒⠊⠉⠉⠀⠀⠈⠉⣩⡽⠟⢋⣡⣤⠶⠶⠾⠿⠿⠿⢶⣖⣒⡾⠿⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
@@ -38,38 +34,56 @@ return {
                             - neovim -   ⠀⠀⠀⠀⠀⠀⠀⠀                ⠀
       ]]
 
-      logo = string.rep("\n", 8) .. logo .. "\n\n"
+logo = string.rep("\n", 8) .. logo .. "\n\n"
 
-      local telescope = require("telescope")
-      telescope.load_extension("projects")
-      local projects = telescope.extensions.projects.projects
+return
+{
+  "folke/snacks.nvim",
+  ---@type snacks.Config
+  opts = {
+    dashboard = {
+      preset = {
+        header = logo,
+        pick = function (cmd, opts)
+          return LazyVim.pick(cmd, opts)()
+        end,
 
-      opts.config.disable_move = true
-      opts.config.header = vim.split(logo, "\n")
-      opts.config.center = {
-        {
-          action = 'lua require("persistence").load()',
-          desc = " Restore Session",
-          icon = " ",
-          key = "r",
+        -- stylua: ignore
+        ---@type snacks.dashboard.Item[]
+        keys = {
+          { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+          -- { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+          { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+          { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+          -- { icon = " ", key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+          { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+          -- { icon = " ", key = "x", desc = "Lazy Extras", action = ":LazyExtras" },
+          -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
+          { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
-        {
-          action = 'lua require("persistence").select()',
-          desc = " Select Session",
-          icon = " ",
-          key = "s",
-        },
-        {
-          action = projects,
-          desc = " Projects",
-          icon = " ",
-          key = "p",
-        },
+
+        -- header = vim.split(logo, "\n"),
+        -- keys = {
+        --   {
+        --     action = 'lua require("persistence").load()',
+        --     desc = " Restore Session",
+        --     icon = " ",
+        --     key = "r",
+        --   },
+        --   {
+        --     action = 'lua require("persistence").select()',
+        --     desc = " Select Session",
+        --     icon = " ",
+        --     key = "s",
+        --   },
+        --   {
+        --     action = projects,
+        --     desc = " Projects",
+        --     icon = " ",
+        --     key = "p",
+        --   },
+        -- }
       }
-      opts.config.footer = function()
-        return {}
-      end
-
-    end,
-  },
+    }
+  }
 }

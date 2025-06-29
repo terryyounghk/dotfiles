@@ -76,38 +76,43 @@ return {
           "italic",
         }, -- a list of styles to disable, e.g. {'bold', 'underline'}
         fix = true,
-        darker_contrast = false, -- More contrast for darker style
-        daylight_swith = false, -- Enable day and night style switching
-        deep_black = false, -- Enable a deeper black background
+        darker_contrast = true, -- More contrast for darker style
+        daylight_switch = false, -- Enable day and night style switching
+        deep_black = true, -- Enable a deeper black background
       },
 
       -- custom_colors = {
       --   variable = "#",
       -- },
+
       custom_highlights = {
         -- explicitly transparent backgrounds
         Normal = { bg = "NONE" },
         NormalFloat = { bg = "NONE" },
         FloatBorder = { bg = "NONE" },
-        TelescopeNormal = { bg = "NONE" },
-        TelescopePromptBorder = { bg = "NONE" },
-        TelescopePreviewBorder = { bg = "NONE" },
-        TelescopeResultsBorder = { bg = "NONE" },
-        WhichKey = { bg = "NONE" },
-        WhichKeyFloat = { bg = "NONE" },
+        -- TelescopeNormal = { bg = "NONE" },
+        -- TelescopePromptBorder = { bg = "NONE" },
+        -- TelescopePreviewBorder = { bg = "NONE" },
+        -- TelescopeResultsBorder = { bg = "NONE" },
+        -- WhichKey = { bg = "NONE" },
+        -- WhichKeyFloat = { bg = "NONE" },
 
         -- override certain elements
-        LineNr = { fg = colors.fg.normal },
-        CursorLine = { bg = colors.bg.light },
-        CursorColumn = { bg = colors.bg.light },
+        -- LineNr = { fg = colors.fg.normal },
+        -- CursorLine = { bg = colors.bg.light },
+        -- CursorColumn = { bg = colors.bg.light },
         Comment = { fg = colors.fg.dark },
-        GitSignsCurrentLineBlame = { fg = colors.fg.light },
+        GitSignsCurrentLineBlame = { fg = colors.fg.magenta },
 
         LineNrAbove = { fg = colors.fg.red },
         LineNrBelow = { fg = colors.fg.green },
         CursorLineNr = { fg = colors.fg.black, bg = colors.fg.yellow },
-        DashboardHeader = { fg = colors.fg.yellow },
-        WhichKeyDesc = { fg = colors.fg.orange },
+        -- DashboardHeader = { fg = colors.fg.yellow },
+        -- SnacksDashboardHeader = { fg = colors.fg.yellow },
+        -- SnacksNormal = { bg = colors.bg.none },
+        -- SnacksDashboardNormal = { bg = colors.bg.none },
+        WhichKey = { fg = colors.fg.red, gui = "bold", cterm = "bold" },
+        WhichKeyDesc = { fg = colors.fg.yellow },
       },
     },
   },

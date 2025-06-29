@@ -7,7 +7,7 @@ local action_layout = require("telescope.actions.layout")
 return {
   {
     "nvim-telescope/telescope.nvim",
-    enabled = true,
+    enabled = false,
     opts = {
       defaults = {
         winblend = 0,

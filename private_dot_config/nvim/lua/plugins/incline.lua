@@ -158,9 +158,9 @@ return {
           return {
             { " ", guibg = colors.bg.dark },
             {
-              -- { get_diagnostic_label() },
+              { get_diagnostic_label() },
               -- { get_git_diff() },
-              -- { get_harpoon_items() },
+              { get_harpoon_items() },
               { get_file_name() },
               guibg = colors.bg.dark,
             },

@@ -11,7 +11,10 @@ local highlight_focus_enabled = true
 
 -- Apply highlighting to the current window
 local function apply_focus_highlight()
-  if highlight_focus_enabled and vim.bo.filetype ~= "dashboard" and vim.bo.filetype ~= "" then
+  if highlight_focus_enabled and
+    vim.bo.filetype ~= "dashboard" and
+    vim.bo.filetype ~= "snacks_dashboard" and
+    vim.bo.filetype ~= "" then
     -- Enable cursorline and cursorcolumn for the active window
     vim.wo.cursorline = true
     vim.wo.cursorcolumn = true

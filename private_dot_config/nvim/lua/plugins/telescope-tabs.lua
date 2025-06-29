@@ -3,6 +3,7 @@
 return {
   {
     "LukasPietzschmann/telescope-tabs",
+    enabled = false,
     config = function()
       require("telescope").load_extension("telescope-tabs")
       local tabs = require("telescope-tabs")
