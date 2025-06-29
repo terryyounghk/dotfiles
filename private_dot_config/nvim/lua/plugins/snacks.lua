@@ -40,6 +40,11 @@ return
 {
   "folke/snacks.nvim",
   ---@type snacks.Config
+  keys = {
+    -- Remap n, as it clashes with something else
+    { "<leader>n", false}, 
+    { "<leader>uN", function() Snacks.picker.notifications() end, desc = "Notification History" },
+  },
   opts = {
 
     -- https://github.com/folke/snacks.nvim/blob/main/docs/bigfile.md

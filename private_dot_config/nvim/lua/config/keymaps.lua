@@ -2,13 +2,13 @@
 --
 -- Default keymaps that are always set:
 --   https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
---   https://www.lazyvim.org/plugins/lsp#masonnvim-1
 --
 -- Add any additional keymaps here
 
 local map = vim.keymap.set
-local telescope = require("telescope")
-telescope.load_extension("chezmoi")
+
+-- local telescope = require("telescope")
+-- telescope.load_extension("chezmoi")
 
 -- Function to toggle cursorline
 local function toggle_cursorline()
@@ -34,34 +34,31 @@ local function toggle_cursor_highlight()
   print("Cursorline: " .. (vim.o.cursorline and "ON" or "OFF") .. ", Cursorcolumn: " .. (vim.o.cursorcolumn and "ON" or "OFF"))
 end
 
-map("n", "<leader>uH", require("config.focus_highlight").toggle, { desc = "Toggle Focus Highlighting" })
-map('n', '<leader>uk', "", { desc = "Toggle Cursor Options" })
-map('n', '<leader>ukl', toggle_cursorline, { desc = "Toggle Cursorline" })
-map('n', '<leader>ukk', toggle_cursorcolumn, { desc = "Toggle Cursorcolumn" })
-map('n', '<leader>ukh', toggle_cursor_highlight, { desc = "Toggle Cursorline and Cursorcolumn" })
+-- ==============================================================
+-- A
+map("n", "<leader>a", "", { desc = "AI" })
 
-map("n", "<leader>uv", ":Telescope vim_options<CR>", { desc = "Vim Options" })
+-- ==============================================================
+-- B
+map("n", "<leader>b", "", { desc = "Buffers" })
 
-map({"n", "v"}, "<leader>sA", ":%s/", { desc = "Regex Search in File" })
+-- ==============================================================
+-- C
+map("n", "<leader>c", "", { desc = "Code" })
 
-map("n", "<leader>ll", ":Lazy<CR>", { desc = "Lazy" })
-map("n", "<leader>le", ":LazyExtras<CR>", { desc = "LazyVim Extras" })
-map("n", "<leader>lf", ":LazyFormat<CR>", { desc = "LazyVim Format" })
-map("n", "<leader>lh", ":LazyHealth<CR>", { desc = "LazyVim Healthchecks" })
-map("n", "<leader>li", ":LazyFormatInfo<CR>", { desc = "LazyVim Format Info" })
+-- ==============================================================
+-- D
+map("n", "<leader>d", "", { desc = "Profiler" })
+map("n", "<leader>dp", "", { desc = "Profiler" })
 
-map("n", "<leader>fo", ":Telescope oldfiles<CR>", { desc = "Telescope Old Files" })
-map("n", "<leader>fz", telescope.extensions.chezmoi.find_files, { desc = "Find Chezmoi File" })
-
-map("n", "<leader>t", "", { desc = "Tools" })
-map("n", "<leader>tc", ":CccPick<CR>", { desc = "Color Picker" })
-map("n", "<leader>te", ":Telescope<CR>", { desc = "Telescope" })
-map("n", "<leader>tt", ":CccConvert<CR>", { desc = "Convert Color" })
-map("n", "<leader>tC", ":Cheatsheet<CR>", { desc = "Cheatsheet" })
-
+-- ==============================================================
+-- F
+map("n", "<leader>f", "", { desc = "Find" })
 -- Copy the current buffer path to the clipboard
 -- https://stackoverflow.com/a/17096082/1336788
 map("n", "<leader>fy", "", { desc = "Copy" })
+-- map("n", "<leader>fo", ":Telescope oldfiles<CR>", { desc = "Telescope Old Files" })
+-- map("n", "<leader>fz", telescope.extensions.chezmoi.find_files, { desc = "Find Chezmoi File" })
 map("n", "<leader>fyr", function()
   vim.fn.setreg("+", vim.fn.expand("%"))
 end, { desc = "Copy relative path to clipboard" })
@@ -80,3 +77,66 @@ end, { desc = "Copy filename to clipboard" })
 map("n", "<leader>fyd", function()
   vim.fn.setreg("+", vim.fn.expand("%:h"))
 end, { desc = "Copy directory to clipboard" })
+
+-- ==============================================================
+-- G
+map("n", "<leader>g", "", { desc = "Git" })
+
+-- ==============================================================
+-- L
+map("n", "<leader>ll", ":Lazy<CR>", { desc = "Lazy" })
+map("n", "<leader>le", ":LazyExtras<CR>", { desc = "LazyVim Extras" })
+map("n", "<leader>lf", ":LazyFormat<CR>", { desc = "LazyVim Format" })
+map("n", "<leader>lh", ":LazyHealth<CR>", { desc = "LazyVim Healthchecks" })
+map("n", "<leader>li", ":LazyFormatInfo<CR>", { desc = "LazyVim Format Info" })
+
+-- ==============================================================
+-- M
+map("n", "<leader>m", "", { desc = "Markdown" })
+
+-- ==============================================================
+-- N
+map("n", "<leader>n", "", { desc = "NodeJs" })
+
+-- ==============================================================
+-- Q
+map("n", "<leader>q", "", { desc = "Session" })
+
+-- ==============================================================
+-- R
+map("n", "<leader>r", "", { desc = "Refactor" })
+
+-- ==============================================================
+-- S
+map("n", "<leader>s", "", { desc = "Search" })
+map({"n", "v"}, "<leader>sA", ":%s/", { desc = "Regex Search in File" })
+
+-- ==============================================================
+-- T
+map("n", "<leader>t", "", { desc = "Tools" })
+map("n", "<leader>tc", ":CccPick<CR>", { desc = "Color Picker" })
+-- map("n", "<leader>te", ":Telescope<CR>", { desc = "Telescope" })
+map("n", "<leader>tt", ":CccConvert<CR>", { desc = "Convert Color" })
+map("n", "<leader>tC", ":Cheatsheet<CR>", { desc = "Cheatsheet" })
+
+-- ==============================================================
+-- U
+map("n", "<leader>u", "", { desc = "UI" })
+map('n', '<leader>uk', "", { desc = "Toggle Cursor Options" })
+map('n', '<leader>ukl', toggle_cursorline, { desc = "Toggle Cursorline" })
+map('n', '<leader>ukk', toggle_cursorcolumn, { desc = "Toggle Cursorcolumn" })
+map('n', '<leader>ukh', toggle_cursor_highlight, { desc = "Toggle Cursorline and Cursorcolumn" })
+map("n", "<leader>uv", ":FzfLua nvim_options<CR>", { desc = "NeoVim Options" })
+map("n", "<leader>uH", require("config.focus_highlight").toggle, { desc = "Toggle Focus Highlighting" })
+
+-- ==============================================================
+-- W
+map("n", "<leader>w", "", { desc = "Window" })
+
+-- ==============================================================
+-- X
+map("n", "<leader>x", "", { desc = "Dev" })
+
+-- ==============================================================
+-- Tab
+map("n", "<leader><tab>", "", { desc = "Tabs" })

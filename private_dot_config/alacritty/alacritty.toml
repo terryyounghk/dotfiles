@@ -102,7 +102,7 @@ bindings = [
 # Mouse Settings
 # ======================
 [mouse]
-hide_when_typing = true
+hide_when_typing = false
 # override defaults, I don't need the fancy menus
 bindings = [
   { mouse = "Right", action = "ReceiveChar" },
