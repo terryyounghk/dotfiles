@@ -41,6 +41,15 @@ return
   "folke/snacks.nvim",
   ---@type snacks.Config
   opts = {
+
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/bigfile.md
+    bigfile = {
+      notify = true,
+      size = 1024 * 1024 * 1,
+      line_length= 1000,
+    },
+
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/dashboard.md
     dashboard = {
       preset = {
         header = logo,
@@ -48,7 +57,6 @@ return
           return LazyVim.pick(cmd, opts)()
         end,
 
-        -- stylua: ignore
         ---@type snacks.dashboard.Item[]
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
@@ -61,29 +69,49 @@ return
           -- { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy" },
           { icon = " ", key = "q", desc = "Quit", action = ":qa" },
         },
-
-        -- header = vim.split(logo, "\n"),
-        -- keys = {
-        --   {
-        --     action = 'lua require("persistence").load()',
-        --     desc = " Restore Session",
-        --     icon = " ",
-        --     key = "r",
-        --   },
-        --   {
-        --     action = 'lua require("persistence").select()',
-        --     desc = " Select Session",
-        --     icon = " ",
-        --     key = "s",
-        --   },
-        --   {
-        --     action = projects,
-        --     desc = " Projects",
-        --     icon = " ",
-        --     key = "p",
-        --   },
-        -- }
       }
-    }
+    },
+
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md
+    lazygit = {
+      configure = true,
+      theme = {
+        [241]                      = { fg = "Special" },
+        activeBorderColor          = { fg = "MatchParen", bold = true },
+        cherryPickedCommitBgColor  = { fg = "Identifier" },
+        cherryPickedCommitFgColor  = { fg = "Function" },
+        defaultFgColor             = { fg = "Normal" },
+        inactiveBorderColor        = { fg = "FloatBorder" },
+        optionsTextColor           = { fg = "Function" },
+        searchingActiveBorderColor = { fg = "MatchParen", bold = true },
+        selectedLineBgColor        = { bg = "Visual" }, -- set to `default` to have no background colour
+        unstagedChangesColor       = { fg = "DiagnosticError" },
+      },
+      win = {
+        style = "lazygit",
+      },
+    },
+
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/terminal.md
+    terminal = {
+      win = {
+        style = "float",
+      },
+    },
+
+    -- https://github.com/folke/snacks.nvim/blob/main/docs/styles.md
+    styles = {
+      float = {
+        position = "float",
+        backdrop = {
+          transparemt = true,
+          blend = 40,
+        },
+        height = 0.7,
+        width = 0.7,
+        zindex = 50,
+        border = "rounded",
+      }
+    },
   }
 }
