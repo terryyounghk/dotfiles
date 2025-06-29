@@ -144,7 +144,7 @@ echo "##########################################################################
 echo "{{- printf "%s setup" .type -}}"
 echo "############################################################################"
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
