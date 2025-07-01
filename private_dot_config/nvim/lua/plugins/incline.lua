@@ -69,6 +69,7 @@ return {
           },
           padding = 0,
           margin = { vertical = 0, horizontal = 0 },
+          zindex = 10,
         },
         hide = {
           cursorline = true,
