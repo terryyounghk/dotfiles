@@ -9,7 +9,7 @@ return {
     -- dependencies = { "nvim-tree/nvim-web-devicons" },
 
     config = function()
-      vim.keymap.set("n", "<leader>o", "<cmd>Oil --float<cr>", { desc = "Open parent directory" })
+      vim.keymap.set("n", "<leader>;", "<cmd>Oil --float<cr>", { desc = "Open parent directory" })
 
       local detail = false
 
@@ -150,8 +150,8 @@ return {
         float = {
           -- Padding around the floating window
           padding = 2,
-          max_width = 0,
-          max_height = 0,
+          max_width = 0.8,
+          max_height = 0.8,
           border = "rounded",
           win_options = {
             winblend = 0,
