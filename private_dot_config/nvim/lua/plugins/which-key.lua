@@ -11,7 +11,21 @@ return {
       local wk = require("which-key")
 
       wk.setup({
-        preset = "helix",
+        preset = false,
+        win = {
+          no_overlap = true,
+          title = true,
+          title_pos = "left",
+          border = "rounded",
+          col = math.huge,
+          row = math.huge,
+        },
+        layout = {
+          width = {
+            min = 100,
+          },
+          spacing = 10,
+        },
       })
 
       wk.add({
