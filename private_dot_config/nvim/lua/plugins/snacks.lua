@@ -79,21 +79,9 @@ return
 
     -- https://github.com/folke/snacks.nvim/blob/main/docs/lazygit.md
     lazygit = {
-      configure = true,
-      theme = {
-        [241]                      = { fg = "Special" },
-        activeBorderColor          = { fg = "MatchParen", bold = true },
-        cherryPickedCommitBgColor  = { fg = "Identifier" },
-        cherryPickedCommitFgColor  = { fg = "Function" },
-        defaultFgColor             = { fg = "Normal" },
-        inactiveBorderColor        = { fg = "FloatBorder" },
-        optionsTextColor           = { fg = "Function" },
-        searchingActiveBorderColor = { fg = "MatchParen", bold = true },
-        selectedLineBgColor        = { bg = "Visual" }, -- set to `default` to have no background colour
-        unstagedChangesColor       = { fg = "DiagnosticError" },
-      },
+      configure = false,
       win = {
-        style = "lazygit",
+        style = "lazygit_fullscreen",
       },
     },
 
@@ -106,17 +94,29 @@ return
 
     -- https://github.com/folke/snacks.nvim/blob/main/docs/styles.md
     styles = {
+      -- override the default float style
       float = {
         position = "float",
         backdrop = {
           transparemt = true,
           blend = 40,
         },
-        height = 0.7,
-        width = 0.7,
+        height = 0.9,
+        width = 0.9,
         zindex = 50,
         border = "rounded",
-      }
+      },
+      -- custom style for lazygit
+      lazygit_fullscreen = {
+        width = 0.95,
+        height = 0.95,
+        zindex = 50,
+        border = "rounded",
+        backdrop = {
+          transparent = true,
+          blend = 40,
+        },
+      },
     },
   }
 }

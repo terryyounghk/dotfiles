@@ -6,10 +6,12 @@
 
 gui:
   sidePanelWidth: 0.2
+  mainPanelSplitMode: 'horizontal' # horizontal, vertical, flexible
   enlargedSideViewLocation: top
   nerdFontsVersion: '3'
   timeFormat: "2006-01-02 15:04:05"
   shortTimeFormat: "2006-01-02 15:04:05"
+  screenMode: 'half'
   filterMode: 'fuzzy'
   # Config relating to colors and styles.
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Config.md#color-attributes
@@ -35,7 +37,7 @@ gui:
     markedBaseCommitBgColor:
       - "#ffd700"
     unstagedChangesColor:
-      - "${git.changed}"
+      - "#ff0000"
     defaultFgColor:
       - "#ffffff"
 git:
