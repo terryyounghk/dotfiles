@@ -73,7 +73,7 @@ return {
         -- Set to `false` to remove a keymap
         -- See :help oil-actions for a list of all available actions
         keymaps = {
-          ["g?"] = "actions.show_help",
+          ["<F1>"] = "actions.show_help",
           ["<CR>"] = "actions.select",
           ["<C-d>"] = "actions.preview_scroll_down",
           ["<C-u>"] = "actions.preview_scroll_up",
@@ -82,16 +82,16 @@ return {
           ["<C-t>"] = { "actions.select", opts = { tab = true }, desc = "Open the entry in new tab" },
           ["<C-p>"] = "actions.preview",
           ["q"] = "actions.close",
-          ["<C-l>"] = "actions.refresh",
+          ["<F5>"] = "actions.refresh",
           ["<backspace>"] = "actions.parent",
           ["_"] = "actions.open_cwd",
           ["`"] = "actions.cd",
           ["~"] = { "actions.cd", opts = { scope = "tab" }, desc = ":tcd to the current oil directory" },
-          ["gs"] = "actions.change_sort",
-          ["gt"] = "actions.open_terminal",
+          ["<F4>"] = "actions.change_sort",
+          ["<F2>"] = "actions.open_terminal",
           ["gx"] = "actions.open_external",
-          ["gy"] = "actions.yank_entry",
-          ["g."] = "actions.toggle_hidden",
+          ["<F6>"] = "actions.yank_entry",
+          ["<F3>"] = "actions.toggle_hidden",
           ["g\\"] = "actions.toggle_trash",
           ["gd"] = {
             desc = "Toggle file detail view",
