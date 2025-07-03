@@ -1,5 +1,3 @@
-.DS_Store
-
 # removed nvim plugins
 .config/nvim/lua/plugins/mini-diff.lua
 .config/nvim/lua/plugins/keepcursor.lua
@@ -7,3 +5,9 @@
 .config/nvim/lua/plugins/neovim-project.lua
 .config/nvim/lua/plugins/persisted.lua
 .config/nvim/lua/plugins/auto-session.lua
+.config/nvim/lua/plugins/terminal.lua
+.config/nvim/lua/plugins/telescope-import.lua
+.config/nvim/lua/plugins/telescope-tabs.lua
+.config/nvim/lua/plugins/telescope-undo.lua
+.config/nvim/lua/plugins/telescope.lua
+.config/nvim/lua/plugins/dashboard-nvim.lua
