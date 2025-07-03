@@ -100,6 +100,8 @@ map("n", "<leader>n", "", { desc = "NodeJs" })
 
 -- ==============================================================
 -- Q
+map("n", "Q", "@@", { desc = "Repeat Macro" })
+map("n", "<C-q>", "n@@", { desc = "Find Next and Repeat Macro" })
 map("n", "<leader>q", "", { desc = "Session" })
 
 -- ==============================================================
