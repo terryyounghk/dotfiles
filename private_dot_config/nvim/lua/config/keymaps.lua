@@ -134,6 +134,15 @@ map("n", "<leader>uH", require("config.focus_highlight").toggle, { desc = "Toggl
 -- ==============================================================
 -- W
 map("n", "<leader>w", "", { desc = "Window" })
+map("n", "<leader>wo", "<C-w>o", { desc = "Close all other window" })
+map("n", "<leader>w<space>",
+  function ()
+    require("which-key").show({
+      keys = "<c-w>",
+      loop = true,
+    })
+  end,
+{ desc = "Window (Hydra Mode)" })
 
 -- ==============================================================
 -- X
