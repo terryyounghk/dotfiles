@@ -10,21 +10,25 @@ return {
     config = function ()
       local wk = require("which-key")
 
+      -- https://github.com/folke/which-key.nvim/blob/370ec46f710e058c9c1646273e6b225acf47cbed/lua/which-key/presets.lua#L4-L17
+      -- Copied "helix" preset but changed:
+      --   - win.width.max to something high like 200
+      --   - layout.width.min to 100
       wk.setup({
-        preset = false,
         win = {
-          no_overlap = true,
+          width = { min = 30, max = 200 },
+          height = { min = 4, max = 0.75 },
+          padding = { 0, 1 },
+          col = -1,
+          row = -1,
+          border = "rounded",
           title = true,
           title_pos = "left",
-          border = "rounded",
-          col = math.huge,
-          row = math.huge,
         },
         layout = {
           width = {
             min = 100,
           },
-          spacing = 10,
         },
       })
 
