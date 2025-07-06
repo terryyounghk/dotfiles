@@ -83,6 +83,24 @@ end, { desc = "Copy directory to clipboard" })
 map("n", "<leader>g", "", { desc = "Git" })
 
 -- ==============================================================
+-- K
+map("n", "<leader>k", "", { desc = "Faker" })
+map("n", "<leader>ka", ":Faker color rgb format:css includeAlpha:true<CR>", { desc = "Color RGBA" })
+map("n", "<leader>kb", ":Faker finance bitcoinAddress network:mainnet type:bech32<CR>", { desc = "BTC Address" })
+map("n", "<leader>kc", ":Faker color rgb casing:upper format:hex<CR>", { desc = "Color Hex" })
+map("n", "<leader>kd", ":Faker date past format:'%Y-%m-%d'<CR>", { desc = "Date (Past)" })
+map("n", "<leader>ke", ":Faker finance ethereumAddress<CR>", { desc = "ETH Address" })
+map("n", "<leader>kg", ":Faker lorem paragraphs paragraphCount:5<CR>", { desc = "Paragraphs" })
+map("n", "<leader>kl", ":Faker finance litecoinAddress<CR>", { desc = "LTC Address" })
+map("n", "<leader>kn", ":Faker color rgb human<CR>", { desc = "Color Name" })
+map("n", "<leader>km", ":Faker color rgb format:decimal<CR>", { desc = "Color" })
+map("n", "<leader>kp", ":Faker password memorable:false length:20", { desc = "Password" })
+map("n", "<leader>kr", ":Faker color rgb format:css<CR>", { desc = "Color RGB" })
+map("n", "<leader>ks", ":Faker slug wordCount:3", { desc = "Color RGB" })
+map("n", "<leader>ku", ":Faker string uuid<CR>", { desc = "UUID" })
+map("n", "<leader>kx", ":Faker string hexadecimal length:10", { desc = "Hex" })
+
+-- ==============================================================
 -- L
 map("n", "<leader>ll", ":Lazy<CR>", { desc = "Lazy" })
 map("n", "<leader>le", ":LazyExtras<CR>", { desc = "LazyVim Extras" })
