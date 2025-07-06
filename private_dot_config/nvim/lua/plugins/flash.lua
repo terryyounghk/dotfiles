@@ -6,9 +6,12 @@ return {
     opts = {
       modes = {
         search = {
-          enabled = true
-        }
-      }
+          enabled = true,
+        },
+        char = {
+          jump_labels = true,
+        },
+      },
     },
     keys = {
       -- This prevents flash.nvim from overriding mini.surround functionality
