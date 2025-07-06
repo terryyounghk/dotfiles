@@ -19,8 +19,10 @@ g.root_spec = { "cwd" }
 -- https://github.com/LazyVim/LazyVim/discussions/4251#discussioncomment-10231819
 g.lazygit_config = false
 
--- https://www.lazyvim.org/extras/editor/snacks_picker#options
-g.lazyvim_picker = "snacks"
+-- Default "auto"
+-- If use "snacks": https://www.lazyvim.org/extras/editor/snacks_picker#options
+-- Currently prefer "fzf"
+g.lazyvim_picker = "fzf"
 
 ----------------------------------------------------------------------
 -- Reference: https://neovim.io/doc/user/options.html
