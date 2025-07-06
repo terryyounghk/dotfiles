@@ -112,6 +112,37 @@ map("n", "<leader>li", ":LazyFormatInfo<CR>", { desc = "LazyVim Format Info" })
 -- M
 map("n", "<leader>m", "", { desc = "Markdown" })
 
+map("n", "<leader>M", "", { desc = "Macros" })
+map("n", "<leader>Me", function()
+  local reg = vim.fn.input("Edit which macro? ")
+  if reg == "" then return end
+  local content = vim.fn.getreg(reg)
+  local new_content = vim.fn.input("Edit macro: ", content)
+  vim.fn.setreg(reg, new_content)
+  print("Macro '"..reg.."' updated")
+end, { desc = "Edit macro" })
+
+map("n", "<leader>Mb", function()
+  local reg = vim.fn.input("Edit which macro? ")
+  if reg == "" then return end
+
+  -- Create scratch buffer with macro content
+  vim.cmd("new")
+  vim.bo.buftype = "nofile"
+  vim.bo.bufhidden = "wipe"
+  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(vim.fn.getreg(reg), "\n", true))
+
+  -- Set up save mapping
+  vim.keymap.set("n", "w", function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    vim.fn.setreg(reg, table.concat(lines, "\n"))
+    vim.cmd("bwipeout!")
+    print("Macro '"..reg.."' updated")
+  end, { buffer = true, desc = "Save macro" })
+
+  print("Editing macro '"..reg.."' - Press 'w' to save")
+end, { desc = "Edit macro in buffer" })
+
 -- ==============================================================
 -- N
 map("n", "<leader>n", "", { desc = "NodeJs" })
