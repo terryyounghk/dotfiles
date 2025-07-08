@@ -24,6 +24,9 @@ g.lazygit_config = false
 -- Currently prefer "fzf"
 g.lazyvim_picker = "fzf"
 
+-- switch animations off, as it occassionally interferes with replaying macros across pages
+g.snacks_animate = false
+
 ----------------------------------------------------------------------
 -- Reference: https://neovim.io/doc/user/options.html
 
