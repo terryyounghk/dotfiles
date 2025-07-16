@@ -9,43 +9,7 @@
 -- https://github.com/b0o/incline.nvim/issues/41
 -- diagnostic + git diff + filename: https://github.com/b0o/incline.nvim/discussions/32
 
--- TODO: make a way to reuse colors across nvim plugins, tmux, etc
-local colors = {
-  fg = {
-    black = "#000000",
-    white = "#ffffff",
-
-    light = "#eeeeee",
-    normal = "#bcbcbc",
-    dark = "#949494",
-
-    red = "#ff5faf",
-    orange = "#ffaf00",
-    yellow = "#ffd700",
-    green = "#5fff01",
-    blue = "#5fffff",
-    violet = "#af87ff",
-    magenta = "#d75fff",
-  },
-  bg = {
-    none = "NONE",
-
-    black = "#000000",
-    white = "#ffffff",
-
-    light = "#767676",
-    normal = "#4e4e4e",
-    dark = "#1c1c1c",
-
-    red = "#5f0000",
-    orange = "#af5f00",
-    yellow = "#5f5f00",
-    green = "#005f00",
-    blue = "#005fd7",
-    violet = "#5f00ff",
-    magenta = "#5f0087",
-  },
-}
+local colors = require("config.custom_colors")
 
 return {
   {
