@@ -7,32 +7,9 @@
 
 local map = vim.keymap.set
 
--- local telescope = require("telescope")
--- telescope.load_extension("chezmoi")
+-- ==============================================================
+-- Symbols
 
--- Function to toggle cursorline
-local function toggle_cursorline()
-  vim.o.cursorline = not vim.o.cursorline
-  print("Cursorline: " .. (vim.o.cursorline and "ON" or "OFF"))
-end
-
--- Function to toggle cursorcolumn
-local function toggle_cursorcolumn()
-  vim.o.cursorcolumn = not vim.o.cursorcolumn
-  print("Cursorcolumn: " .. (vim.o.cursorcolumn and "ON" or "OFF"))
-end
-
--- Function to toggle both cursorline and cursorcolumn
-local function toggle_cursor_highlight()
-  if not vim.o.cursorline or not vim.o.cursorcolumn then
-    vim.o.cursorline = true
-    vim.o.cursorcolumn = true
-  else
-    vim.o.cursorline = false
-    vim.o.cursorcolumn = false
-  end
-  print("Cursorline: " .. (vim.o.cursorline and "ON" or "OFF") .. ", Cursorcolumn: " .. (vim.o.cursorcolumn and "ON" or "OFF"))
-end
 
 -- ==============================================================
 -- A
@@ -174,11 +151,7 @@ map("n", "<leader>tC", ":Cheatsheet<CR>", { desc = "Cheatsheet" })
 -- U
 map("n", "<leader>u", "", { desc = "UI" })
 map('n', '<leader>uk', "", { desc = "Toggle Cursor Options" })
-map('n', '<leader>ukl', toggle_cursorline, { desc = "Toggle Cursorline" })
-map('n', '<leader>ukk', toggle_cursorcolumn, { desc = "Toggle Cursorcolumn" })
-map('n', '<leader>ukh', toggle_cursor_highlight, { desc = "Toggle Cursorline and Cursorcolumn" })
 map("n", "<leader>uv", ":FzfLua nvim_options<CR>", { desc = "NeoVim Options" })
-map("n", "<leader>uH", require("config.focus_highlight").toggle, { desc = "Toggle Focus Highlighting" })
 
 -- ==============================================================
 -- W

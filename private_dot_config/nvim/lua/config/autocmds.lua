@@ -10,5 +10,3 @@ vim.api.nvim_create_autocmd({ "BufLeave", "FocusLost" }, {
     end
   end,
 })
-
-require("config.focus_highlight").enable()

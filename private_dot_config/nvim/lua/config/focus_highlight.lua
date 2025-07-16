@@ -1,13 +1,35 @@
--- How to setup:
--- Add this to autocmd.lua
---   require("config.focus_highlight").enable()
--- Add this to keymaps.lua
---   vim.keymap.set("n", "<leader>uH", require("config.focus_highlight").toggle, { desc = "Toggle Focus Highlighting" })
-
 local M = {}
 
 -- Track if the highlighting feature is enabled
 local highlight_focus_enabled = true
+
+-- ==================================================
+
+-- Function to toggle cursorline
+local function toggle_cursorline()
+  vim.o.cursorline = not vim.o.cursorline
+  print("Cursorline: " .. (vim.o.cursorline and "ON" or "OFF"))
+end
+
+-- Function to toggle cursorcolumn
+local function toggle_cursorcolumn()
+  vim.o.cursorcolumn = not vim.o.cursorcolumn
+  print("Cursorcolumn: " .. (vim.o.cursorcolumn and "ON" or "OFF"))
+end
+
+-- Function to toggle both cursorline and cursorcolumn
+local function toggle_cursor_highlight()
+  if not vim.o.cursorline or not vim.o.cursorcolumn then
+    vim.o.cursorline = true
+    vim.o.cursorcolumn = true
+  else
+    vim.o.cursorline = false
+    vim.o.cursorcolumn = false
+  end
+  print("Cursorline: " .. (vim.o.cursorline and "ON" or "OFF") .. ", Cursorcolumn: " .. (vim.o.cursorcolumn and "ON" or "OFF"))
+end
+
+-- ==================================================
 
 -- Apply highlighting to the current window
 local function apply_focus_highlight()
@@ -140,5 +162,19 @@ function M.toggle()
     M.enable()
   end
 end
+
+local function setup()
+  local s = vim.keymap.set;
+  -- Set up the initial state
+  M.enable()
+
+  -- Define keymaps for toggling cursorline and cursorcolumn
+  s("n", "<leader>uH", M.toggle, { desc = "Toggle Focus Highlighting" })
+  s("n", "<leader>uC", toggle_cursor_highlight, { desc = "Toggle Cursor Highlighting" })
+  s("n", "<leader>uL", toggle_cursorline, { desc = "Toggle Cursorline" })
+  s("n", "<leader>uR", toggle_cursorcolumn, { desc = "Toggle Cursorcolumn" })
+end
+
+setup()
 
 return M
