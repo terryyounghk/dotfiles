@@ -4,7 +4,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    enabled = false,
+    enabled = true,
     init = function()
       -- override to keep NeoTree hidden
     end,
