@@ -8,6 +8,4 @@
 .config/nvim/lua/plugins/terminal.lua
 .config/nvim/lua/plugins/telescope-import.lua
 .config/nvim/lua/plugins/telescope-tabs.lua
-.config/nvim/lua/plugins/telescope-undo.lua
-.config/nvim/lua/plugins/telescope.lua
 .config/nvim/lua/plugins/dashboard-nvim.lua
