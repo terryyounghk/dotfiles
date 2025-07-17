@@ -5,12 +5,24 @@ alias cls='clear && start'
 alias ra='reload_aliases'
 alias rall='reload_all'
 alias rt='reload_terminal'
+alias rr='ra && rt'
 alias start='macchina'
 
 # -----------------------------------------------------------------------------------
 # brew: https://docs.brew.sh/Manpage
 
 alias bubu='brew updates; brew upgrade --require-sha' # then append whatever specific formulae/cask
+
+# -----------------------------------------------------------------------------------
+# yazi: https://github.com/sxyazi/yazi
+
+alias y='yazi'
+alias ypa='ya pkg add'
+alias ypd='ya pkg delete'
+alias ypi='ya pkg install'
+alias ypu='ya pkg upgrade'
+alias ypl='ya pkg list'
+alias ypr='chezmoi re-add ~/.config/yazi/package.toml'
 
 # -----------------------------------------------------------------------------------
 # fzf: https://github.com/junegunn/fzf
@@ -78,6 +90,7 @@ alias tl='tmux list-sessions'
 # nvim
 
 alias n='nvim'
+alias m='nvim' # I keep fat-fingering 'm' on a Corne for some reason
 
 # -----------------------------------------------------------------------------------
 # chezmoi
@@ -114,7 +127,6 @@ alias mpv='mkdir -pv'
 # -----------------------------------------------------------------------------------
 # yarn v1 stuff
 
-alias y='yarn'
 alias yi='yarn install'
 alias yb='yarn build'
 alias yt='yarn test'

@@ -1,0 +1,84 @@
+[[plugin.deps]]
+use = "Lil-Dank/lazygit"
+rev = "7a08a09"
+hash = "a1fa2b3e1826c3a34804ea8c548e9f80"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:chmod"
+rev = "b886025"
+hash = "6dd6842938287785e70c8b991a91a3ed"
+
+[[plugin.deps]]
+use = "AnirudhG07/plugins-yazi:copy-file-contents"
+rev = "71545f4"
+hash = "f8530ee84fee95dbcc26bb1d8d8019c7"
+
+[[plugin.deps]]
+use = "orhnk/system-clipboard"
+rev = "efb8f03"
+hash = "9b8f2573da54334b04747e51556040cc"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "b886025"
+hash = "afb539b8877c08a04129af6d90aa395c"
+
+[[plugin.deps]]
+use = "wylie102/duckdb"
+rev = "3f8c863"
+hash = "87b9233a74325e95011670ed20bbd0d4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:toggle-pane"
+rev = "b886025"
+hash = "1e9714405a63bc08144b348b900f23a7"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-filter"
+rev = "b886025"
+hash = "ca4dffc8c02c4d2b4f628819fec49592"
+
+[[plugin.deps]]
+use = "imsi32/yatline"
+rev = "88bd1c5"
+hash = "981acbe9b758b1af3a8154c932bb936d"
+
+[[plugin.deps]]
+use = "blackdaemon/yatline-tab-path"
+rev = "101fe7c"
+hash = "b58a6786383df06dc16fc6dbd1876d31"
+
+[[plugin.deps]]
+use = "jaja360/yatline-hostname-username"
+rev = "448e8a1"
+hash = "9888b4708cb9fb7ecdac610f57d0389e"
+
+[[plugin.deps]]
+use = "imsi32/yatline-githead"
+rev = "f8f969e"
+hash = "4d441b38138ce6492a4e10fa349fd65"
+
+[[plugin.deps]]
+use = "MasouShizuka/projects"
+rev = "a5e33db"
+hash = "3de26efded35814ba3e55e28f1c389a4"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:jump-to-char"
+rev = "b886025"
+hash = "6d1fdb3792f6c003ab8ec0266c5eb142"
+
+[[plugin.deps]]
+use = "dedukun/relative-motions"
+rev = "a603d9e"
+hash = "e02a788e5b8ae0fb47fd0193dda589cc"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "9fc8fe0"
+hash = "2ad086899bf368fba211a33d8f68c39d"
+
+[[flavor.deps]]
+use = "sanjinso/monokai-vibrant"
+rev = "8b68223"
+hash = "f4458ebaf8961d714eba05fe5ba40166"
