@@ -1,10 +1,10 @@
 # Use atuin to power ctrl-r history search but with fzf.
-# Also disable atuin's up arrow bindings and use ctrl-e to bring up atuin's own tui
+# Also disable atuin's up arrow bindings and use alt-r to bring up atuin's own tui
 # prerequisites: brew install coreutils atuin
 
 atuin-setup() {
   ! hash atuin && return
-  bindkey '^E' _atuin_search_widget
+  bindkey '\er' _atuin_search_widget
 
   export ATUIN_NOBIND="true"
   eval "$(atuin init zsh)"
