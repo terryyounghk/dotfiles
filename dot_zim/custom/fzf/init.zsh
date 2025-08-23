@@ -1,5 +1,9 @@
 # https://github.com/junegunn/fzf
 
+# sometimes I just want to look up some of these
+alias faf='alias | fzf --multi'
+alias fenv='printenv | fzf --multi'
+
 # ----------------------------------------------------------
 # options start
 
@@ -22,11 +26,3 @@ export FZF_ALT_C_COMMAND="${FZF_COMMON_COMMAND_PORTION} --type d"
 # options end
 # ----------------------------------------------------------
 
-fzf_process_list () {
-  ps aux |
-    fzf --multi --preview 'ps -p {} -o pid,ppid,cmd --forest' \
-        --bind 'ctrl-r:reload(ps aux)' \
-        --header 'ps aux (Press CTRL-R to reload)' \
-        --header-lines=1 |
-    awk '{print $2}'
-}
