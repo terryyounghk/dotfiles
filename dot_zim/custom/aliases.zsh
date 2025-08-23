@@ -16,7 +16,7 @@ alias bubu='brew updates; brew upgrade --require-sha' # then append whatever spe
 # -----------------------------------------------------------------------------------
 # yazi: https://github.com/sxyazi/yazi
 
-alias y='yazi'
+# alias y='yazi'
 alias ypa='ya pkg add'
 alias ypd='ya pkg delete'
 alias ypi='ya pkg install'
