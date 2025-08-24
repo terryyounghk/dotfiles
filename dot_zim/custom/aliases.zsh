@@ -23,8 +23,6 @@ alias bubu='brew updates; brew upgrade --require-sha' # then append whatever spe
 
 alias cat='bat'
 alias cal='cal -y'
-alias df='df -H'
-alias du='du -ch'
 alias plist='/usr/libexec/PlistBuddy' # e.g. plist -c "print" ~/Library/Preferences/.GlobalPreferences.plist
 
 # -----------------------------------------------------------------------------------
