@@ -3,6 +3,15 @@
 # Also disable atuin's up arrow bindings and use alt-r to bring up atuin's own tui
 # prerequisites: brew install coreutils atuin
 
+# TODO: This does not seem to be reported yet, but --before or --after has no effect when --interactive
+
+alias A="atuin"
+alias Ase="atuin search --cmd-only"
+alias Asf="atuin search --cmd-only | fzf"
+alias Ast="atuin stats"
+alias Axe="atuin search --cmd-only --exclude-exit 0"
+alias Axf="atuin search --cmd-only --exclude-exit 0 | fzf"
+
 atuin-setup() {
   ! hash atuin && return
 
