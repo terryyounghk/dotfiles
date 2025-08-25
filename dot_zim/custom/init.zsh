@@ -15,6 +15,7 @@ source "${HOME}/.zim/custom/zoxide/init.zsh"
 source "${HOME}/.zim/custom/zsh-abbr/init.zsh"
 source "${HOME}/.zim/custom/zsh-hist/init.zsh"
 source "${HOME}/.zim/custom/duckdb/init.zsh"
+source "${HOME}/.zim/custom/retro/init.zsh"
 
 # put this at the last
 source "${HOME}/.zim/custom/zsh-abbr-autosuggestions/init.zsh"
