@@ -267,14 +267,14 @@ require("smart-enter"):setup {
 
 -- https://github.com/wylie102/duckdb.yazi/tree/main?tab=readme-ov-file#installation
 -- TODO: duckdbrc - https://github.com/wylie102/duckdb.yazi/tree/main?tab=readme-ov-file#configuring-duckdb
-require("duckdb"):setup()
--- require("duckdb"):setup({
---   mode = "standard"/"summarized",            -- Default: "summarized"
---   cache_size = 1000,                         -- Default: 500
---   row_id = true/false/"dynamic",             -- Default: false
---   minmax_column_width = int,                 -- Default: 21
---   column_fit_factor = float,                 -- Default: 10.0
--- })
+-- require("duckdb"):setup()
+require("duckdb"):setup({
+  mode = "standard",                         -- Default: "summarized"
+  cache_size = 1000,                         -- Default: 500
+  row_id = "dynamic",                        -- Default: false
+  minmax_column_width = 21,                  -- Default: 21
+  column_fit_factor = 10.0,                  -- Default: 10.0
+})
 
 -- https://github.com/dedukun/relative-motions.yazi
 require("relative-motions"):setup({

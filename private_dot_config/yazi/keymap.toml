@@ -45,14 +45,29 @@ run = "plugin duckdb -ui"
 desc = "open with duckdb ui"
 
 [[mgr.prepend_keymap]]
-on   = "T"
-run  = "plugin toggle-pane min-preview"
-desc = "Show or hide the preview pane"
+on   = [ "t", "h" ]
+run  = "plugin toggle-pane min-parent"
+desc = "Toggle Parent Pane"
 
 [[mgr.prepend_keymap]]
-on   = "T"
+on   = [ "t", "j" ]
+run  = "plugin toggle-pane min-current"
+desc = "Toggle Current Pane"
+
+[[mgr.prepend_keymap]]
+on   = [ "t", "k" ]
+run  = "plugin toggle-pane min-current"
+desc = "Toggle Preview Pane"
+
+[[mgr.prepend_keymap]]
+on   = [ "t", "l" ]
 run  = "plugin toggle-pane max-preview"
 desc = "Maximize or restore the preview pane"
+
+[[mgr.prepend_keymap]]
+on   = [ "t", "t" ]
+run  = "plugin toggle-pane reset"
+desc = "Reset pane size"
 
 [[mgr.prepend_keymap]]
 on   = "F"
@@ -109,15 +124,45 @@ on = [ "M" ]
 run = "plugin relative-motions"
 desc = "Trigger a new relative motion"
 
-# macOS: Preview files with system Quick Look
 [[mgr.prepend_keymap]]
 on = "<C-p>"
 run = 'shell -- qlmanage -p "$@"'
+desc = "Quick Look (MacOS)"
 
-# cd back to the root of the current Git repository
 [[mgr.prepend_keymap]]
 on = [ "g", "r" ]
 run = 'shell -- ya emit cd "$(git rev-parse --show-toplevel)"'
+desc = "Go to root (current repo)"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "l" ]
+run = 'shell -- ya emit cd "~/Library/Application Support/"'
+desc = "Go ~/Library/Application Support/"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "s" ]
+run = 'shell -- ya emit cd "~/.local/share"'
+desc = "Go ~/.local/share"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "c" ]
+run = 'shell -- ya emit cd $(chezmoi source-path 2>/dev/null || echo .)'
+desc = "chezmoi cd"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "z" ]
+run = 'shell -- ya emit cd $(zoxide query zmk config 2>/dev/null || echo .)'
+desc = "z zmk config"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "k" ]
+run = 'shell -- ya emit cd "~/Desktop/"'
+desc = "Go ~/Desktop"
+
+[[mgr.prepend_keymap]]
+on = [ "g", "e" ]
+run = 'shell --interactive -- ya emit cd $(zoxide query)"'
+desc = "Go ..."
 
 [[mgr.prepend_keymap]]
 on   = [ "c", "a", "a" ]
@@ -143,3 +188,8 @@ desc = "Archive selected files (compression level)"
 on   = [ "c", "a", "u" ]
 run  = "plugin compress -phl"
 desc = "Archive selected files (password+header+level)"
+
+[[mgr.prepend_keymap]]
+on   = "<C-d>"
+run  = "plugin diff"
+desc = "Diff the selected with the hovered file"

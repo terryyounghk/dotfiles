@@ -78,6 +78,11 @@ use = "KKV9/compress"
 rev = "9fc8fe0"
 hash = "2ad086899bf368fba211a33d8f68c39d"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:diff"
+rev = "de53d90"
+hash = "d601446a35750846682d4a67882b7dc2"
+
 [[flavor.deps]]
 use = "sanjinso/monokai-vibrant"
 rev = "8b68223"
