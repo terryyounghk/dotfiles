@@ -62,7 +62,12 @@ zmodule archive
 zmodule asdf
 zmodule exa
 zmodule k
-zmodule fzf
+# zmodule fzf # disabled in favour of atuin
+zmodule joke/zim-chezmoi
+zmodule joke/zim-github-cli
+zmodule joke/zim-k9s
 zmodule joke/zim-yq
+zmodule kiesman99/zim-zoxide
 zmodule olets/zsh-abbr
 zmodule romkatv/powerlevel10k --use degit
+zmodule shanwker1223/zim-alias-finder
