@@ -4,7 +4,6 @@ alias dv='diskutil list' # list disk volumes with diskutil
 alias fv='find /Volumes -maxdepth 1' # list top-level volumes with find
 alias lv='list-volumes'
 alias sv='smbutil view' # e.g. sv //ark@192.168.1.103
-alias li='list_indexing' # see utility.zsh
 
 # -----------------------------------------------------------------------------------
 
