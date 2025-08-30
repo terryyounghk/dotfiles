@@ -25,18 +25,25 @@ list-volumes() {
         --bind 'ctrl-e:execute(mdutil -i on {} > /dev/null)+reload(eval '$volume_query')' \
         --bind 'ctrl-r:execute(mdutil -E {} > /dev/null)+reload(eval '$volume_query')'
   )
+  redraw-prompt () {
+    local precmd
+    for precmd in $precmd_functions; do
+      $precmd
+    done
+    zle reset-prompt
+  }
   if [[ -n "$selected_volume" ]]; then
     if [[ -n "$ZLE_STATE" ]]; then
       LBUFFER="${LBUFFER}${selected_volume}"
-      zle reset-prompt
+      redraw-prompt
     else
       echo "$selected_volume"
     fi
+  else
+    redraw-prompt
   fi
 }
 
-# Register the zsh widget for list-volumes
+# Register and bindkey the zsh widget
 zle -N list-volumes
-
-# Bind Ctrl+V to list-volumes widget (check for conflicts with: bindkey | grep '^V')
-bindkey '^V' list-volumes
+bindkey '^V^V' list-volumes
