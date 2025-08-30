@@ -12,10 +12,35 @@ alias Ast="atuin stats"
 alias Axe="atuin search --cmd-only --exclude-exit 0"
 alias Axf="atuin search --cmd-only --exclude-exit 0 | fzf"
 
+atuin-use-default-bindings () {
+  unset ATUIN_NOBIND
+  eval "$(atuin init zsh)"
+}
+
+atuin-use-custom-bindings () {
+  export ATUIN_NOBIND=true # any value enables it
+
+  eval "$(atuin init zsh)"
+
+  bindkey -M emacs '^r' atuin-search
+  bindkey -M viins '^r' atuin-search-viins
+  # bindkey -M vicmd '/' atuin-search
+  # bindkey -M emacs '^[[A' atuin-up-search
+  # bindkey -M vicmd '^[[A' atuin-up-search-vicmd
+  # bindkey -M viins '^[[A' atuin-up-search-viins
+  # bindkey -M emacs '^[OA' atuin-up-search
+  # bindkey -M vicmd '^[OA' atuin-up-search-vicmd
+  # bindkey -M viins '^[OA' atuin-up-search-viins
+  # bindkey -M vicmd 'k' atuin-up-search-vicmd
+}
+
 atuin-setup() {
   ! hash atuin && return
 
-  eval "$(atuin init zsh)"
+  # set key bindings
+  atuin-use-custom-bindings
+
+  # custom widgets
   fzf-atuin-history-widget() {
     local selected num
     setopt localoptions noglobsubst noposixbuiltins pipefail no_aliases 2>/dev/null
@@ -30,7 +55,7 @@ atuin-setup() {
     return $ret
   }
   zle -N fzf-atuin-history-widget
-  bindkey '\er' fzf-atuin-history-widget
+  bindkey '\ek' fzf-atuin-history-widget
 }
 
 atuin-setup
