@@ -65,48 +65,6 @@ alias nsa='node --require source-map-support/register'
 alias nsb='node --require @cspotcode/source-map-support/register'
 
 # -----------------------------------------------------------------------------------
-# history
-# hist, see https://github.com/marlonrichert/zsh-hist
-
-# [h]ist [a]ll
-alias ha='hist list * | fzf'
-
-# [h]ist [p]rint [a]ll
-alias hap="hist list $'*'"
-
-# [h]ist [t]en entries
-alias ht="echo '10 most recent commands...'; hist list {-1..-10}"
-
-alias hh='hist help'
-alias hi='hist-interactive'
-alias hf='hist fix'
-
-# [h]ist [f]ix [l]ast
-alias hfl='hist fix -1'
-alias hl='hist list'
-alias hll='hist list -1'
-alias hr='hist reload'
-alias hg='hist get'
-alias hgl='hist get -1'
-alias hd='hist delete'
-alias hdl='hist delete -1'
-
-# [h]ist [y]ank
-alias hy='ha | pbcopy'
-
-# -----------------------------------------------------------------------------------
-# git
-
-alias Gcb="git-current-branch"
-alias Gfl="git config --local --list"
-alias Gfg="git config --global --list"
-alias Gcsm="git commit -S -m"
-alias Gfv="git fetch --all --verbose --prune"
-alias Gsg="git log --show-signature -n 1"
-alias Gu="git status"
-alias GL="git log --all --graph --pretty=format:'%C(yellow)%h%Creset %Cgreen%ad%Creset %C(bold)signed:%Creset%C(auto)%G?%Creset %C(bold blue)<%an>%Creset %s %C(auto)%d%Creset' --date=short"
-
-# -----------------------------------------------------------------------------------
 # python stuff
 
 alias jn='Jupyter Notebook'

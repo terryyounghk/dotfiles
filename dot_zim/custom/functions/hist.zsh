@@ -1,3 +1,34 @@
+# history
+# hist, see https://github.com/marlonrichert/zsh-hist
+
+# [h]ist [a]ll
+alias ha='hist list * | fzf'
+
+# [h]ist [p]rint [a]ll
+alias hap="hist list $'*'"
+
+# [h]ist [t]en entries
+alias ht="echo '10 most recent commands...'; hist list {-1..-10}"
+
+alias hh='hist help'
+alias hi='hist-interactive'
+alias hf='hist fix'
+
+# [h]ist [f]ix [l]ast
+alias hfl='hist fix -1'
+alias hl='hist list'
+alias hll='hist list -1'
+alias hr='hist reload'
+alias hg='hist get'
+alias hgl='hist get -1'
+alias hd='hist delete'
+alias hdl='hist delete -1'
+
+# [h]ist [y]ank
+alias hy='ha | pbcopy'
+
+# -----------------------------------------------------------------------------------
+
 hist-interactive () {
   local cmd=$1
   local sel
@@ -56,4 +87,3 @@ hist-interactive () {
       ;;
   esac
 }
-
