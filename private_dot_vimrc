@@ -34,7 +34,7 @@ set noshelltemp
 set noswapfile
 set noundofile
 " no sessions, cmd line history, search history, etc
-" set viminfo=
+set viminfo=
 set noautowrite " no autosave on buffer switch
 set autoread " prompt use the action to take if file changed outside vim
 " set noautoread " prompt use the action to take if file changed outside vim

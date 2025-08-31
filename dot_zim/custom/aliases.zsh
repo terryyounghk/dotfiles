@@ -28,15 +28,17 @@ alias plist='/usr/libexec/PlistBuddy' # e.g. plist -c "print" ~/Library/Preferen
 # -----------------------------------------------------------------------------------
 # tmux
 
-alias t='TERM=tmux-256color tmux attach || tmux new-session'
-alias ta='TERM=tmux-256color tmux attach -t'
-alias tl='tmux list-sessions'
+alias t=' TERM=tmux-256color tmux attach || tmux new-session'
+alias ta=' TERM=tmux-256color tmux attach -t'
+alias tl=' tmux list-sessions'
 
 # -----------------------------------------------------------------------------------
-# nvim
+# nvim / vim
 
-alias n='nvim'
-alias m='nvim' # I keep fat-fingering 'm' on a Corne for some reason
+alias n=" nvim -c 'set shada= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure"
+alias m=' n' # I keep fat-fingering 'm' on a Corne for some reason
+alias vi=' vi -i NONE' # do not use viminfo file
+
 
 # -----------------------------------------------------------------------------------
 # file cleaning
