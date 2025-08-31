@@ -1,4 +1,5 @@
 # removed nvim plugins
+.config/nvim/lua/plugins/colorful-winsep.lua
 .config/nvim/lua/plugins/mini-diff.lua
 .config/nvim/lua/plugins/keepcursor.lua
 .config/nvim/lua/plugins/no-neck-pain.lua
