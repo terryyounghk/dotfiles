@@ -56,7 +56,7 @@ desc = "Toggle Current Pane"
 
 [[mgr.prepend_keymap]]
 on   = [ "t", "k" ]
-run  = "plugin toggle-pane min-current"
+run  = "plugin toggle-pane min-preview"
 desc = "Toggle Preview Pane"
 
 [[mgr.prepend_keymap]]
