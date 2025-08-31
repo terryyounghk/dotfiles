@@ -1,0 +1,454 @@
+" The purposes of this vimrc are:
+"   - to remain as one file
+"   - to leave no swap/backup/temp/undo file traces
+"
+" Advanced guides:
+"   https://github.com/romainl/idiomatic-vimrc
+"
+" Useful stuff:
+"   # do not source vimrc on startup
+"   $ vi -u NONE -N
+"
+"   :help index
+"   :help option-list
+"   :help key-notation
+"   :verbose map
+"   :verbose map key
+
+" Don't try to be vi compatible
+set nocompatible
+
+" Helps force plugins to load correctly when it is turned back on below
+filetype off
+
+" For plugins to load correctly
+filetype plugin indent on
+
+" ---------------------------------------
+" Security and Privacy
+" ---------------------------------------
+set modelines=0
+set nobackup
+set nowritebackup
+set noshelltemp
+set noswapfile
+set noundofile
+" no sessions, cmd line history, search history, etc
+" set viminfo=
+set noautowrite " no autosave on buffer switch
+set autoread " prompt use the action to take if file changed outside vim
+" set noautoread " prompt use the action to take if file changed outside vim
+" Reference: to reload current file:
+" :edit
+
+" ---------------------------------------
+" MacOS
+" ---------------------------------------
+" Lots of solutions to make Alt/Meta key work on MacOS did not work for me.
+" This did: https://stackoverflow.com/a/40974403
+for i in range(97,122) + range(43, 47)
+  let c = nr2char(i)
+  exec "map \e".c." <M-".c.">"
+  exec "map! \e".c." <M-".c.">"
+endfor
+" Test
+nnoremap <M-t> :echo "M-t works"<CR>
+
+" Clipboard
+set clipboard=unnamed
+
+" ---------------------------------------
+" Visuals and UI
+" ---------------------------------------
+
+" Mode Settings
+" Reference: Cursor settings
+"  1 -> blinking block
+"  2 -> solid block
+"  3 -> blinking underscore
+"  4 -> solid underscore
+"  5 -> blinking vertical bar
+"  6 -> solid vertical bar
+" More: https://vim.fandom.com/wiki/Change_cursor_shape_in_different_modes
+let &t_SI.="\e[5 q" "SI = INSERT mode
+let &t_SR.="\e[4 q" "SR = REPLACE mode
+let &t_EI.="\e[1 q" "EI = NORMAL mode (ELSE)
+
+" Show line numbers
+set number relativenumber
+
+" Show file stats
+set ruler
+
+" Always show number of lines changes
+set report=0
+
+" Blink cursor on error instead of beeping
+" set visualbell
+
+" line/col highlighting
+set cursorline
+set cursorcolumn
+
+" Status bar: 2 = last window always have status line
+set laststatus=2
+
+" Always show tab line
+set showtabline=2
+
+" Last line
+set showmode
+set showcmd
+
+" ---------------------------------------
+" Syntax and formatting
+" ---------------------------------------
+" Turn on syntax highlighting
+syntax on
+
+" Encoding
+set encoding=utf-8
+
+" Whitespace
+" set textwidth=80
+set nowrap
+set formatoptions=tcqrn1
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+set noshiftround
+set autoindent
+set copyindent
+
+" treat all numbers as decimal, even with leading zeros
+set nrformats-=octal
+
+" ---------------------------------------
+" Command line completion options
+" ---------------------------------------
+" provie list of suggestions using <Tab> and <S-Tab>
+set wildmenu
+set wildmode=full
+
+" ---------------------------------------
+" Searching
+" ---------------------------------------
+
+nnoremap / /\v
+vnoremap / /\v
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set showmatch
+map <leader><space> :let @/=''<cr> " clear search
+
+" ---------------------------------------
+" netrw
+" ---------------------------------------
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_winsize = 25
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1 " open vertical splits to the right
+
+" ---------------------------------------
+" UX
+" ---------------------------------------
+
+" Mouse functionality
+set mouse=a
+
+" Cursor motion
+set scrolloff=3
+set backspace=indent,eol,start
+set matchpairs+=<:> " use % to jump between pairs
+
+" split window behavior
+set splitbelow splitright
+
+" Remap help key
+inoremap <F1> <ESC>:set invfullscreen<CR>a
+nnoremap <F1> :set invfullscreen<CR>
+vnoremap <F1> :set invfullscreen<CR>
+
+" Allow hidden buffers
+set hidden
+
+" Rendering
+set ttyfast
+
+" ---------------------------------------
+" Editing
+" ---------------------------------------
+
+" Disable auto commenting in a new line
+autocmd Filetype * setlocal formatoptions-=c formatoptions-=r  formatoptions-=o
+
+" do not insert two spaces after a period when joining lines
+set nojoinspaces
+
+" ---------------------------------------
+" Key Bindings
+" ---------------------------------------
+
+" ---------------------------------------
+" Leader key
+let mapleader=" "
+set timeoutlen=300
+
+" ---------------------------------------
+" Commands and Repeats
+" repeat last ex command
+nnoremap <leader>:        @:
+nnoremap <S-q>            @@
+
+" ---------------------------------------
+" Modes - commented. Use Ctrl-C more.
+" inoremap jk <Esc>
+" inoremap kj <Esc>
+
+" ---------------------------------------
+" Help, Search, List...
+nnoremap <leader>sk       :verbose map<CR>
+
+" ---------------------------------------
+" Reloading
+" current file
+nnoremap <leader>rf       :so %<CR>
+" vimrc
+nnoremap <leader>rr       :so $MYVIMRC<CR>
+
+" ---------------------------------------
+" File system
+function! ToggleVExplorer()
+    if exists("t:expl_buf_num")
+        let expl_win_num = bufwinnr(t:expl_buf_num)
+        let cur_win_num = winnr()
+
+        if expl_win_num != -1
+            while expl_win_num != cur_win_num
+                exec "wincmd w"
+                let cur_win_num = winnr()
+            endwhile
+
+            close
+        endif
+
+        unlet t:expl_buf_num
+    else
+         Vexplore
+         let t:expl_buf_num = bufnr("%")
+    endif
+endfunction
+
+map <silent> <leader>; :call ToggleVExplorer()<cR>
+map <leader><leader> :Explore<cR>
+
+" ---------------------------------------
+" Writing and quitting
+nnoremap <c-s>            :w<cr>
+nnoremap <leader>wq       :wq<cr>
+nnoremap <leader>WQ       :wq!<cr>
+nnoremap <leader>q        :q<cr>
+nnoremap <leader>qq       :qa<cr>
+nnoremap <leader>QQ       :qa!<cr>
+
+" ---------------------------------------
+" Buffers
+" nnoremap <leader>bb       :buffers<cr>
+nnoremap <leader>B        :buffers
+nnoremap <leader>bb       :ls<cr>:b<space>
+nnoremap <leader>`        :b#<cr>
+nnoremap <leader>bf       :bfirst<cr>
+nnoremap <leader>bh       :bfirst<cr>
+nnoremap <leader>bp       :bprevious<cr>
+nnoremap <leader>bk       :bprevious<cr>
+nnoremap <leader>bn       :bnext<cr>
+nnoremap <leader>bj       :bnext<cr>
+nnoremap <leader>bl       :blast<cr>
+nnoremap <leader>bm       :bmodified<cr>
+nnoremap <leader>bd       :bdelete<cr>
+nnoremap <m-,>            :bp<cr>
+nnoremap <m-.>            :bn<cr>
+
+" ---------------------------------------
+" Tabs
+nnoremap <leader>T        :tabs<cr>
+nnoremap <leader>tt       :tabs<cr>:tab<space>
+nnoremap <leader>ta       :tabnew<cr>
+nnoremap <leader>tn       :tabnext<cr>
+nnoremap <leader>tj       :tabnext<cr>
+nnoremap <leader><tab>[   :tabnext<cr>
+nnoremap <leader>tp       :tabprevious<cr>
+nnoremap <leader>tk       :tabprevious<cr>
+nnoremap <leader><tab>]   :tabprevious<cr>
+nnoremap <leader>tf       :tabfirst<cr>
+nnoremap <leader>th       :tabfirst<cr>
+nnoremap <leader>tl       :tablast<cr>
+nnoremap <leader>tq       :tabclose<cr>
+nnoremap <leader>to       :tabonly<cr>
+nnoremap <c-,>            :tabprevious<cr>
+nnoremap <c-.>            :tabnext<cr>
+
+" ---------------------------------------
+" Windows and splits
+nnoremap <leader>w        <c-w>
+nnoremap <leader>wt       <c-w>T
+
+" ---------------------------------------
+" Editing
+
+" Don't exit visual mode after indenting
+vnoremap > >gv
+vnoremap < <gv
+
+" Move lines
+nnoremap <m-j> :m .+1<cr>==
+nnoremap <m-k> :m .-2<cr>==
+inoremap <m-j> <esc>:m .+1<cr>==gi
+inoremap <m-k> <esc>:m .-2<cr>==gi
+vnoremap <m-j> :m '>+1<cr>gv=gv
+vnoremap <m-k> :m '<-2<cr>gv=gv
+
+" Indenting
+nnoremap <m-l> >>
+nnoremap <m-h> <<
+inoremap <m-l> <esc>>><cr>==gi
+inoremap <m-h> <esc><<<cr>==gi
+vnoremap <m-l> >gv
+vnoremap <m-h> <gv
+
+" ---------------------------------------
+" Color Scheme
+" ---------------------------------------
+" Vim color file
+
+set background=dark
+highlight clear
+
+if exists("syntax_on")
+  syntax reset
+endif
+
+set t_Co=256
+
+hi Cursor ctermfg=235 ctermbg=231 cterm=NONE guifg=#272822 guibg=#f8f8f0 gui=NONE
+hi Visual ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#49483e gui=NONE
+hi CursorLine ctermfg=NONE ctermbg=237 cterm=NONE guifg=NONE guibg=#3c3d37 gui=NONE
+hi CursorColumn ctermfg=NONE ctermbg=237 cterm=NONE guifg=NONE guibg=#3c3d37 gui=NONE
+hi ColorColumn ctermfg=NONE ctermbg=237 cterm=NONE guifg=NONE guibg=#3c3d37 gui=NONE
+hi LineNr ctermfg=102 ctermbg=237 cterm=NONE guifg=#90908a guibg=#3c3d37 gui=NONE
+hi VertSplit ctermfg=241 ctermbg=241 cterm=NONE guifg=#64645e guibg=#64645e gui=NONE
+hi MatchParen ctermfg=197 ctermbg=NONE cterm=underline guifg=#f92672 guibg=NONE gui=underline
+hi StatusLine ctermfg=231 ctermbg=241 cterm=bold guifg=#f8f8f2 guibg=#64645e gui=bold
+hi StatusLineNC ctermfg=231 ctermbg=241 cterm=NONE guifg=#f8f8f2 guibg=#64645e gui=NONE
+hi Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi PmenuSel ctermfg=NONE ctermbg=59 cterm=NONE guifg=NONE guibg=#49483e gui=NONE
+hi IncSearch term=reverse cterm=reverse ctermfg=193 ctermbg=16 gui=reverse guifg=#c4be89 guibg=#000000
+hi Search term=reverse cterm=NONE ctermfg=231 ctermbg=24 gui=NONE guifg=#f8f8f2 guibg=#204a87
+hi Directory ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Folded ctermfg=242 ctermbg=235 cterm=NONE guifg=#75715e guibg=#272822 gui=NONE
+hi Conceal ctermfg=231 ctermbg=235 cterm=NONE guifg=#f8f8f0 guibg=NONE gui=NONE
+hi SignColumn ctermfg=NONE ctermbg=237 cterm=NONE guifg=NONE guibg=#3c3d37 gui=NONE
+hi Normal ctermfg=231 ctermbg=235 cterm=NONE guifg=#f8f8f2 guibg=#272822 gui=NONE
+hi Boolean ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Character ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Comment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi Conditional ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Constant ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi Define ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi DiffAdd ctermfg=231 ctermbg=64 cterm=bold guifg=#f8f8f2 guibg=#46830c gui=bold
+hi DiffDelete ctermfg=88 ctermbg=NONE cterm=NONE guifg=#8b0807 guibg=NONE gui=NONE
+hi DiffChange ctermfg=NONE ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=#243955 gui=NONE
+hi DiffText ctermfg=231 ctermbg=24 cterm=bold guifg=#f8f8f2 guibg=#204a87 gui=bold
+hi diffAdded ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi diffFile ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi diffIndexLine ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi diffLine ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi diffRemoved ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi diffSubname ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi ErrorMsg ctermfg=231 ctermbg=197 cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
+hi WarningMsg ctermfg=231 ctermbg=197 cterm=NONE guifg=#f8f8f0 guibg=#f92672 gui=NONE
+hi Float ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Function ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi Identifier ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+hi Keyword ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Label ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi NonText ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi Number ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Operator ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi PreProc ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Special ctermfg=231 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
+hi SpecialComment ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi SpecialKey ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi SpecialChar ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi Statement ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi StorageClass ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+hi String ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi Tag ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Title ctermfg=231 ctermbg=NONE cterm=bold guifg=#f8f8f2 guibg=NONE gui=bold
+hi Todo ctermfg=95 ctermbg=NONE cterm=inverse,bold guifg=#75715e guibg=NONE gui=inverse,bold
+hi Type ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi Underlined ctermfg=NONE ctermbg=NONE cterm=underline guifg=NONE guibg=NONE gui=underline
+hi helpCommand ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi rubyClass ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi rubyFunction ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi rubyInterpolationDelimiter ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi rubySymbol ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi rubyConstant ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+hi rubyStringDelimiter ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi rubyBlockParameter ctermfg=208 ctermbg=NONE cterm=NONE guifg=#fd971f guibg=NONE gui=italic
+hi rubyInstanceVariable ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi rubyInclude ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi rubyGlobalVariable ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi rubyRegexp ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi rubyRegexpDelimiter ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi rubyEscape ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi rubyControl ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi rubyClassVariable ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi rubyOperator ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi rubyException ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi rubyPseudoVariable ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi rubyRailsUserClass ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+hi rubyRailsARAssociationMethod ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi rubyRailsARMethod ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi rubyRailsRenderMethod ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi rubyRailsMethod ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi erubyDelimiter ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi erubyComment ctermfg=95 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi erubyRailsMethod ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi htmlTag ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi htmlEndTag ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi htmlTagName ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi htmlArg ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi htmlSpecialChar ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi javaScriptFunction ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+hi javaScriptRailsFunction ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi javaScriptBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi yamlKey ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi yamlAnchor ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi yamlAlias ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi yamlDocumentHeader ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi cssURL ctermfg=208 ctermbg=NONE cterm=NONE guifg=#fd971f guibg=NONE gui=italic
+hi cssFunctionName ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi cssColor ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi cssPseudoClassId ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi cssClassName ctermfg=148 ctermbg=NONE cterm=NONE guifg=#a6e22e guibg=NONE gui=NONE
+hi cssValueLength ctermfg=141 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi cssCommonAttr ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi cssBraces ctermfg=NONE ctermbg=NONE cterm=NONE guifg=NONE guibg=NONE gui=NONE
+hi elixirAtom ctermfg=140 ctermbg=NONE cterm=NONE guifg=#ae81ff guibg=NONE gui=NONE
+hi elixirModuleDeclaration ctermfg=216 ctermbg=NONE cterm=NONE guifg=#f4bf75 guibg=NONE gui=NONE
+hi elixirAlias ctermfg=208 ctermbg=NONE cterm=NONE guifg=#fd971f guibg=NONE gui=NONE
+hi elixirStringDelimiter ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi shQuote ctermfg=186 ctermbg=NONE cterm=NONE guifg=#e6db74 guibg=NONE gui=NONE
+hi shDerefSimple ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=italic
+hi markdownHeadingDelimiter ctermfg=197 ctermbg=NONE cterm=NONE guifg=#f92672 guibg=NONE gui=NONE
+hi markdownCode ctermfg=242 ctermbg=NONE cterm=NONE guifg=#75715e guibg=NONE gui=NONE
+hi markdownUrl ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=underline
+hi markdownLink ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=underline
+hi markdownLinkDelimiter ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi markdownLinkTextDelimiter ctermfg=81 ctermbg=NONE cterm=NONE guifg=#66d9ef guibg=NONE gui=NONE
+hi markdownLinkText ctermfg=81 ctermbg=NONE cterm=NONE guifg=#f8f8f2 guibg=NONE gui=NONE
