@@ -35,9 +35,11 @@ alias tl=' tmux list-sessions'
 # -----------------------------------------------------------------------------------
 # nvim / vim
 
-alias n=" nvim -c 'set shada= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure'"
+alias n=" nvim"
+alias N=" nvim -c 'set shada= noswapfile noundofile nobackup nowritebackup noshelltemp history=0 nomodeline secure'"
 alias m=' n' # I keep fat-fingering 'm' on a Corne for some reason
-alias vi=' vi -i NONE' # do not use viminfo file
+alias v=' vim'
+alias V=' vi -i NONE' # do not use viminfo file
 
 
 # -----------------------------------------------------------------------------------
