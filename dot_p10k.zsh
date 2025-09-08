@@ -653,32 +653,32 @@
   # Python version from asdf.
   typeset -g POWERLEVEL9K_ASDF_PYTHON_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_PYTHON_FOREGROUND=33
-  typeset -g POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION=$'\ue606'
-  typeset -g POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.*py*'
+  typeset -g POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION='asdf/py' # $'\ue606'
+  # typeset -g POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.*py*'
 
   # Go version from asdf.
   typeset -g POWERLEVEL9K_ASDF_GOLANG_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_GOLANG_FOREGROUND=225
-  typeset -g POWERLEVEL9K_ASDF_GOLANG_VISUAL_IDENTIFIER_EXPANSION='go'
-  typeset -g POWERLEVEL9K_ASDF_GOLANG_SHOW_ON_UPGLOB='*.go'
+  typeset -g POWERLEVEL9K_ASDF_GOLANG_VISUAL_IDENTIFIER_EXPANSION='asdf/go' # $'\ue65e'
+  # typeset -g POWERLEVEL9K_ASDF_GOLANG_SHOW_ON_UPGLOB='*.go'
 
   # Yarn version from asdf. (intentionally hide, because asdf-yarn is only for Classic Yarn v1. See prompt_yarn)
   typeset -g POWERLEVEL9K_ASDF_YARN_PROMPT_ALWAYS_SHOW=false
   typeset -g POWERLEVEL9K_ASDF_YARN_FOREGROUND=178
   typeset -g POWERLEVEL9K_ASDF_YARN_VISUAL_IDENTIFIER_EXPANSION=$'\ue6a7'
-  typeset -g POWERLEVEL9K_ASDF_YARN_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules|yarn.lock|.tool-versions|.yarnrc|.yarnrc.yml|.yarn/|.pnp.js'
+  # typeset -g POWERLEVEL9K_ASDF_YARN_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules|yarn.lock|.tool-versions|.yarnrc|.yarnrc.yml|.yarn/|.pnp.js'
 
   # Node.js version from asdf.
   typeset -g POWERLEVEL9K_ASDF_NODEJS_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_NODEJS_FOREGROUND=165
-  typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION=$'\ued0d'
-  typeset -g POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules'
+  typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION='asdf/node' # $'\ued0d'
+  # typeset -g POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules'
 
   # Rust version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_RUST_PROMPT_ALWAYS_SHOW=false
+  typeset -g POWERLEVEL9K_ASDF_RUST_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_RUST_FOREGROUND=214
-  typeset -g POWERLEVEL9K_ASDF_RUST_VISUAL_IDENTIFIER_EXPANSION='rs'
-  typeset -g POWERLEVEL9K_ASDF_RUST_SHOW_ON_UPGLOB='|*.rs'
+  typeset -g POWERLEVEL9K_ASDF_RUST_VISUAL_IDENTIFIER_EXPANSION='asdf/rs' # $'\ue68b'
+  # typeset -g POWERLEVEL9K_ASDF_RUST_SHOW_ON_UPGLOB='Cargo.toml|*.rs'
 
   # .NET Core version from asdf.
   typeset -g POWERLEVEL9K_ASDF_DOTNET_CORE_FOREGROUND=134
@@ -691,9 +691,9 @@
   # typeset -g POWERLEVEL9K_ASDF_FLUTTER_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Lua version from asdf.
-  typeset -g POWERLEVEL9K_ASDF_LUA_PROMPT_ALWAYS_SHOW=false
+  typeset -g POWERLEVEL9K_ASDF_LUA_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_LUA_FOREGROUND=87
-  typeset -g POWERLEVEL9K_ASDF_LUA_VISUAL_IDENTIFIER_EXPANSION='lua'
+  typeset -g POWERLEVEL9K_ASDF_LUA_VISUAL_IDENTIFIER_EXPANSION='asdf/lua' # $'\ue620'
   # typeset -g POWERLEVEL9K_ASDF_LUA_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Java version from asdf.
@@ -717,14 +717,16 @@
   # typeset -g POWERLEVEL9K_ASDF_ELIXIR_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Postgres version from asdf.
+  typeset -g POWERLEVEL9K_ASDF_POSTGRES_PROMPT_ALWAYS_SHOW=false
   typeset -g POWERLEVEL9K_ASDF_POSTGRES_FOREGROUND=31
-  # typeset -g POWERLEVEL9K_ASDF_POSTGRES_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_POSTGRES_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_ASDF_POSTGRES_VISUAL_IDENTIFIER_EXPANSION='pg' # $'\ue76e'
+  typeset -g POWERLEVEL9K_ASDF_POSTGRES_SHOW_ON_UPGLOB='*.sql'
 
   # PHP version from asdf.
+  typeset -g POWERLEVEL9K_ASDF_PHP_PROMPT_ALWAYS_SHOW=false
   typeset -g POWERLEVEL9K_ASDF_PHP_FOREGROUND=99
-  # typeset -g POWERLEVEL9K_ASDF_PHP_VISUAL_IDENTIFIER_EXPANSION='⭐'
-  # typeset -g POWERLEVEL9K_ASDF_PHP_SHOW_ON_UPGLOB='*.foo|*.bar'
+  typeset -g POWERLEVEL9K_ASDF_PHP_VISUAL_IDENTIFIER_EXPANSION='php' # $'\ued6d'
+  typeset -g POWERLEVEL9K_ASDF_PHP_SHOW_ON_UPGLOB='*.php'
 
   # Haskell version from asdf.
   typeset -g POWERLEVEL9K_ASDF_HASKELL_FOREGROUND=172
@@ -1684,7 +1686,10 @@
     # see: p10k help segment
     # only show if yarn is installed
     if command -v yarn >/dev/null 2>&1; then
-      p10k segment -f 208 -i $'\ue6a7' -t "$(yarn -v)"
+      if [[ -n "$(yarn -v)" ]]; then
+        # p10k segment -f 208 -i $'\ue6a7' -t "$(yarn -v)"
+        p10k segment -f 208 -i 'corepack/yarn' -t "$(yarn -v)"
+      fi
     fi
   }
 
