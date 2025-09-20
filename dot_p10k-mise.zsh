@@ -35,7 +35,7 @@ function prompt_mise() {
   local plugin
   for plugin in ${(k)plugins}; do
     local parts=("${(@s/ /)plugin}")
-    local TOOL=${(U)parts[1]/-/_}  # Uppercase and replace '-' with '_'; e.g. 1password-cli -> 1PASSWORD_CLI
+    local TOOL=${(U)parts[1]/-/_}  # Uppercase and replace '-' with '_'
     local version=${parts[2]}
 
     # for help, run `p10k help segment`
@@ -102,10 +102,10 @@ typeset -g POWERLEVEL9K_MISE_SHOW_SYSTEM=true
 #
 typeset -g POWERLEVEL9K_MISE_SHOW_ON_UPGLOB=
 
-typeset -g POWERLEVEL9K_MISE_1PASSWORD_CLI_PROMPT_ALWAYS_SHOW=false # this does not work for some reason?
-typeset -g POWERLEVEL9K_MISE_1PASSWORD_CLI_FOREGROUND=6
-typeset -g POWERLEVEL9K_MISE_1PASSWORD_CLI_VISUAL_IDENTIFIER_EXPANSION='op'
-typeset -g POWERLEVEL9K_MISE_1PASSWORD_CLI_SHOW_ON_UPGLOB='neverevergonnaever-show'
+typeset -g POWERLEVEL9K_MISE_1PASSWORD_PROMPT_ALWAYS_SHOW=false
+typeset -g POWERLEVEL9K_MISE_1PASSWORD_FOREGROUND=6
+typeset -g POWERLEVEL9K_MISE_1PASSWORD_VISUAL_IDENTIFIER_EXPANSION='op'
+typeset -g POWERLEVEL9K_MISE_1PASSWORD_SHOW_ON_UPGLOB='neverevergonnaever-show'
 
 typeset -g POWERLEVEL9K_MISE_BUF_PROMPT_ALWAYS_SHOW=false
 typeset -g POWERLEVEL9K_MISE_BUF_FOREGROUND=87
