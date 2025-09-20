@@ -36,13 +36,12 @@
     # vi_mode                 # vi mode (you don't need this if you've enabled prompt_char)
     time                    # current time
     dir                     # current directory
-    package                 # name@version from package.json (https://docs.npmjs.com/files/package.json)
+    # package                 # name@version from package.json (https://docs.npmjs.com/files/package.json)
     vcs                     # git status
     status                  # exit code of the last command
     command_execution_time  # duration of the last command
+    mise                    # see .p10k-mise.zsh
     # background_jobs         # presence of background jobs
-    yarn                    # custom, because asdf-yarn is only for Classic Yarn
-    asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
@@ -79,7 +78,7 @@
     # phpenv                  # php version from phpenv (https://github.com/phpenv/phpenv)
     # scalaenv                # scala version from scalaenv (https://github.com/scalaenv/scalaenv)
     # haskell_stack           # haskell version from stack (https://haskellstack.org/)
-    kubecontext             # current kubernetes context (https://kubernetes.io/)
+    # kubecontext             # current kubernetes context (https://kubernetes.io/)
     # terraform               # terraform workspace (https://www.terraform.io)
     # terraform_version       # terraform version (https://www.terraform.io)
     # aws                     # aws profile (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)
@@ -653,31 +652,31 @@
   # Python version from asdf.
   typeset -g POWERLEVEL9K_ASDF_PYTHON_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_PYTHON_FOREGROUND=33
-  typeset -g POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION='asdf/py' # $'\ue606'
+  typeset -g POWERLEVEL9K_ASDF_PYTHON_VISUAL_IDENTIFIER_EXPANSION='py' # $'\ue606'
   # typeset -g POWERLEVEL9K_ASDF_PYTHON_SHOW_ON_UPGLOB='*.*py*'
 
   # Go version from asdf.
   typeset -g POWERLEVEL9K_ASDF_GOLANG_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_GOLANG_FOREGROUND=225
-  typeset -g POWERLEVEL9K_ASDF_GOLANG_VISUAL_IDENTIFIER_EXPANSION='asdf/go' # $'\ue65e'
+  typeset -g POWERLEVEL9K_ASDF_GOLANG_VISUAL_IDENTIFIER_EXPANSION='go' # $'\ue65e'
   # typeset -g POWERLEVEL9K_ASDF_GOLANG_SHOW_ON_UPGLOB='*.go'
 
   # Yarn version from asdf. (intentionally hide, because asdf-yarn is only for Classic Yarn v1. See prompt_yarn)
   typeset -g POWERLEVEL9K_ASDF_YARN_PROMPT_ALWAYS_SHOW=false
   typeset -g POWERLEVEL9K_ASDF_YARN_FOREGROUND=178
   typeset -g POWERLEVEL9K_ASDF_YARN_VISUAL_IDENTIFIER_EXPANSION=$'\ue6a7'
-  # typeset -g POWERLEVEL9K_ASDF_YARN_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules|yarn.lock|.tool-versions|.yarnrc|.yarnrc.yml|.yarn/|.pnp.js'
+  # typeset -g POWERLEVEL9K_ASDF_YARN_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules|yarn.lock|.tool-versions|.yarnrc|.yarnrc.yml|.yarn|.pnp.js'
 
   # Node.js version from asdf.
   typeset -g POWERLEVEL9K_ASDF_NODEJS_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_NODEJS_FOREGROUND=165
-  typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION='asdf/node' # $'\ued0d'
+  typeset -g POWERLEVEL9K_ASDF_NODEJS_VISUAL_IDENTIFIER_EXPANSION='node' # $'\ued0d'
   # typeset -g POWERLEVEL9K_ASDF_NODEJS_SHOW_ON_UPGLOB='*.js|package.json|*.ts|node_modules'
 
   # Rust version from asdf.
   typeset -g POWERLEVEL9K_ASDF_RUST_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_RUST_FOREGROUND=214
-  typeset -g POWERLEVEL9K_ASDF_RUST_VISUAL_IDENTIFIER_EXPANSION='asdf/rs' # $'\ue68b'
+  typeset -g POWERLEVEL9K_ASDF_RUST_VISUAL_IDENTIFIER_EXPANSION='rs' # $'\ue68b'
   # typeset -g POWERLEVEL9K_ASDF_RUST_SHOW_ON_UPGLOB='Cargo.toml|*.rs'
 
   # .NET Core version from asdf.
@@ -693,7 +692,7 @@
   # Lua version from asdf.
   typeset -g POWERLEVEL9K_ASDF_LUA_PROMPT_ALWAYS_SHOW=true
   typeset -g POWERLEVEL9K_ASDF_LUA_FOREGROUND=87
-  typeset -g POWERLEVEL9K_ASDF_LUA_VISUAL_IDENTIFIER_EXPANSION='asdf/lua' # $'\ue620'
+  typeset -g POWERLEVEL9K_ASDF_LUA_VISUAL_IDENTIFIER_EXPANSION='lua' # $'\ue620'
   # typeset -g POWERLEVEL9K_ASDF_LUA_SHOW_ON_UPGLOB='*.foo|*.bar'
 
   # Java version from asdf.
@@ -1682,17 +1681,6 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
-  function prompt_yarn() {
-    # see: p10k help segment
-    # only show if yarn is installed
-    if command -v yarn >/dev/null 2>&1; then
-      if [[ -n "$(yarn -v)" ]]; then
-        # p10k segment -f 208 -i $'\ue6a7' -t "$(yarn -v)"
-        p10k segment -f 208 -i 'corepack/yarn' -t "$(yarn -v)"
-      fi
-    fi
-  }
-
   # User-defined prompt segments may optionally provide an instant_prompt_* function. Its job
   # is to generate the prompt segment for display in instant prompt. See
   # https://github.com/romkatv/powerlevel10k#instant-prompt.
@@ -1710,9 +1698,6 @@
     # instant_prompt_example. This will give us the same `example` prompt segment in the instant
     # and regular prompts.
     prompt_example
-  }
-  function instant_prompt_yarn() {
-    prompt_yarn
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.

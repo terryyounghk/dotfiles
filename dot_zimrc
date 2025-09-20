@@ -59,7 +59,7 @@ zmodule zsh-users/zsh-autosuggestions
 # ---------------------------------------------------------------------
 
 zmodule archive
-zmodule asdf
+# zmodule asdf # disabled in favour of mise
 zmodule exa
 zmodule k
 # zmodule fzf # disabled in favour of atuin
@@ -67,6 +67,7 @@ zmodule joke/zim-chezmoi
 zmodule joke/zim-github-cli
 zmodule joke/zim-k9s
 zmodule joke/zim-yq
+zmodule joke/zim-mise
 zmodule kiesman99/zim-zoxide
 zmodule olets/zsh-abbr
 zmodule romkatv/powerlevel10k --use degit

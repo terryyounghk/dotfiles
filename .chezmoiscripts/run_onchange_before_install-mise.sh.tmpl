@@ -16,26 +16,22 @@ exit 1984
 # Each plugin can have multiple specified versions to install.
 # The first specified version will also be set as global.
 
-{{  $plugins := list
-  "1password-cli latest"
-  "buf latest"
-  "chezmoi latest"
-  "golang latest"
-  "lua latest"
-  "nodejs latest 18.16.0"
-  "python latest"
-  "rust latest"
-  "yarn 1.22.22 latest"
+{{ $tools := list
+  "1password-cli@latest"
+  "buf@latest"
+  "chezmoi@latest"
+  "golang@latest"
+  "lua@latest"
+  "node@22.19.0"
+  "node@latest"
+  "python@latest"
+  "rust@latest"
+  "yarn@1.22.22"
+  "yarn@latest"
 }}
 
-{{ range $plugin := $plugins }}
-{{   $list := splitList " " $plugin }}
-{{   $name := mustFirst $list }}
-asdf plugin add {{ $name }}
-{{   range $version := mustRest $list }}
-asdf install {{ $name }} {{ $version }}
-{{   end }}
-asdf global {{ $name }} {{ mustFirst (mustRest $list) }}
+{{ range $tool := $tools }}
+mise use --global {{ $tool }}
 {{ end }}
 
 {{ end }}

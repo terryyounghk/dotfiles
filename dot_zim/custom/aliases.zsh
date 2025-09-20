@@ -58,6 +58,15 @@ alias lh='l --tree --level=3'
 # mkdir create [p]arent directories and [v]erbose
 alias mpv='mkdir -pv'
 
+# -----------------------------------------------------------------------------------
+# mise
+
+alias mls="mise ls"
+alias mlsc="mise ls --current"
+alias mlsl="mise ls --local"
+alias mlslo="mise ls --local --offline"
+alias mlso="mise ls --offline"
+alias mlsco="mise ls --current --offline"
 
 # -----------------------------------------------------------------------------------
 # node
